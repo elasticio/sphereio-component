@@ -1,0 +1,135 @@
+{
+    "apiVersion": "v0",
+    "swaggerVersion": "1.1",
+    "basePath": "https://api-v0.sphere.io",
+    "resourcePath": "/{{project}}/orders",
+    "apis": [
+        {
+            "path": "/{{project}}/orders",
+            "description": "Order resources",
+            "operations": [
+                {
+                    "httpMethod": "POST",
+                    "summary": "Order a Cart",
+                    "responseClass": "Order",
+                    "nickname": "orderCart",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "description": "Cart Id",
+                            "paramType": "body",
+                            "required": true,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        },
+                        {
+                            "name": "version",
+                            "description": "Cart version",
+                            "paramType": "body",
+                            "required": true,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        }
+                    ]
+                },
+                {
+                    "httpMethod": "GET",
+                    "summary": "Query Orders",
+                    "responseClass": "List[Order]",
+                    "nickname": "queryOrders",
+                    "parameters": [
+                        {
+                            "name": "where",
+                            "description": "Predicate to filter orders",
+                            "paramType": "query",
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        },
+                        {
+                            "name": "sort",
+                            "description": "Sort expression used to sort orders",
+                            "paramType": "query",
+                            "defaultValue": "lastModifiedAt asc",
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        },
+                        {
+                            "name": "limit",
+                            "description": "The maximum number of results to return from a query",
+                            "paramType": "query",
+                            "defaultValue": 0,
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "int"
+                        },
+                        {
+                            "name": "offset",
+                            "description": "The offset into the results matching the query",
+                            "paramType": "query",
+                            "defaultValue": 0,
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "int"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/{{project}}/orders/{id}",
+            "description": "Order resources",
+            "operations": [
+                {
+                    "httpMethod": "GET",
+                    "summary": "Get Order by ID",
+                    "responseClass": "Order",
+                    "nickname": "getOrderByID",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "description": "Order ID",
+                            "paramType": "path",
+                            "required": true,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "Order": {
+            "id": "Order",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "number"
+                },
+                "createdAt": {
+                    "title": "Created At",
+                    "type": "Date",
+                    "required":true
+                },
+                "lastModifiedAt": {
+                    "title": "Last Modified At",
+                    "type": "Date",
+                    "required":true
+                },
+                "customerId": {
+                    "title": "Customer Id",
+                    "type": "string"
+                },
+                "customerEmail": {
+                    "title": "Customer Email",
+                    "type": "string",
+                    "required":true
+                }
+            }
+        }
+    }
+}

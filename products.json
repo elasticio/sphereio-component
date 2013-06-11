@@ -1,0 +1,141 @@
+{
+    "apiVersion": "v0",
+    "swaggerVersion": "1.1",
+    "basePath": "https://api-v0.sphere.io",
+    "resourcePath": "/{{project}}/products",
+    "apis": [
+        {
+            "path": "/{{project}}/products",
+            "description": "Product resources",
+            "operations": [
+                {
+                    "httpMethod": "POST",
+                    "summary": "Create a Product",
+                    "responseClass": "Product",
+                    "nickname": "createProduct",
+                    "parameters": [
+                        {
+                            "description": "Product object",
+                            "paramType": "body",
+                            "required": true,
+                            "allowMultiple": false,
+                            "dataType": "NewProduct"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "path": "/{{project}}/products/{id}",
+            "description": "Product resources",
+            "operations": [
+                {
+                    "httpMethod": "DELETE",
+                    "summary": "Delete a Product",
+                    "responseClass": "void",
+                    "nickname": "deleteProduct",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "description": "Product ID",
+                            "paramType": "path",
+                            "required": true,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        },
+                        {
+                            "name":"version",
+                            "description": "Version",
+                            "paramType": "query",
+                            "required": true,
+                            "allowMultiple": false,
+                            "dataType": "int"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "NewProduct": {
+            "id": "NewProduct",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "required": true
+                },
+                "productType": {
+                    "type": "string",
+                    "required": true
+                },
+                "slug": {
+                    "type": "string",
+                    "required": true
+                },
+                "description": {
+                    "type": "string"
+                },
+                "metaTitle": {
+                    "type": "string"
+                },
+                "metaDescription": {
+                    "type": "string"
+                },
+                "metaKeywords": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "Product": {
+            "id": "Product",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "required": true
+                },
+                "version": {
+                    "type": "string",
+                    "required": true
+                },
+                "productType": {
+                    "title": "Product Type",
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                        "typeId": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "id": {
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                "masterData": {
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                        "current": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "slug": {
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

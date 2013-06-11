@@ -1,0 +1,51 @@
+{
+    "apiVersion": "v0",
+    "description": "SPHERE.IO is the most versatile cloud based commerce platform. You can call it Software-as-a-Service or Platform-as-a-Service - we call it: Cloud eCommerce OS.",
+    "swaggerVersion": "1.1",
+    "basePath": "https://api-v0.sphere.io/",
+    "apis": [
+        {
+            "path": "/{{project}}/carts",
+            "description": "Cart resources"
+        },
+        {
+            "path": "/{{project}}/customers",
+            "description": "Customer resources"
+        },
+        {
+            "path": "/{{project}}/products",
+            "description": "Product resources"
+        },
+        {
+            "path": "/{{project}}/orders",
+            "description": "Order resources"
+        }
+    ],
+    "authentication": {
+        "type": "oauth2",
+
+        "parameters": [
+            {
+                "name": "project",
+                "description": "Project Name",
+                "paramType": "custom",
+                "required": true,
+                "dataType": "string"
+            },
+            {
+                "name": "client",
+                "description": "Client ID",
+                "paramType": "custom",
+                "required": true,
+                "dataType": "string"
+            },
+            {
+                "name": "clientSecret",
+                "description": "Client Secret",
+                "paramType": "custom",
+                "required": true,
+                "dataType": "string"
+            }
+        ]
+    }
+}
