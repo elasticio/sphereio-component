@@ -1,11 +1,11 @@
-#sphere.io API description
+#elastic.io API Description Sample
 
-sphere.io is a REST-API for e-commerce which serves as a a perfect demonstration 
-on how to add external API to the elastic.io platform.
-
-Before going into the description two words about [Swagger](http://swagger.wordnik.com/):
+This project demonstrates how to add new REST API to the elastic.io platform. 
+Before going into the description two words about **Swagger**:
 
 ## Swagger
+
+From [Swagger Wordnik](http://swagger.wordnik.com/) site:
 
 >Swagger is a specification and complete framework implementation for
 >describing, producing, consuming, and visualizing RESTful web services.
@@ -18,13 +18,16 @@ Swagger have following advantages over other alternatives:
 * It's open source project distributed under Apache License, Version 2.0
 * It has a modular structure (core, code generator, UI, etc)
 * It has a significant traction and community acceptance
- 
+
 We believe that even if you don't use Swagger right now for documentaiton of your REST API you might benifit
 from it in the long-term e.g. from Swagger Code Generation.
 
 ## Contract
 
+All information required for new API to appear on elastic.io platform should be stored in Git repository, 
+just like this one on Github :). It need to satisfy following requirements:
+* It should have an *index* document called ```/api-docs.json```, typical Swagger structure that declares an entry point and references individual *resource* description files.
+* It should have an icon called ```/logo.png```. This logo should be 64x64 pixels large and have a transparent background.
 
-
-
+That's more or less it.
 
