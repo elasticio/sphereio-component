@@ -35,7 +35,7 @@
                 {
                     "httpMethod": "GET",
                     "summary": "Query Orders",
-                    "responseClass": "List[Order]",
+                    "responseClass": "PagedOrderQueryResult",
                     "nickname": "queryOrders",
                     "parameters": [
                         {
@@ -101,13 +101,68 @@
         }
     ],
     "models": {
+        "PagedOrderQueryResult": {
+            "id": "PagedOrderQueryResult",
+            "properties": {
+                "results": {
+                    "title": "Orders",
+                    "type": "array",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "version": {
+                            "title": "Version",
+                            "type": "number"
+                        },
+                        "createdAt": {
+                            "title": "Created At",
+                            "type": "Date",
+                            "required":true
+                        },
+                        "lastModifiedAt": {
+                            "title": "Last Modified At",
+                            "type": "Date",
+                            "required":true
+                        },
+                        "customerId": {
+                            "title": "Customer Id",
+                            "type": "string"
+                        },
+                        "customerEmail": {
+                            "title": "Customer Email",
+                            "type": "string",
+                            "required":true
+                        }
+                    }
+                },
+                "total": {
+                    "title": "# of orders total",
+                    "type": "number",
+                    "required":true
+                },
+                "count": {
+                    "title": "# of orders returned",
+                    "type": "number",
+                    "required":true
+                },
+                "offset": {
+                    "title": "Offset",
+                    "type": "number",
+                    "required":true
+                }
+            }
+        },
         "Order": {
             "id": "Order",
             "properties": {
                 "id": {
+                    "title": "Id",
                     "type": "string"
                 },
                 "version": {
+                    "title": "Version",
                     "type": "number"
                 },
                 "createdAt": {
