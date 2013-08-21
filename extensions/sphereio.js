@@ -4,7 +4,7 @@ var _ = require("underscore");
 
 exports.setWhereLastModifiedGreaterThan = function (msg, cfg, snapshot, cb) {
 
-    var where = msg.body.where;
+    var where = cfg.where;
 
     if (!where) {
 
@@ -16,7 +16,7 @@ exports.setWhereLastModifiedGreaterThan = function (msg, cfg, snapshot, cb) {
 
             console.log(where);
 
-            msg.body.where = where;
+            cfg.where = where;
         }
     }
 

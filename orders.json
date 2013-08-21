@@ -83,6 +83,7 @@
             "operations": [
                 {
                     "httpMethod": "GET",
+                    "behaviourType": "action",
                     "summary": "Get Order by ID",
                     "responseClass": "Order",
                     "nickname": "getOrderByID",
