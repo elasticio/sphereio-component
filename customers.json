@@ -31,6 +31,7 @@
             "operations": [
                 {
                     "httpMethod": "GET",
+                    "behaviourType": "action",
                     "summary": "Get Customer by ID",
                     "responseClass": "Customer",
                     "nickname": "getCustomerByID",
