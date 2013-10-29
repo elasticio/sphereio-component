@@ -12,44 +12,7 @@
                     "httpMethod": "GET",
                     "summary": "Query Product Types",
                     "responseClass": "PagedProductTypeQueryResult",
-                    "nickname": "queryProductTypes",
-                    "parameters": [
-                        {
-                            "name": "where",
-                            "description": "Predicate to filter product types",
-                            "paramType": "query",
-                            "required": false,
-                            "allowMultiple": false,
-                            "dataType": "string"
-                        },
-                        {
-                            "name": "sort",
-                            "description": "Sort expression used to sort product types",
-                            "paramType": "query",
-                            "defaultValue": "lastModifiedAt asc",
-                            "required": false,
-                            "allowMultiple": false,
-                            "dataType": "string"
-                        },
-                        {
-                            "name": "limit",
-                            "description": "The maximum number of results to return from a query",
-                            "paramType": "query",
-                            "defaultValue": 0,
-                            "required": false,
-                            "allowMultiple": false,
-                            "dataType": "int"
-                        },
-                        {
-                            "name": "offset",
-                            "description": "The offset into the results matching the query",
-                            "paramType": "query",
-                            "defaultValue": 0,
-                            "required": false,
-                            "allowMultiple": false,
-                            "dataType": "int"
-                        }
-                    ]
+                    "nickname": "queryProductTypes"
                 }
             ]
         }
