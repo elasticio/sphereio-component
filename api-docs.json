@@ -17,6 +17,10 @@
             "description": "Product resources"
         },
         {
+            "path": "/{{project}}/product-types",
+            "description": "Product types resources"
+        },
+        {
             "path": "/{{project}}/orders",
             "description": "Order resources"
         }
