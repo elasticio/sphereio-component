@@ -65,8 +65,19 @@
                     "required": true
                 },
                 "productType": {
-                    "type": "string",
-                    "required": true
+                    "type": "object",
+                    "properties": {
+                        "typeId": {
+                            "title": "Type Id",
+                            "type": "string",
+                            "required": true
+                        },
+                        "id": {
+                            "title": "Product Type Id",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
                 },
                 "slug": {
                     "type": "string",
