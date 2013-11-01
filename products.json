@@ -24,7 +24,7 @@
                         },
                         {
                             "name" : "productType",
-                            "description": "Name",
+                            "description": "Product Type",
                             "paramType": "body",
                             "required": true,
                             "allowMultiple": false,
