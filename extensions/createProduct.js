@@ -1,17 +1,12 @@
-exports.preProcess = function (msg, cfg, snapshot, cb) {
+exports.preRequest = function (options, cfg) {
 
-    console.log("preProcess createProduct");
+    var body = JSON.parse(options.body);
 
-    console.log(msg.body);
-
-    var id = msg.body.productType;
-
-    msg.body.productType = {
+    body.productType = {
         type: "product-type",
-        id: id
+        id: body.productType
     };
 
-    console.log(msg.body);
+    options.body = JSON.stringify(body);
 
-    cb();
 };
