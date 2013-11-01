@@ -1,5 +1,7 @@
 exports.preRequest = function (options, cfg) {
 
+    console.log("preRequest createProduct")
+
     var body = JSON.parse(options.body);
 
     body.productType = {
@@ -8,5 +10,7 @@ exports.preRequest = function (options, cfg) {
     };
 
     options.body = JSON.stringify(body);
+
+    console.log(options);
 
 };
