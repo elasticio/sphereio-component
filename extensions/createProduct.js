@@ -9,6 +9,4 @@ exports.preRequest = function (options, cfg) {
 
     options.body = JSON.stringify(body);
 
-    console.log(options);
-
 };
