@@ -72,6 +72,15 @@
                             "required": false,
                             "allowMultiple": false,
                             "dataType": "int"
+                        },
+                        {
+                            "name": "expand",
+                            "description": "References that should be expanded in orders",
+                            "paramType": "query",
+                            "defaultValue": "",
+                            "required": false,
+                            "allowMultiple": true,
+                            "dataType": "string"
                         }
                     ]
                 }
