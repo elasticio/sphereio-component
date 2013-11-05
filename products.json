@@ -15,11 +15,73 @@
                     "nickname": "createProduct",
                     "parameters": [
                         {
-                            "description": "Product object",
+                            "name" : "name",
+                            "description": "Name",
                             "paramType": "body",
                             "required": true,
                             "allowMultiple": false,
-                            "dataType": "NewProduct"
+                            "dataType": "string"
+                        },
+                        {
+                            "name" : "productType",
+                            "description": "Product Type",
+                            "paramType": "body",
+                            "required": true,
+                            "allowMultiple": false,
+                            "dataType": "string",
+                            "selectModel": {
+                                "operation": "queryProductTypes",
+                                "keyProperty" : "results.id",
+                                "valueProperty" : "results.name"
+                            }
+                        },
+                        {
+                            "name" : "slug",
+                            "description": "Slug",
+                            "paramType": "body",
+                            "required": true,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        },
+                        {
+                            "name" : "description",
+                            "description": "Description",
+                            "paramType": "body",
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        },
+                        {
+                            "name" : "metaTitle",
+                            "description": "Meta Title",
+                            "paramType": "body",
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        },
+                        {
+                            "name" : "metaDescription",
+                            "description": "Meta Description",
+                            "paramType": "body",
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        },
+                        {
+                            "name" : "metaKeywords",
+                            "description": "Meta Keywords",
+                            "paramType": "body",
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        } ,
+                        {
+                            "name" : "title",
+                            "description": "Title",
+                            "paramType": "body",
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "string"
                         }
                     ]
                 }
@@ -57,38 +119,6 @@
         }
     ],
     "models": {
-        "NewProduct": {
-            "id": "NewProduct",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "required": true
-                },
-                "productType": {
-                    "type": "string",
-                    "required": true
-                },
-                "slug": {
-                    "type": "string",
-                    "required": true
-                },
-                "description": {
-                    "type": "string"
-                },
-                "metaTitle": {
-                    "type": "string"
-                },
-                "metaDescription": {
-                    "type": "string"
-                },
-                "metaKeywords": {
-                    "type": "string"
-                },
-                "title": {
-                    "type": "string"
-                }
-            }
-        },
         "Product": {
             "id": "Product",
             "properties": {

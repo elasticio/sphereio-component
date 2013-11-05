@@ -1,0 +1,68 @@
+{
+    "apiVersion": "v0",
+    "swaggerVersion": "1.1",
+    "basePath": "https://api-v0.sphere.io",
+    "resourcePath": "/{{project}}/product-types",
+    "apis": [
+        {
+            "path": "/{{project}}/product-types",
+            "description": "Product type resources",
+            "operations": [
+                {
+                    "httpMethod": "GET",
+                    "summary": "Query Product Types",
+                    "responseClass": "PagedProductTypeQueryResult",
+                    "nickname": "queryProductTypes"
+                }
+            ]
+        }
+    ],
+    "models": {
+        "PagedProductTypeQueryResult": {
+            "id": "PagedProductTypeQueryResult",
+            "properties": {
+                "results": {
+                    "title": "Product Types",
+                    "type": "array",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string" ,
+                            "required":true
+                        },
+                        "version": {
+                            "title": "Version",
+                            "type": "number",
+                            "required":true
+                        },
+                        "name": {
+                            "title": "Name",
+                            "type": "string",
+                            "required":true
+                        },
+                        "description": {
+                            "title": "Description",
+                            "type": "string",
+                            "required":true
+                        }
+                    }
+                },
+                "total": {
+                    "title": "# of product types total",
+                    "type": "number",
+                    "required":true
+                },
+                "count": {
+                    "title": "# of product types returned",
+                    "type": "number",
+                    "required":true
+                },
+                "offset": {
+                    "title": "Offset",
+                    "type": "number",
+                    "required":true
+                }
+            }
+        }
+    }
+}
