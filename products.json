@@ -154,11 +154,11 @@
                             "required": true,
                             "properties": {
                                 "name": {
-                                    "type": "string",
+                                    "type": "lstring",
                                     "required": true
                                 },
                                 "slug": {
-                                    "type": "string",
+                                    "type": "lstring",
                                     "required": true
                                 }
                             }
