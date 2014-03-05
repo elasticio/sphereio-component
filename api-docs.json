@@ -23,6 +23,10 @@
         {
             "path": "/{{project}}/orders",
             "description": "Order resources"
+        },
+        {
+            "path": "/{{projectKey}}/inventory",
+            "description": "Inventory resources"
         }
     ],
     "authentication": {
