@@ -13,7 +13,7 @@
                     "summary": "Query Inventory",
                     "responseClass": "PagedInventoryQueryResult",
                     "nickname": "queryInventory",
-                    "paremeters": [
+                    "parameters": [
                         {
                             "name": "where",
                             "description": "Predicate to filter inventory entries",
