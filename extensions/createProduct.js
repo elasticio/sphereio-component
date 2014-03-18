@@ -14,5 +14,11 @@ exports.preRequest = function (options, cfg) {
 };
 
 exports.getMetaModel = function (cfg, availableMetadata, callback) {
-    sphereio.getMetaModel(cfg, availableMetadata, 'product', callback);
+
+    sphereio.getMetaModel({
+        cfg: cfg,
+        avaliableMetadata: availableMetadata,
+        resourceName: 'products',
+        modelName: 'product'
+    }, callback);
 };

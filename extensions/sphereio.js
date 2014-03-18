@@ -55,10 +55,9 @@ var updateSnapshot = function(data, snapshot) {
     }
 };
 
-exports.getMetaModel = function (cfg, availableMetadata, resourceName, callback) {
+exports.getMetaModel = function (options, callback) {
 
-    exports.createMetaModelRequirements(cfg, resourceName, function (err, resource, languages) {
-        console.log('Getting meta model with requirements provideid: ' + JSON.stringify(resource) + "\n languages: " + JSON.stringify(languages))
+    exports.createMetaModelRequirements(options.cfg, options.resourceName, function (err, resource, languages) {
 
         if (err) {
             return callback(err);
@@ -67,7 +66,7 @@ exports.getMetaModel = function (cfg, availableMetadata, resourceName, callback)
         var languagesMetaData = createLanguagesMetaData(languages);
 
         var model = _.find(resource.models, function (model) {
-            return model.id.toLowerCase() === resourceName;
+            return model.id.toLowerCase() === options.modelName;
         });
 
         var outMeta = {
@@ -76,7 +75,7 @@ exports.getMetaModel = function (cfg, availableMetadata, resourceName, callback)
         };
 
         //perform deep copy
-        var inMeta = JSON.parse(JSON.stringify(availableMetadata.in));
+        var inMeta = JSON.parse(JSON.stringify(options.availableMetadata.in));
 
         injectLocalizedStrings(outMeta, languagesMetaData);
         injectLocalizedStrings(inMeta, languagesMetaData);
