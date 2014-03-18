@@ -17,7 +17,7 @@ exports.getMetaModel = function (cfg, availableMetadata, callback) {
 
     sphereio.getMetaModel({
         cfg: cfg,
-        avaliableMetadata: availableMetadata,
+        availableMetadata: availableMetadata,
         resourceName: 'products',
         modelName: 'product'
     }, callback);
