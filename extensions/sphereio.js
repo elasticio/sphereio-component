@@ -88,12 +88,13 @@ exports.getMetaModel = function (options, callback) {
 }
 
 var injectLocalizedStrings = function (model, languageMeta) {
-    console.log('Injecting localize strings');
+    console.log('Injecting localize strings: ' + JSON.stringify(model) + "\nlanguageMeta" + JSON.stringify(languageMeta));
     _.each(model.properties, function (property, propertyName) {
 
         if (property.type === "lstring") {
 
-            var title = property.title; //|| (_.first(propertyName).toUpperCase() + _.rest(propertyName).join(''));
+            console.log('Injecting into : ' + propertyName);
+            var title = propertyName; //|| (_.first(propertyName).toUpperCase() + _.rest(propertyName).join(''));
 
             //deep copy of language meta data as we will manipulate it's properties
             var languageMetaCopy = JSON.parse(JSON.stringify(languageMeta));
