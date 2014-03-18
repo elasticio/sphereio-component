@@ -84,17 +84,18 @@ exports.getMetaModel = function (options, callback) {
             "in": inMeta,
             "out": outMeta
         }
+
+        callback(null, metaData);
     });
 }
 
 var injectLocalizedStrings = function (model, languageMeta) {
-    console.log('Injecting localize strings: ' + JSON.stringify(model) + "\nlanguageMeta" + JSON.stringify(languageMeta));
+
     _.each(model.properties, function (property, propertyName) {
 
         if (property.type === "lstring") {
 
-            console.log('Injecting into : ' + propertyName);
-            var title = propertyName; //|| (_.first(propertyName).toUpperCase() + _.rest(propertyName).join(''));
+            var title = property.title || (_.first(propertyName).toUpperCase() + _.rest(propertyName).join(''));
 
             //deep copy of language meta data as we will manipulate it's properties
             var languageMetaCopy = JSON.parse(JSON.stringify(languageMeta));
@@ -114,7 +115,6 @@ var injectLocalizedStrings = function (model, languageMeta) {
 };
 
 var createLanguagesMetaData = function getLanguagesMetaData(arrayOfLanguages) {
-    console.log('Creating languages meta');
     return arrayOfLanguages.reduce(function (previousResult, language) {
 
         previousResult[language] = {type: "string"};
@@ -133,7 +133,7 @@ exports.createMetaModelRequirements = function (cfg, resourceName, cb) {
                 console.log(err);
                 return cb(err);
             }
-            console.log('About to read apidocs');
+
             fs.readFile(__dirname + '/../api-docs.json', function (err, apiDocsContent) {
 
                 if (err) {
@@ -141,16 +141,14 @@ exports.createMetaModelRequirements = function (cfg, resourceName, cb) {
                     return cb(err);
                 }
 
-                console.log('About to read ' + resourceName + '.json');
                 fs.readFile(__dirname + '/../' + resourceName + '.json', function (err, resourceContent) {
                     if (err) {
                         console.log(err);
                         return cb(err);
                     }
-                    console.log("Resource content: "+resourceContent);
                     var apiDocs = JSON.parse(apiDocsContent);
                     var resource = JSON.parse(resourceContent);
-                    console.log('resource after parsing : ' + JSON.stringify(resource));
+
                     var projectUri = apiDocs.basePath + cfg.project;
 
                     request.get({

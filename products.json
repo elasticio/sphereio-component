@@ -41,7 +41,7 @@
                             "paramType": "body",
                             "required": true,
                             "allowMultiple": false,
-                            "dataType": "ltring"
+                            "dataType": "lstring"
                         },
                         {
                             "name" : "description",
