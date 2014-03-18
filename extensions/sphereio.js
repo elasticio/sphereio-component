@@ -58,6 +58,8 @@ var updateSnapshot = function(data, snapshot) {
 exports.getMetaModel = function (cfg, availableMetadata, resourceName, callback) {
 
     createMetaModelRequirements(cfg, resourceName, function (err, resource, languages) {
+        console.log('Getting meta model with requirements provideid: ' + JSON.stringify(resource) + "\n languages: " + JSON.stringify(languages))
+
         if (err) {
             return callback(err);
         }
@@ -87,7 +89,7 @@ exports.getMetaModel = function (cfg, availableMetadata, resourceName, callback)
 }
 
 var injectLocalizedStrings = function (model, languageMeta) {
-
+    console.log('Injecting localize strings');
     _.each(model.properties, function (property, propertyName) {
 
         if (property.type === "lstring") {
@@ -112,7 +114,7 @@ var injectLocalizedStrings = function (model, languageMeta) {
 };
 
 var createLanguagesMetaData = function getLanguagesMetaData(arrayOfLanguages) {
-
+    console.log('Creating languages meta');
     return arrayOfLanguages.reduce(function (previousResult, language) {
 
         previousResult[language] = {type: "string"};
