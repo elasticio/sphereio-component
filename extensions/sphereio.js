@@ -140,7 +140,6 @@ var createMetaModelRequirements = function (cfg, resourceName, cb) {
                         return cb(err);
                     }
 
-                    var apiDocs = JSON.parse(apiDocsContent);
                     var resource = JSON.parse(resourceContent);
 
                     var projectUri = apiDocs.basePath + cfg.project;
