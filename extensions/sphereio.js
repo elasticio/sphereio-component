@@ -130,13 +130,21 @@ exports.createMetaModelRequirements = function (cfg, resourceName, cb) {
         function (err) {
 
             if (err) {
+                console.log(err);
                 return cb(err);
             }
-
+            console.log('About to read apidocs');
             fs.readFile(__dirname + '/../api-docs.json', function (err, apiDocsContent) {
 
+                if (err) {
+                    console.log(err);
+                    return cb(err);
+                }
+
+                console.log('About to read ' + resourceName + '.json');
                 fs.readFile(__dirname + '/../' + resourceName + '.json', function (err, resourceContent) {
                     if (err) {
+                        console.log(err);
                         return cb(err);
                     }
                     console.log("Resource content: "+resourceContent);
@@ -152,10 +160,12 @@ exports.createMetaModelRequirements = function (cfg, resourceName, cb) {
                         }
                     }, function (err, response, body) {
                         if (err) {
+                            console.log(err);
                             return cb(err);
                         }
 
                         if (response.statusCode != 200) {
+                            console.log(body);
                             return cb(new Error(body));
                         }
                         console.log(typeof body);
