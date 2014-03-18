@@ -1,5 +1,6 @@
 var util = require("util");
 var moment = require("moment");
+var request = require('request');
 var _ = require("underscore");
 
 exports.setWhereLastModifiedGreaterThan = function (msg, cfg, snapshot, cb) {
