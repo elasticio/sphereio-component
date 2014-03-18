@@ -57,7 +57,7 @@ var updateSnapshot = function(data, snapshot) {
 
 exports.getMetaModel = function (cfg, availableMetadata, resourceName, callback) {
 
-    createMetaModelRequirements(cfg, resourceName, function (err, resource, languages) {
+    exports.createMetaModelRequirements(cfg, resourceName, function (err, resource, languages) {
         console.log('Getting meta model with requirements provideid: ' + JSON.stringify(resource) + "\n languages: " + JSON.stringify(languages))
 
         if (err) {
@@ -124,7 +124,7 @@ var createLanguagesMetaData = function getLanguagesMetaData(arrayOfLanguages) {
     }, Object.create(Object.prototype));
 };
 
-var createMetaModelRequirements = function (cfg, resourceName, cb) {
+exports.createMetaModelRequirements = function (cfg, resourceName, cb) {
     exports.attachTokenTo(cfg,
 
         function (err) {
