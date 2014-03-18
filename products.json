@@ -20,7 +20,7 @@
                             "paramType": "body",
                             "required": true,
                             "allowMultiple": false,
-                            "dataType": "string"
+                            "dataType": "lstring"
                         },
                         {
                             "name" : "productType",
@@ -41,7 +41,7 @@
                             "paramType": "body",
                             "required": true,
                             "allowMultiple": false,
-                            "dataType": "string"
+                            "dataType": "ltring"
                         },
                         {
                             "name" : "description",
@@ -49,7 +49,7 @@
                             "paramType": "body",
                             "required": false,
                             "allowMultiple": false,
-                            "dataType": "string"
+                            "dataType": "lstring"
                         },
                         {
                             "name" : "metaTitle",
@@ -81,7 +81,7 @@
                             "paramType": "body",
                             "required": false,
                             "allowMultiple": false,
-                            "dataType": "string"
+                            "dataType": "lstring"
                         }
                     ]
                 }

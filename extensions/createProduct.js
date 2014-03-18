@@ -1,3 +1,5 @@
+var sphereio = require('./sphereio');
+
 exports.preRequest = function (options, cfg) {
 
     var body = JSON.parse(options.body);
@@ -8,5 +10,9 @@ exports.preRequest = function (options, cfg) {
     };
 
     options.body = JSON.stringify(body);
+    options.json = body;
+};
 
+exports.getMetaModel = function (cfg, availableMetadata, callback) {
+    sphereio.getMetaModel(cgf, availableMetadata, 'product', callback);
 };
