@@ -122,7 +122,7 @@ var createLanguagesMetaData = function getLanguagesMetaData(arrayOfLanguages) {
 };
 
 var createMetaModelRequirements = function (cfg, resourceName, cb) {
-    this.attachTokenTo(cfg,
+    exports.attachTokenTo(cfg,
 
         function (err) {
 
