@@ -139,9 +139,10 @@ var createMetaModelRequirements = function (cfg, resourceName, cb) {
                     if (err) {
                         return cb(err);
                     }
-
+                    console.log("Resource content: "+resourceContent);
+                    var apiDocs = JSON.parse(apiDocsContent);
                     var resource = JSON.parse(resourceContent);
-
+                    console.log('resource after parsing : ' + JSON.stringify(resource));
                     var projectUri = apiDocs.basePath + cfg.project;
 
                     request.get({
@@ -157,7 +158,8 @@ var createMetaModelRequirements = function (cfg, resourceName, cb) {
                         if (response.statusCode != 200) {
                             return cb(new Error(body));
                         }
-
+                        console.log(typeof body);
+                        console.log(JSON.stringify(body));
                         var languages = JSON.parse(body).languages;
 
                         cb(null, resource, languages);
