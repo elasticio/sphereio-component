@@ -11,7 +11,7 @@
                 {
                     "httpMethod": "POST",
                     "summary": "Create a Product",
-                    "responseClass": "Product",
+                    "responseClass": "dynamic",
                     "nickname": "createProduct",
                     "parameters": [
                         {
