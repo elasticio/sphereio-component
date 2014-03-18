@@ -93,7 +93,7 @@ var injectLocalizedStrings = function (model, languageMeta) {
 
         if (property.type === "lstring") {
 
-            var title = property.title || (_.first(propertyName).toUpperCase() + _.rest(propertyName).join(''));
+            var title = property.title; //|| (_.first(propertyName).toUpperCase() + _.rest(propertyName).join(''));
 
             //deep copy of language meta data as we will manipulate it's properties
             var languageMetaCopy = JSON.parse(JSON.stringify(languageMeta));
