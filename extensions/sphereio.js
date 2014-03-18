@@ -108,7 +108,7 @@ var injectLocalizedStrings = function (model, languageMeta) {
             return;
         }
 
-        if (property.properties) replaceLStrings(property, languageMeta);
+        if (property.properties) injectLocalizedStrings(property, languageMeta);
     });
 };
 
