@@ -4,9 +4,7 @@
     "devDependencies":{
         "underscore": "1.4.2",
         "request": "2.9.x",
-        "underscore": "1.4.2",
         "q": "1.0.0",
-        "q-io" : "1.11.0",
         "moment":"2.0.0",
         "nock": "0.27.2"
     }

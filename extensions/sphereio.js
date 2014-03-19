@@ -3,8 +3,6 @@ var moment = require("moment");
 var request = require('request');
 var _ = require("underscore");
 var Q = require('q');
-var fs = require('fs');
-var path = require('path');
 var metaModelDataCollector = require('./helpers/metaModelDataCollector');
 var metaModelDataProcessor = require('./helpers/metaModelDataProcessor');
 
