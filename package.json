@@ -1,0 +1,23 @@
+{
+    "name":"sphereio-spec",
+    "description":"Tests for sphrereio extensions",
+    "devDependencies":{
+        "underscore": "1.4.2",
+        "request": "2.9.x",
+        "q": "1.0.0",
+        "moment":"2.0.0",
+        "nock": "0.27.2",
+        "jasmine-jscoverage-utils":"git://github.com/elasticio/jasmine-jscoverage-utils.git",
+        "grunt": "~0.4.2",
+        "grunt-cli": "~0.1.9",
+        "grunt-contrib-clean": "~0.5.0",
+        "grunt-jasmine-node": "0.1.0",
+        "istanbul":"0.1.36",
+        "coveralls": "2.6.1",
+        "grunt-contrib-jshint": "~0.7.2"
+    },
+    "engines": {
+        "node": "0.10.21",
+        "npm": "1.3.11"
+    }
+}

@@ -1,1 +1,10 @@
+node_modules
+*.gz
+.idea
+lib-cov
+coverage.html
+coverage
+reports
+/*.png
 .DS_Store
+coverage
