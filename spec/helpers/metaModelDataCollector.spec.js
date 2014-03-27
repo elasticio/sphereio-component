@@ -48,7 +48,7 @@ describe('Data Collector', function () {
 
             waitsFor(function () {
                 return meta;
-            })
+            });
 
             runs(function () {
 
@@ -122,7 +122,7 @@ describe('Data Collector', function () {
 
             waitsFor(function () {
                 return meta;
-            })
+            });
 
             runs(function () {
 
@@ -196,7 +196,7 @@ describe('Data Collector', function () {
 
             waitsFor(function () {
                 return meta;
-            })
+            });
 
             runs(function () {
 
@@ -286,5 +286,4 @@ describe('Data Collector', function () {
         });
     });
 
-})
-;
+});

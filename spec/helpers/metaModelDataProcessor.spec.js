@@ -195,8 +195,7 @@ describe('Data processor', function () {
             expect(metadata).toEqual(expected);
         });
 
-    })
-    ;
+    });
 
     describe('processData', function () {
         it('should call updateMetadata and return a promise', function () {
@@ -316,7 +315,7 @@ describe('Data processor', function () {
             var expectedResult = {
                 in:expected,
                 out:expected
-            }
+            };
 
             spyOn(dataProcessor, 'updateMetadata').andCallThrough();
 
@@ -338,5 +337,4 @@ describe('Data processor', function () {
 
         });
     });
-})
-;
+});
