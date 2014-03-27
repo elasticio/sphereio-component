@@ -47,15 +47,15 @@ describe('SphereIO helpers', function () {
             var error;
             runs(function () {
                 sphereio.attachTokenTo(cfg, function () {
-                })
+                });
             });
 
             waitsFor(function () {
                 return cfg.oauth;
-            })
+            });
 
             runs(function () {
-                expect(cfg.oauth).toBeDefined()
+                expect(cfg.oauth).toBeDefined();
             });
         });
 
@@ -162,5 +162,4 @@ describe('SphereIO helpers', function () {
         });
     });
 
-})
-;
+});
