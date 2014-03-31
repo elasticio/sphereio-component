@@ -1,0 +1,177 @@
+{
+    "apiVersion": "v0",
+    "swaggerVersion": "1.1",
+    "basePath": "https://api-v0.sphere.io",
+    "resourcePath": "/{{project}}/inventory",
+    "apis": [
+        {
+            "path": "/{{project}}/inventory",
+            "description": "Query Inventory",
+            "operations": [
+                {
+                    "httpMethod": "GET",
+                    "summary": "Query Inventory",
+                    "responseClass": "PagedInventoryQueryResult",
+                    "nickname": "queryInventory",
+                    "parameters": [
+                        {
+                            "name": "where",
+                            "description": "Predicate to filter inventory entries",
+                            "paramType": "query",
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        },
+                        {
+                            "name": "sort",
+                            "description": "Sort expression to sort inventory entries",
+                            "paramType": "query",
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        },
+                        {
+                            "name": "limit",
+                            "description": "Number of desired results",
+                            "paramType": "query",
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        },
+                        {
+                            "name": "offset",
+                            "description": "Offset into the results matching the query",
+                            "paramType": "query",
+                            "required": false,
+                            "allowMultiple": false,
+                            "dataType": "string"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "models": {
+        "PagedInventoryQueryResult": {
+            "id": "PagedInventoryQueryResult",
+            "properties": {
+                "results": {
+                    "title": "Inventory Entries",
+                    "type": "array",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string",
+                            "required": false
+                        },
+                        "version": {
+                            "title": "Version",
+                            "type": "number",
+                            "required": false
+                        },
+                        "createdAt": {
+                            "title": "Created At",
+                            "type": "Date",
+                            "required": true
+                        },
+                        "lastModifiedAt": {
+                            "title": "Last Modified At",
+                            "type": "Date",
+                            "required": true
+                        },
+                        "sku": {
+                            "title": "sku",
+                            "type": "string",
+                            "required": true
+                        },
+                        "quantityOnStock": {
+                            "title": "Quantity On Stock",
+                            "type": "number",
+                            "required": true
+                        },
+                        "availableQuantity": {
+                            "title": "Available Quantity",
+                            "type": "number",
+                            "required": true
+                        },
+                        "restockableInDays": {
+                            "title": "Restockable In Days",
+                            "type": "number",
+                            "required": true
+                        },
+                        "expectedDelivery": {
+                            "title": "Expected Delivery",
+                            "type": "Date",
+                            "required": true
+                        }
+                    }
+                },
+                "offset": {
+                    "title": "Offset",
+                    "type": "number",
+                    "required": true
+                },
+                "count": {
+                    "title": "# of inventory entries returned",
+                    "type": "number",
+                    "required": true
+                },
+                "total": {
+                    "title": "# of inventory entries total",
+                    "type": "number",
+                    "required": true
+                }
+            }
+        },
+        "InventoryEntry": {
+            "id": "InventoryEntry",
+            "properties": {
+                "id": {
+                    "title": "Id",
+                    "type": "string",
+                    "required": false
+                },
+                "version": {
+                    "title": "Version",
+                    "type": "number",
+                    "required": false
+                },
+                "createdAt": {
+                    "title": "Created At",
+                    "type": "Date",
+                    "required": true
+                },
+                "lastModifiedAt": {
+                    "title": "Last Modified At",
+                    "type": "Date",
+                    "required": true
+                },
+                "sku": {
+                    "title": "sku",
+                    "type": "string",
+                    "required": true
+                },
+                "quantityOnStock": {
+                    "title": "Quantity On Stock",
+                    "type": "number",
+                    "required": true
+                },
+                "availableQuantity": {
+                    "title": "Available Quantity",
+                    "type": "number",
+                    "required": true
+                },
+                "restockableInDays": {
+                    "title": "Restockable In Days",
+                    "type": "number",
+                    "required": true
+                },
+                "expectedDelivery": {
+                    "title": "Expected Delivery",
+                    "type": "Date",
+                    "required": true
+                }
+            }
+        }
+    }
+}

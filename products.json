@@ -11,7 +11,7 @@
                 {
                     "httpMethod": "POST",
                     "summary": "Create a Product",
-                    "responseClass": "Product",
+                    "responseClass": "dynamic",
                     "nickname": "createProduct",
                     "parameters": [
                         {
@@ -20,7 +20,7 @@
                             "paramType": "body",
                             "required": true,
                             "allowMultiple": false,
-                            "dataType": "string"
+                            "dataType": "lstring"
                         },
                         {
                             "name" : "productType",
@@ -41,7 +41,7 @@
                             "paramType": "body",
                             "required": true,
                             "allowMultiple": false,
-                            "dataType": "string"
+                            "dataType": "lstring"
                         },
                         {
                             "name" : "description",
@@ -49,7 +49,7 @@
                             "paramType": "body",
                             "required": false,
                             "allowMultiple": false,
-                            "dataType": "string"
+                            "dataType": "lstring"
                         },
                         {
                             "name" : "metaTitle",
@@ -81,7 +81,7 @@
                             "paramType": "body",
                             "required": false,
                             "allowMultiple": false,
-                            "dataType": "string"
+                            "dataType": "lstring"
                         }
                     ]
                 }
@@ -154,11 +154,11 @@
                             "required": true,
                             "properties": {
                                 "name": {
-                                    "type": "string",
+                                    "type": "lstring",
                                     "required": true
                                 },
                                 "slug": {
-                                    "type": "string",
+                                    "type": "lstring",
                                     "required": true
                                 }
                             }
