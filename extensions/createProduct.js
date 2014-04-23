@@ -13,7 +13,7 @@ exports.preRequest = function (options, cfg) {
     options.json = body;
 };
 
-exports.getMetaModel = function (cfg, availableMetadata, callback) {
+exports.getMetaModel = function (cfg, callback, availableMetadata) {
 
     sphereio.getMetaModel({
         cfg: cfg,
