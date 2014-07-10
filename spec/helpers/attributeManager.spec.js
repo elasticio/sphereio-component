@@ -1,5 +1,98 @@
 var attributeManager = require('../../extensions/helpers/attributeManager');
 var _ = require('underscore');
+var nock = require('nock');
+
+describe('promiseProductTypeData', function () {
+
+    var cfg = {
+        project: "aSphereioProject",
+        productType: 'productTypeId',
+        oauth: {
+            access_token: "aToken"
+        }
+    };
+
+    it('When valid productTypeData is returned', function(){
+
+        var productTypeData = {
+            param1: 'value1',
+            param2: 'value2'
+        };
+
+        nock('https://api-v0.sphere.io').get('/aSphereioProject/product-types/productTypeId').reply(200, productTypeData);
+
+        var result, error;
+
+        runs(function () {
+            attributeManager.promiseProductTypeData(cfg).then(function (data) {
+                result = data;
+            }).fail(function (err) {
+                error = err;
+            }).done();
+        });
+
+        waitsFor(function () {
+            return result;
+        });
+
+        runs(function () {
+            expect(result).toBeDefined();
+            expect(result).toEqual(productTypeData);
+            expect(error).not.toBeDefined();
+        });
+    });
+
+    it('When statusCode <> 200 it should return an error', function(){
+
+        nock('https://api-v0.sphere.io').get('/aSphereioProject/product-types/productTypeId').reply(404, 'Product type not found');
+
+        var result, error;
+
+        runs(function () {
+            attributeManager.promiseProductTypeData(cfg).then(function (data) {
+                result = data;
+            }).fail(function (err) {
+                error = err;
+            }).done();
+        });
+
+        waitsFor(function () {
+            return result || error;
+        });
+
+        runs(function () {
+            expect(result).not.toBeDefined();
+            expect(error).toBeDefined();
+            expect(error.message).toEqual('Product type not found');
+        });
+    });
+
+    it('When invalid JSON it should return an error', function(){
+
+        nock('https://api-v0.sphere.io').get('/aSphereioProject/product-types/productTypeId').reply(200, 'invalid-json');
+
+        var result, error;
+
+        runs(function () {
+            attributeManager.promiseProductTypeData(cfg).then(function (data) {
+                result = data;
+            }).fail(function (err) {
+                error = err;
+            }).done();
+        });
+
+        waitsFor(function () {
+            return result || error;
+        });
+
+        runs(function () {
+            expect(result).not.toBeDefined();
+            expect(error).toBeDefined();
+            expect(error.message).toEqual('Invalid JSON: invalid-json');
+        });
+    });
+
+});
 
 describe('buildAttributeField', function () {
 

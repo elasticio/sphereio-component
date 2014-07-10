@@ -14,11 +14,18 @@ exports.promiseProductTypeData = function(cfg){
         }
     };
     var deferred = Q.defer();
-    request.get(productTypeRequest, function(error, response, body) {
-        if (error) {
-            deferred.reject();
+    request.get(productTypeRequest, function(err, res, body) {
+        if (err) {
+            deferred.reject(err);
         }
-        body = JSON.parse(body);
+        if (res.statusCode !== 200) {
+            deferred.reject(new Error(body));
+        }
+        try {
+            body = JSON.parse(body);
+        } catch (err) {
+            deferred.reject(new Error('Invalid JSON: ' + body));
+        }
         deferred.resolve(body);
     });
     return deferred.promise;
