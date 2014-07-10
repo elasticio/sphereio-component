@@ -346,15 +346,4 @@ describe('Data processor', function () {
 
         });
     });
-
-    /*describe('updateMetadata', function () {
-        var metadata = require(__dirname + '/json/metadata.json');
-        var attributes = require(__dirname + '/json/attributes.json');
-        var metadata_with_attributes_localized = require(__dirname + '/json/metadata_with_attributes_localized.json');
-
-        it('should add attributes to metadata', function () {
-            dataProcessor.processData(metadata, languageMeta, attributes);
-            expect(metadata).toEqual(metadata_with_attributes_localized);
-        });
-    });*/
 });
