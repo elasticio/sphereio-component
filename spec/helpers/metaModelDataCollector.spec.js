@@ -10,6 +10,7 @@ describe('Data Collector', function () {
                     client: "someClient",
                     clientSecret: "verySecretStuff",
                     project: "aSphereioProject",
+                    productType: 'productTypeId',
                     oauth: {
                         access_token: "aToken"
                     }
@@ -35,6 +36,8 @@ describe('Data Collector', function () {
                 "name": "aSphereioProject",
                 "key": "aSphereioProjectKey"
             });
+
+            nock('https://api-v0.sphere.io').get('/aSphereioProject/product-types/productTypeId').reply(200, {});
 
             var meta;
             var langsMeta;
@@ -72,6 +75,7 @@ describe('Data Collector', function () {
                     client: "someClient",
                     clientSecret: "verySecretStuff",
                     project: "aSphereioProject",
+                    productType: 'productTypeId',
                     oauth: {
                         access_token: "aToken"
                     }
@@ -110,6 +114,8 @@ describe('Data Collector', function () {
                 "key": "aSphereioProjectKey"
             });
 
+            nock('https://api-v0.sphere.io').get('/aSphereioProject/product-types/productTypeId').reply(200, {});
+
             var meta;
             var langsMeta;
 
@@ -146,6 +152,7 @@ describe('Data Collector', function () {
                     client: "someClient",
                     clientSecret: "verySecretStuff",
                     project: "aSphereioProject",
+                    productType: 'productTypeId',
                     oauth: {
                         access_token: "aToken"
                     }
@@ -183,6 +190,8 @@ describe('Data Collector', function () {
                 "name": "aSphereioProject",
                 "key": "aSphereioProjectKey"
             });
+
+            nock('https://api-v0.sphere.io').get('/aSphereioProject/product-types/productTypeId').reply(200, {});
 
             var meta;
             var langsMeta;

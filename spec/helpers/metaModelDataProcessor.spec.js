@@ -47,9 +47,7 @@ describe('Data processor', function () {
             };
 
             dataProcessor.updateMetadata(metadata, languageMeta);
-
             expect(metadata).toEqual(expected);
-
         });
 
 
@@ -62,21 +60,24 @@ describe('Data processor', function () {
                         "properties": {
                             "description": {
                                 "type": "lstring",
-                                "title": "First Name"
+                                "title": "First Name",
+                                "required": true
                             },
                             "data": {
                                 "type": "object",
                                 "properties": {
                                     "type": {
                                         "type": "lstring",
-                                        "title": "Type"
+                                        "title": "Type",
+                                        "required": false
                                     }
                                 }
                             }
                         }
                     },
                     "summary": {
-                        "type": "lstring"
+                        "type": "lstring",
+                        "required": false
                     }
                 }
             };
@@ -90,14 +91,17 @@ describe('Data processor', function () {
                             "description": {
                                 "type": "object",
                                 "title": "First Name",
+                                "required": true,
                                 "properties": {
                                     "en": {
                                         "title": "First Name (en)",
-                                        type: "string"
+                                        type: "string",
+                                        "required": true
                                     },
                                     "de": {
                                         "title": "First Name (de)",
-                                        type: "string"
+                                        type: "string",
+                                        "required": true
                                     }
                                 }
                             },
@@ -107,14 +111,17 @@ describe('Data processor', function () {
                                     "type": {
                                         "type": "object",
                                         "title": "Type",
+                                        "required": false,
                                         "properties": {
                                             "en": {
                                                 "title": "Type (en)",
-                                                type: "string"
+                                                type: "string",
+                                                "required": false
                                             },
                                             "de": {
                                                 "title": "Type (de)",
-                                                type: "string"
+                                                type: "string",
+                                                "required": false
                                             }
                                         }
                                     }
@@ -124,14 +131,17 @@ describe('Data processor', function () {
                     },
                     "summary": {
                         "type": "object",
+                        "required": false,
                         "properties": {
                             "en": {
                                 "title": "Summary (en)",
-                                type: "string"
+                                type: "string",
+                                "required": false
                             },
                             "de": {
                                 "title": "Summary (de)",
-                                type: "string"
+                                type: "string",
+                                "required": false
                             }
                         }
                     }
@@ -139,7 +149,6 @@ describe('Data processor', function () {
             };
 
             dataProcessor.updateMetadata(metadata, languageMeta);
-
             expect(metadata).toEqual(expected);
         });
 

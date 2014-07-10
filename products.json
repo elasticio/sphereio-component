@@ -57,7 +57,7 @@
                             "paramType": "body",
                             "required": false,
                             "allowMultiple": false,
-                            "dataType": "string"
+                            "dataType": "lstring"
                         },
                         {
                             "name" : "metaDescription",
@@ -65,7 +65,7 @@
                             "paramType": "body",
                             "required": false,
                             "allowMultiple": false,
-                            "dataType": "string"
+                            "dataType": "lstring"
                         },
                         {
                             "name" : "metaKeywords",
@@ -73,7 +73,7 @@
                             "paramType": "body",
                             "required": false,
                             "allowMultiple": false,
-                            "dataType": "string"
+                            "dataType": "lstring"
                         } ,
                         {
                             "name" : "title",

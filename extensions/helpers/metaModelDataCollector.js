@@ -3,6 +3,7 @@ var path = require('path');
 var request = require('request');
 var fs = require('fs');
 var _ = require('underscore');
+var attributeManager = require('./attributeManager.js');
 
 exports.getData = function (options) {
 
@@ -57,11 +58,19 @@ exports.getData = function (options) {
             var metadata = {
                 out:outMeta,
                 "in":inMeta
-            }
+            };
 
             return [metadata, languageMeta];
-        })
-}
+        }).spread(function(metadata, languageMeta) {
+            // get also productTypeData
+            return attributeManager.promiseProductTypeData(options.cfg).then(function(productTypeData){
+                if (productTypeData && productTypeData.attributes) {
+                    attributeManager.addAttributes(metadata, productTypeData.attributes);
+                }
+                return [metadata, languageMeta];
+            })
+        });
+};
 
 exports.findModel = function (resource, modelName) {
 
