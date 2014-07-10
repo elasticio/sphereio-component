@@ -1,12 +1,7 @@
 var _ = require('underscore');
 var Q = require('q');
-var attributeManager = require('./attributeManager.js');
 
-exports.processData = function (metadata, languageMeta, attributes) {
-
-    if (attributes) {
-        attributeManager.addAttributes(metadata, attributes);
-    }
+exports.processData = function (metadata, languageMeta) {
 
     _.each(metadata, function (meta) {
         exports.updateMetadata(meta, languageMeta);

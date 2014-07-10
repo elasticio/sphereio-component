@@ -64,7 +64,10 @@ exports.getData = function (options) {
         }).spread(function(metadata, languageMeta) {
             // get also productTypeData
             return attributeManager.promiseProductTypeData(options.cfg).then(function(productTypeData){
-                return [metadata, languageMeta, productTypeData.attributes];
+                if (productTypeData && productTypeData.attributes) {
+                    attributeManager.addAttributes(metadata, productTypeData.attributes);
+                }
+                return [metadata, languageMeta];
             })
         });
 };
