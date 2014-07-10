@@ -24,9 +24,8 @@ exports.getData = function (options) {
             Q.nfcall(fs.readFile, path.resolve(__dirname, '../../', resourceName + '.json'), "utf8"),
             Q.fcall(function () {
                 return availableMetadata ? availableMetadata : {};
-            }),
-            attributeManager.promiseProductTypeData(options.cfg)
-        ]).spread(function (response, resourceContent, availableMetadata, productTypeData) {
+            })
+        ]).spread(function (response, resourceContent, availableMetadata) {
 
             var res = response[0];
             var body = JSON.parse(response[1]);
@@ -61,8 +60,13 @@ exports.getData = function (options) {
                 "in":inMeta
             };
 
-            return [metadata, languageMeta, productTypeData.attributes];
-        })
+            return [metadata, languageMeta];
+        }).spread(function(metadata, languageMeta) {
+            // get also productTypeData
+            return attributeManager.promiseProductTypeData(options.cfg).then(function(productTypeData){
+                return [metadata, languageMeta, productTypeData.attributes];
+            })
+        });
 };
 
 exports.findModel = function (resource, modelName) {
