@@ -1,7 +1,12 @@
 var _ = require('underscore');
 var Q = require('q');
+var attributeManager = require('./attributeManager.js');
 
-exports.processData = function (metadata, languageMeta) {
+exports.processData = function (metadata, languageMeta, attributes) {
+
+    if (attributes) {
+        attributeManager.addAttributes(metadata, attributes);
+    }
 
     _.each(metadata, function (meta) {
         exports.updateMetadata(meta, languageMeta);
@@ -26,6 +31,9 @@ exports.updateMetadata = function (metadata, languageMeta) {
 
             _.each(languageMetaCopy, function (languageCodeProperties, languageCode) {
                 languageCodeProperties.title = title + " (" + languageCode + ")";
+                if (property.required !== undefined) {
+                    languageCodeProperties.required = property.required;
+                }
             });
 
             property.type = "object";

@@ -3,6 +3,7 @@ var path = require('path');
 var request = require('request');
 var fs = require('fs');
 var _ = require('underscore');
+var attributeManager = require('./attributeManager.js');
 
 exports.getData = function (options) {
 
@@ -23,8 +24,9 @@ exports.getData = function (options) {
             Q.nfcall(fs.readFile, path.resolve(__dirname, '../../', resourceName + '.json'), "utf8"),
             Q.fcall(function () {
                 return availableMetadata ? availableMetadata : {};
-            })
-        ]).spread(function (response, resourceContent, availableMetadata) {
+            }),
+            attributeManager.promiseProductTypeData(options.cfg)
+        ]).spread(function (response, resourceContent, availableMetadata, productTypeData) {
 
             var res = response[0];
             var body = JSON.parse(response[1]);
@@ -57,11 +59,11 @@ exports.getData = function (options) {
             var metadata = {
                 out:outMeta,
                 "in":inMeta
-            }
+            };
 
-            return [metadata, languageMeta];
+            return [metadata, languageMeta, productTypeData.attributes];
         })
-}
+};
 
 exports.findModel = function (resource, modelName) {
 
