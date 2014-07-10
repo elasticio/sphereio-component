@@ -72,6 +72,8 @@ exports.buildAttributeMeta = function (attribute) {
  * Add attributes json to metadata
  */
 exports.addAttributes = function (metadata, attributes) {
+    if (metadata === undefined || metadata.in === undefined) return;
+    if (metadata.in.properties === undefined) metadata.in.properties = [];
     for (var i = 0; i < attributes.length; i++) {
         metadata.in.properties[attributes[i].name] = exports.buildAttributeMeta(attributes[i]);
     }
@@ -87,7 +89,7 @@ exports.readAttributeFromMessage = function (attribute, messageBody) {
     var value;
 
     // if attribute is not in body - return
-    if (messageBody[attr]) {
+    if (messageBody && messageBody[attr]) {
         switch (type) {
             case "text":
             case "enum":
@@ -118,12 +120,14 @@ exports.readAttributeFromMessage = function (attribute, messageBody) {
 exports.readAttributesFromMessage = function (attributes, msg) {
     var results = [];
 
-    _.each(attributes, function(attribute){
-        var value = exports.readAttributeFromMessage(attribute, msg.body);
-        if (value !== undefined) {
-            results.push({name: attribute.name, value: value});
-        }
-    });
+    if (msg && msg.body) {
+        _.each(attributes, function(attribute){
+            var value = exports.readAttributeFromMessage(attribute, msg.body);
+            if (value !== undefined) {
+                results.push({name: attribute.name, value: value});
+            }
+        });
+    }
 
     return results;
 };

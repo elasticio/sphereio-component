@@ -34,32 +34,14 @@
                         "required": true,
                         "properties": {
                             "name": {
-                                "type": "object",
-                                "required": true,
-                                "properties": {
-                                    "en": {
-                                        "type": "string",
-                                        "title": "Name (en)"
-                                    },
-                                    "de": {
-                                        "type": "string",
-                                        "title": "Name (de)"
-                                    }
-                                }
+                                "title": "Name",
+                                "type": "lstring",
+                                "required": true
                             },
                             "slug": {
-                                "type": "object",
-                                "required": true,
-                                "properties": {
-                                    "en": {
-                                        "type": "string",
-                                        "title": "Slug (en)"
-                                    },
-                                    "de": {
-                                        "type": "string",
-                                        "title": "Slug (de)"
-                                    }
-                                }
+                                "title": "Slug",
+                                "type": "lstring",
+                                "required": true
                             }
                         }
                     }
@@ -72,48 +54,18 @@
         "properties": {
             "name": {
                 "title": "Name",
-                "type": "object",
-                "required": true,
-                "properties": {
-                    "en": {
-                        "type": "string",
-                        "title": "Name (en)"
-                    },
-                    "de": {
-                        "type": "string",
-                        "title": "Name (de)"
-                    }
-                }
+                "type": "lstring",
+                "required": true
             },
             "slug": {
                 "title": "Slug",
-                "type": "object",
-                "required": true,
-                "properties": {
-                    "en": {
-                        "type": "string",
-                        "title": "Slug (en)"
-                    },
-                    "de": {
-                        "type": "string",
-                        "title": "Slug (de)"
-                    }
-                }
+                "type": "lstring",
+                "required": true
             },
             "description": {
                 "title": "Description",
-                "type": "object",
-                "required": false,
-                "properties": {
-                    "en": {
-                        "type": "string",
-                        "title": "Description (en)"
-                    },
-                    "de": {
-                        "type": "string",
-                        "title": "Description (de)"
-                    }
-                }
+                "type": "lstring",
+                "required": false
             },
             "metaTitle": {
                 "title": "Metatitle",
@@ -132,18 +84,8 @@
             },
             "title": {
                 "title": "Title",
-                "type": "object",
-                "required": false,
-                "properties": {
-                    "en": {
-                        "type": "string",
-                        "title": "Title (en)"
-                    },
-                    "de": {
-                        "type": "string",
-                        "title": "Title (de)"
-                    }
-                }
+                "type": "lstring",
+                "required": false
             }
         }
     }
