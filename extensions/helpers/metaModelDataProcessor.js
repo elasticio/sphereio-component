@@ -26,6 +26,9 @@ exports.updateMetadata = function (metadata, languageMeta) {
 
             _.each(languageMetaCopy, function (languageCodeProperties, languageCode) {
                 languageCodeProperties.title = title + " (" + languageCode + ")";
+                if (property.required !== undefined) {
+                    languageCodeProperties.required = property.required;
+                }
             });
 
             property.type = "object";
