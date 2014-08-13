@@ -3,6 +3,7 @@ exports.preRequest = function (options, cfg, msg) {
     var body = JSON.parse(options.body);
     console.log(body);
 
+    body.version = body.version * 1;
     body.actions = [];
 
     var action = {};
