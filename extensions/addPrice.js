@@ -13,6 +13,7 @@ exports.preRequest = function (options, cfg, msg) {
     action.price.value.currencyCode = body.currencyCode;
     action.price.value.centAmount = body.amount * 100;
     action.country = body.country;
+    action.staged = body.staged;
 
     body.actions.push(action);
 
@@ -20,8 +21,7 @@ exports.preRequest = function (options, cfg, msg) {
     delete body.amount;
     delete body.country;
     delete body.variantId;
-
-    attributeManager.cleanupValues(body);
+    delete body.staged;
 
     options.body = JSON.stringify(body);
     options.json = body;
