@@ -95,7 +95,7 @@
                 "paramType": "body",
                 "required": true,
                 "allowMultiple": false,
-                "dataType": "string"
+                "dataType": "int"
             }, {
                 "name": "version",
                 "description": "Version",
