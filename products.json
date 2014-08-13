@@ -3,122 +3,229 @@
     "swaggerVersion": "1.1",
     "basePath": "https://api-v0.sphere.io",
     "resourcePath": "/{{project}}/products",
-    "apis": [
-        {
-            "path": "/{{project}}/products",
-            "description": "Product resources",
-            "operations": [
-                {
-                    "httpMethod": "POST",
-                    "summary": "Create a Product",
-                    "responseClass": "dynamic",
-                    "nickname": "createProduct",
-                    "parameters": [
-                        {
-                            "name" : "name",
-                            "description": "Name",
-                            "paramType": "body",
-                            "required": true,
-                            "allowMultiple": false,
-                            "dataType": "lstring"
-                        },
-                        {
-                            "name" : "productType",
-                            "description": "Product Type",
-                            "paramType": "body",
-                            "required": true,
-                            "allowMultiple": false,
-                            "dataType": "string",
-                            "selectModel": {
-                                "operation": "queryProductTypes",
-                                "keyProperty" : "results.id",
-                                "valueProperty" : "results.name"
-                            }
-                        },
-                        {
-                            "name" : "slug",
-                            "description": "Slug",
-                            "paramType": "body",
-                            "required": true,
-                            "allowMultiple": false,
-                            "dataType": "lstring"
-                        },
-                        {
-                            "name" : "description",
-                            "description": "Description",
-                            "paramType": "body",
-                            "required": false,
-                            "allowMultiple": false,
-                            "dataType": "lstring"
-                        },
-                        {
-                            "name" : "metaTitle",
-                            "description": "Meta Title",
-                            "paramType": "body",
-                            "required": false,
-                            "allowMultiple": false,
-                            "dataType": "lstring"
-                        },
-                        {
-                            "name" : "metaDescription",
-                            "description": "Meta Description",
-                            "paramType": "body",
-                            "required": false,
-                            "allowMultiple": false,
-                            "dataType": "lstring"
-                        },
-                        {
-                            "name" : "metaKeywords",
-                            "description": "Meta Keywords",
-                            "paramType": "body",
-                            "required": false,
-                            "allowMultiple": false,
-                            "dataType": "lstring"
-                        } ,
-                        {
-                            "name" : "title",
-                            "description": "Title",
-                            "paramType": "body",
-                            "required": false,
-                            "allowMultiple": false,
-                            "dataType": "lstring"
-                        }
-                    ]
+    "apis": [{
+        "path": "/{{project}}/products",
+        "description": "Product resources",
+        "operations": [{
+            "httpMethod": "POST",
+            "summary": "Create a Product",
+            "responseClass": "dynamic",
+            "nickname": "createProduct",
+            "parameters": [{
+                "name": "name",
+                "description": "Name",
+                "paramType": "body",
+                "required": true,
+                "allowMultiple": false,
+                "dataType": "lstring"
+            }, {
+                "name": "productType",
+                "description": "Product Type",
+                "paramType": "body",
+                "required": true,
+                "allowMultiple": false,
+                "dataType": "string",
+                "selectModel": {
+                    "operation": "queryProductTypes",
+                    "keyProperty": "results.id",
+                    "valueProperty": "results.name"
                 }
-            ]
-        },
-        {
-            "path": "/{{project}}/products/{id}",
-            "description": "Product resources",
-            "operations": [
-                {
-                    "httpMethod": "DELETE",
-                    "summary": "Delete a Product",
-                    "responseClass": "void",
-                    "nickname": "deleteProduct",
-                    "parameters": [
-                        {
-                            "name": "id",
-                            "description": "Product ID",
-                            "paramType": "path",
-                            "required": true,
-                            "allowMultiple": false,
-                            "dataType": "string"
-                        },
-                        {
-                            "name":"version",
-                            "description": "Version",
-                            "paramType": "query",
-                            "required": true,
-                            "allowMultiple": false,
-                            "dataType": "int"
-                        }
-                    ]
+            }, {
+                "name": "slug",
+                "description": "Slug",
+                "paramType": "body",
+                "required": true,
+                "allowMultiple": false,
+                "dataType": "lstring"
+            }, {
+                "name": "description",
+                "description": "Description",
+                "paramType": "body",
+                "required": false,
+                "allowMultiple": false,
+                "dataType": "lstring"
+            }, {
+                "name": "metaTitle",
+                "description": "Meta Title",
+                "paramType": "body",
+                "required": false,
+                "allowMultiple": false,
+                "dataType": "lstring"
+            }, {
+                "name": "metaDescription",
+                "description": "Meta Description",
+                "paramType": "body",
+                "required": false,
+                "allowMultiple": false,
+                "dataType": "lstring"
+            }, {
+                "name": "metaKeywords",
+                "description": "Meta Keywords",
+                "paramType": "body",
+                "required": false,
+                "allowMultiple": false,
+                "dataType": "lstring"
+            }, {
+                "name": "title",
+                "description": "Title",
+                "paramType": "body",
+                "required": false,
+                "allowMultiple": false,
+                "dataType": "lstring"
+            }]
+        }]
+    }, {
+        "path": "/{{project}}/products/{id}",
+        "description": "Product resources",
+        "operations": [{
+            "httpMethod": "POST",
+            "summary": "Add Price",
+            "responseClass": "Product",
+            "nickname": "addPrice",
+            "parameters": [{
+                "name": "version",
+                "description": "Version",
+                "paramType": "body",
+                "required": true,
+                "allowMultiple": false,
+                "dataType": "int"
+            }, {
+                "name": "currencyCode",
+                "description": "Currency Code",
+                "paramType": "body",
+                "required": true,
+                "allowMultiple": false,
+                "dataType": "string"
+            }, {
+                "name": "amount",
+                "description": "Amount",
+                "paramType": "body",
+                "required": true,
+                "allowMultiple": false,
+                "dataType": "string"
+            }, {
+                "name": "country",
+                "description": "Country",
+                "paramType": "body",
+                "required": false,
+                "allowMultiple": false,
+                "dataType": "string"
+            }, {
+                "name": "staged",
+                "description": "Staged",
+                "paramType": "body",
+                "required": false,
+                "allowMultiple": false,
+                "dataType": "boolean",
+                "allowableValues": {
+                    "values": [true, false]
                 }
-            ]
-        }
-    ],
+            }]
+        }, {
+            "httpMethod": "DELETE",
+            "summary": "Delete a Product",
+            "responseClass": "void",
+            "nickname": "deleteProduct",
+            "parameters": [{
+                "name": "id",
+                "description": "Product ID",
+                "paramType": "path",
+                "required": true,
+                "allowMultiple": false,
+                "dataType": "string"
+            }, {
+                "name": "version",
+                "description": "Version",
+                "paramType": "query",
+                "required": true,
+                "allowMultiple": false,
+                "dataType": "int"
+            }]
+        }]
+    }],
     "models": {
+        "Price": {
+            "value": {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "currencyCode": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "centAmount": {
+                        "type": "int",
+                        "required": false
+                    }
+                }
+            },
+            "country": {
+                "type": "string",
+                "required": false
+            },
+            "customerGroup": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                    "typeId": {
+                        "type": "string",
+                        "required": false
+                    },
+                    "id": {
+                        "type": "string",
+                        "required": false
+                    }
+                }
+            },
+            "channel": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                    "typeId": {
+                        "type": "string",
+                        "required": false
+                    },
+                    "id": {
+                        "type": "string",
+                        "required": false
+                    }
+                }
+            },
+            "discounted": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                    "value": {
+                        "type": "object",
+                        "required": true,
+                        "properties": {
+                            "currencyCode": {
+                                "type": "string",
+                                "required": true
+                            },
+                            "centAmount": {
+                                "type": "int",
+                                "required": false
+                            }
+                        }
+                    },
+                    "discount": {
+                        "type": "object",
+                        "required": false,
+                        "properties": {
+                            "typeId": {
+                                "type": "string",
+                                "required": false
+                            },
+                            "id": {
+                                "type": "string",
+                                "required": false
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "Product": {
             "id": "Product",
             "properties": {
