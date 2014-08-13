@@ -132,7 +132,7 @@
                 "allowMultiple": false,
                 "dataType":"string",
                 "allowableValues": {
-                    "values": [true, false]
+                    "values": ["true", "false"]
                 }
             }]
         }, {
