@@ -145,81 +145,84 @@
     }],
     "models": {
         "Price": {
-            "value": {
-                "type": "object",
-                "required": true,
-                "properties": {
-                    "currencyCode": {
-                        "type": "string",
-                        "required": true
-                    },
-                    "centAmount": {
-                        "type": "int",
-                        "required": false
-                    }
-                }
-            },
-            "country": {
-                "type": "string",
-                "required": false
-            },
-            "customerGroup": {
-                "type": "object",
-                "required": false,
-                "properties": {
-                    "typeId": {
-                        "type": "string",
-                        "required": false
-                    },
-                    "id": {
-                        "type": "string",
-                        "required": false
-                    }
-                }
-            },
-            "channel": {
-                "type": "object",
-                "required": false,
-                "properties": {
-                    "typeId": {
-                        "type": "string",
-                        "required": false
-                    },
-                    "id": {
-                        "type": "string",
-                        "required": false
-                    }
-                }
-            },
-            "discounted": {
-                "type": "object",
-                "required": false,
-                "properties": {
-                    "value": {
-                        "type": "object",
-                        "required": true,
-                        "properties": {
-                            "currencyCode": {
-                                "type": "string",
-                                "required": true
-                            },
-                            "centAmount": {
-                                "type": "int",
-                                "required": false
-                            }
+            "id": "Price",
+            "properties": {
+                "value": {
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                        "currencyCode": {
+                            "type": "string",
+                            "required": true
+                        },
+                        "centAmount": {
+                            "type": "int",
+                            "required": false
                         }
-                    },
-                    "discount": {
-                        "type": "object",
-                        "required": false,
-                        "properties": {
-                            "typeId": {
-                                "type": "string",
-                                "required": false
-                            },
-                            "id": {
-                                "type": "string",
-                                "required": false
+                    }
+                },
+                "country": {
+                    "type": "string",
+                    "required": false
+                },
+                "customerGroup": {
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                        "typeId": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "id": {
+                            "type": "string",
+                            "required": false
+                        }
+                    }
+                },
+                "channel": {
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                        "typeId": {
+                            "type": "string",
+                            "required": false
+                        },
+                        "id": {
+                            "type": "string",
+                            "required": false
+                        }
+                    }
+                },
+                "discounted": {
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "currencyCode": {
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "centAmount": {
+                                    "type": "int",
+                                    "required": false
+                                }
+                            }
+                        },
+                        "discount": {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "typeId": {
+                                    "type": "string",
+                                    "required": false
+                                },
+                                "id": {
+                                    "type": "string",
+                                    "required": false
+                                }
                             }
                         }
                     }
