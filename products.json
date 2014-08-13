@@ -116,7 +116,7 @@
                 "paramType": "body",
                 "required": false,
                 "allowMultiple": false,
-                "dataType": "boolean",
+                "dataType": "string",
                 "allowableValues": {
                     "values": [true, false]
                 }
