@@ -130,6 +130,7 @@
                 "paramType": "body",
                 "required": false,
                 "allowMultiple": false,
+                "dataType":"string",
                 "allowableValues": {
                     "values": [true, false]
                 }
