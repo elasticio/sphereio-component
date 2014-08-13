@@ -132,6 +132,7 @@
                 "allowMultiple": false,
                 "dataType":"string",
                 "allowableValues": {
+                    "valueType": "LIST",
                     "values": ["true", "false"]
                 }
             }]
