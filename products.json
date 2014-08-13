@@ -83,6 +83,20 @@
             "responseClass": "Product",
             "nickname": "addPrice",
             "parameters": [{
+                "name": "id",
+                "description": "Product ID",
+                "paramType": "path",
+                "required": true,
+                "allowMultiple": false,
+                "dataType": "string"
+            }, {
+                "name": "variantId",
+                "description": "Variant ID",
+                "paramType": "body",
+                "required": true,
+                "allowMultiple": false,
+                "dataType": "string"
+            }, {
                 "name": "version",
                 "description": "Version",
                 "paramType": "body",
