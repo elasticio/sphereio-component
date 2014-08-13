@@ -8,7 +8,7 @@ exports.preRequest = function (options, cfg, msg) {
     var action = {};
 
     action.action = 'addPrice';
-    action.variantId = body.variantId+;
+    action.variantId = body.variantId * 1;
     action.price = {};
     action.price.value = {};
     action.price.value.currencyCode = body.currencyCode;
