@@ -50,6 +50,8 @@ describe('Sphereio update customers external id', function () {
             expect(self.emit).toHaveBeenCalled();
             expect(self.emit).toHaveBeenCalledWith('end');
             expect(self.emit).not.toHaveBeenCalledWith('error');
+            var data = self.emit.calls[0].args[1].body;
+            expect(data).toEqual({ version: 12, id: 42 });
         });
     });
 
