@@ -3,39 +3,100 @@
     "properties": {
         "offset": {
             "type": "number",
+            "title": "Offset",
             "required": true
         },
         "total": {
             "type": "number",
+            "title": "Total",
             "required": true
         },
         "count": {
             "type": "number",
+            "title": "Count",
             "required": true
         },
         "results": {
             "type": "array",
             "required": true,
             "properties": {
-                "type": {"type": "string"},
-
-                "id": {"type": "string", "required": true},
-                "version": {"type": "number", "required": true},
-                "customerNumber": {"type": "string"},
-                "createdAt": {"type": "string", "required": true},
-                "lastModifiedAt": {"type": "string", "required": true},
-                "email": {"type": "string", "required": true},
-                "firstName": {"type": "string", "required": true},
-                "lastName": {"type": "string", "required": true},
-                "password": {"type": "string", "required": true},
-                "middleName": {"type": "string"},
-                "title": {"type": "string"},
-                "addresses": {"type": "array"},
-                "defaultShippingAddressId": {"type": "string"},
-                "defaultBillingAddressId": {"type": "string"},
-                "isEmailVerified": {"type": "boolean", "required": true},
-                "externalId": {"type": "string"},
-                "customerGroup": {"type": "string"}
+                "id": {
+                    "type": "string",
+                    "title": "ID",
+                    "required":true
+                },
+                "version": {
+                    "type": "number",
+                    "title": "Version",
+                    "required": true
+                },
+                "customerNumber": {
+                    "title": "Customer number",
+                    "type": "string"
+                },
+                "createdAt": {
+                    "title": "Created at",
+                    "type": "string",
+                    "required": true
+                },
+                "lastModifiedAt":{
+                    "title": "Last modified at",
+                    "type": "string",
+                    "required": true
+                },
+                "email":{
+                    "title": "Email",
+                    "type": "string",
+                    "required": true
+                },
+                "firstName": {
+                    "title": "First name",
+                    "type": "string",
+                    "required": true
+                },
+                "lastName": {
+                    "title": "Last name",
+                    "type": "string",
+                    "required": true
+                },
+                "password": {
+                    "title": "Password",
+                    "type": "string",
+                    "required": true
+                },
+                "middleName": {
+                    "title": "Middle name",
+                    "type": "string"
+                },
+                "title": {
+                    "title": "Title",
+                    "type": "string"
+                },
+                "addresses": {
+                    "title": "Addresses",
+                    "type": "array"
+                },
+                "defaultShippingAddressId": {
+                    "title": "Default shipping address ID",
+                    "type": "string"
+                },
+                "defaultBillingAddressId": {
+                    "title": "Default billing address ID",
+                    "type": "string"
+                },
+                "isEmailVerified": {
+                    "title": "Is email verified",
+                    "type": "boolean",
+                    "required": true
+                },
+                "externalId": {
+                    "title": "External ID",
+                    "type": "string"
+                },
+                "customerGroup": {
+                    "title": "Customer group",
+                    "type": "string"
+                }
             }
         }
     }
