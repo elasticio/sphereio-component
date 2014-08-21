@@ -31,7 +31,7 @@
     },
     "actions": {
         "updateCustomer": {
-            "main": "./actions/updateCustomer.js",
+            "main": "./lib/actions/updateCustomer.js",
             "title": "Update a customer",
             "metadata": {
                 "in": {
