@@ -30,7 +30,7 @@ module.exports = function (grunt) {
 
 
         instrument: {
-            files: ['lib/*.js', 'spec/*.js'],
+            files: ['lib/**/*.js', 'spec/**/*.js'],
             options: {
                 lazy: true,
                 basePath: 'coverage/instrument/'
