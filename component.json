@@ -1,0 +1,57 @@
+{
+    "title": "Sphere.io",
+    "credentials": {
+        "fields": {
+            "project":      {
+                "label":     "Project Name",
+                "required":  true,
+                "viewClass": "TextFieldView"
+            },
+            "client":       {
+                "label":     "Client ID",
+                "required":  true,
+                "viewClass": "TextFieldView"
+            },
+            "clientSecret": {
+                "label":     "Client Secret",
+                "required":  true,
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers":{
+        "getCustomers":{
+            "main":"./lib/triggers/queryCustomers.js",
+            "title": "Query Customers",
+            "type": "polling",
+            "metadata": {
+                "out" : "./lib/triggers/queryCustomers.out.json"
+            }
+        }
+    },
+    "actions": {
+        "updateCustomer": {
+            "main": "./lib/actions/updateCustomer.js",
+            "title": "Update a customer",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Customer id",
+                            "type": "string",
+                            "required": true
+                        },
+                        "external_id": {
+                            "title": "External id",
+                            "type": "string",
+                            "required": false
+                        }
+                    }
+                },
+                "out": "./lib/actions/updateCustomer.out.json"
+            }
+        }
+    }
+
+}
