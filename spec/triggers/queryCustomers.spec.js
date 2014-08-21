@@ -58,7 +58,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 expect(Object.keys(calls[1].args[1]).length).toEqual(0);
                 expect(calls[2].args[0]).toEqual('end');
                 var newMsg = self.emit.calls[0].args[1];
-                expect(newMsg.body.count).toEqual(20);
+                expect(newMsg.body).toEqual(allCustomers);
             });
         });
 
@@ -84,7 +84,7 @@ describe('Sphere.io queryCustomers.js', function () {
 
                 expect(calls[2].args[0]).toEqual('end');
                 var newMsg = self.emit.calls[0].args[1];
-                expect(newMsg.body.results.length).toEqual(3);
+                expect(newMsg.body).toEqual(modifiedCustomers);
             });
         });
         
@@ -104,6 +104,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 expect(self.emit.calls.length).toEqual(2);
                 var calls = self.emit.calls;
                 expect(calls[0].args[0]).toEqual('error');
+                expect(calls[0].args[1].stripColors).toEqual('Ouch');
                 expect(calls[1].args[0]).toEqual('end');
             });
         });
