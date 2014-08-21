@@ -92,7 +92,7 @@ describe('Sphereio update customers external id', function () {
 
         it('should emit end', function() {
             expect(self.emit).toHaveBeenCalledWith('end');
-        })
+        });
     });
 
     describe('not found error', function() {
