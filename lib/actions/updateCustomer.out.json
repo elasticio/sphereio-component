@@ -1,0 +1,82 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "title": "ID",
+            "required":true
+        },
+        "version": {
+            "type": "number",
+            "title": "Version",
+            "required": true
+        },
+        "customerNumber": {
+            "title": "Customer number",
+            "type": "string"
+        },
+        "createdAt": {
+            "title": "Created at",
+            "type": "string",
+            "required": true
+        },
+        "lastModifiedAt":{
+            "title": "Last modified at",
+            "type": "string",
+            "required": true
+        },
+        "email":{
+            "title": "Email",
+            "type": "string",
+            "required": true
+        },
+        "firstName": {
+            "title": "First name",
+            "type": "string",
+            "required": true
+        },
+        "lastName": {
+            "title": "Last name",
+            "type": "string",
+            "required": true
+        },
+        "password": {
+            "title": "Password",
+            "type": "string",
+            "required": true
+        },
+        "middleName": {
+            "title": "Middle name",
+            "type": "string"
+        },
+        "title": {
+            "title": "Title",
+            "type": "string"
+        },
+        "addresses": {
+            "title": "Addresses",
+            "type": "array"
+        },
+        "defaultShippingAddressId": {
+            "title": "Default shipping address ID",
+            "type": "string"
+        },
+        "defaultBillingAddressId": {
+            "title": "Default billing address ID",
+            "type": "string"
+        },
+        "isEmailVerified": {
+            "title": "Is email verified",
+            "type": "boolean",
+            "required": true
+        },
+        "externalId": {
+            "title": "External ID",
+            "type": "string"
+        },
+        "customerGroup": {
+            "title": "Customer group",
+            "type": "string"
+        }
+    }
+}
