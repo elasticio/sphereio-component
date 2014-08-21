@@ -5,7 +5,6 @@
     "underscore": "1.4.2",
     "request": "2.9.x",
     "q": "1.0.0",
-    "moment": "2.0.0",
     "nock": "0.27.2",
     "jasmine-jscoverage-utils": "git://github.com/elasticio/jasmine-jscoverage-utils.git",
     "grunt": "~0.4.2",
@@ -14,8 +13,7 @@
     "grunt-jasmine-node": "0.1.0",
     "istanbul": "0.1.36",
     "coveralls": "2.6.1",
-    "grunt-contrib-jshint": "~0.7.2",
-    "sphere-node-client": "~0.8.0"
+    "grunt-contrib-jshint": "~0.7.2"
   },
   "engines": {
     "node": "0.10.21",
@@ -23,6 +21,7 @@
   },
   "dependencies": {
     "node-uuid": "^1.4.1",
-    "sphere-node-client": "^0.8.0"
+    "sphere-node-client": "^0.8.0",
+    "moment": "2.0.0"
   }
 }
