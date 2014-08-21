@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "type": {"type": "string"},
+        "id": {"type": "string", "required": true},
+        "version": {"type": "number", "required": true},
+        "customerNumber": {"type": "string"},
+        "createdAt": {"type": "string", "required": true},
+        "lastModifiedAt": {"type": "string", "required": true},
+        "email": {"type": "string", "required": true},
+        "firstName": {"type": "string", "required": true},
+        "lastName": {"type": "string", "required": true},
+        "password": {"type": "string", "required": true},
+        "middleName": {"type": "string"},
+        "title": {"type": "string"},
+        "addresses": {"type": "array"},
+        "defaultShippingAddressId": {"type": "string"},
+        "defaultBillingAddressId": {"type": "string"},
+        "isEmailVerified": {"type": "boolean", "required": true},
+        "externalId": {"type": "string"},
+        "customerGroup": {"type": "string"}
+    }
+}
