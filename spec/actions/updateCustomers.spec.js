@@ -48,6 +48,8 @@ describe('Sphereio update customers external id', function () {
 
         it('should call callback with right params', function() {
             expect(self.emit).toHaveBeenCalled();
+            expect(self.emit).toHaveBeenCalledWith('end');
+            expect(self.emit).not.toHaveBeenCalledWith('error');
         });
     });
 
@@ -95,6 +97,8 @@ describe('Sphereio update customers external id', function () {
 
         it('should rebound message', function() {
             expect(self.emit).toHaveBeenCalledWith('rebound');
+            expect(self.emit).toHaveBeenCalledWith('end');
+            expect(self.emit).not.toHaveBeenCalledWith('error');
         });
     });
 
@@ -138,6 +142,8 @@ describe('Sphereio update customers external id', function () {
 
         it('should emit error', function() {
             expect(self.emit).toHaveBeenCalledWith('error', { statusCode : 404, message : 'Endpoint \'/elasticio/customers/54\' not found.', originalRequest : { endpoint : '/customers/54' } });
+            expect(self.emit).toHaveBeenCalledWith('end');
+            expect(self.emit).not.toHaveBeenCalledWith('data');
         });
     });
 });
