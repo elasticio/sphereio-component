@@ -1,0 +1,33 @@
+{
+    "title": "Sphere.io",
+    "credentials": {
+        "fields": {
+            "project":      {
+                "label":     "Project Name",
+                "required":  true,
+                "viewClass": "TextFieldView"
+            },
+            "client":       {
+                "label":     "Client ID",
+                "required":  true,
+                "viewClass": "TextFieldView"
+            },
+            "clientSecret": {
+                "label":     "Client Secret",
+                "required":  true,
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers":{
+        "getCustomers":{
+            "main":"./lib/triggers/queryCustomers.js",
+            "title": "Query Customers",
+            "type": "polling",
+            "metadata": {
+                "out" : "./lib/triggers/queryCustomers.out.json"
+            }
+        }
+    }
+
+}
