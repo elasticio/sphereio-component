@@ -48,12 +48,12 @@ describe('Sphereio update customers external id', function () {
             expect(data).toEqual({ version: 12, id: 42 });
         });
 
-        it('should emit error', function() {
-            expect(self.emit).not.toHaveBeenCalledWith('error');
-        });
-
         it('should call end event', function() {
             expect(self.emit).toHaveBeenCalledWith('end');
+        });
+
+        it('should not emit more then two events', function() {
+            expect(self.emit.calls.length).toEqual(2);
         });
     });
 
@@ -86,12 +86,12 @@ describe('Sphereio update customers external id', function () {
             expect(self.emit).toHaveBeenCalledWith('rebound');
         });
 
-        it('should not emit error', function() {
-            expect(self.emit).not.toHaveBeenCalledWith('error');
-        });
-
         it('should emit end', function() {
             expect(self.emit).toHaveBeenCalledWith('end');
+        });
+
+        it('should not emit more then two events', function() {
+            expect(self.emit.calls.length).toEqual(2);
         });
     });
 
@@ -123,12 +123,12 @@ describe('Sphereio update customers external id', function () {
             expect(self.emit).toHaveBeenCalledWith('error', { statusCode : 404, message : 'Endpoint \'/elasticio/customers/54\' not found.', originalRequest : { endpoint : '/customers/54' } });
         });
 
-        it('should not emmit data', function() {
-            expect(self.emit).not.toHaveBeenCalledWith('data');
-        });
-
         it('should emmit end', function() {
             expect(self.emit).toHaveBeenCalledWith('end');
+        });
+
+        it('should not emit more then two events', function() {
+            expect(self.emit.calls.length).toEqual(2);
         });
     });
 });
