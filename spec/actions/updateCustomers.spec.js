@@ -2,6 +2,20 @@ describe('Sphereio update customers external id', function () {
     var updateCustomers = require('../../lib/actions/updateCustomer.js');
     var nock = require('nock');
 
+    var cfg = {
+        client: 1,
+        clientSecret: 1,
+        project: 'elasticio'
+    };
+     
+    beforeEach(function() {
+        nock('https://auth.sphere.io').post('/oauth/token')
+            .reply(200, {
+                "access_token":"70kNDuiU_UstkLgWro3UYlhLbpXO5ywU",
+                "token_type":"Bearer",
+                "expires_in":172800,"scope":"manage_project:elasticio"
+            });
+    });
 
     describe('successful update', function() {
         var callback = jasmine.createSpy('callback');
@@ -16,27 +30,10 @@ describe('Sphereio update customers external id', function () {
                 }
             };
 
-            var cfg = {
-                client: 1,
-                clientSecret: 1,
-                project: 'elasticio'
-            };
-     
-            nock('https://auth.sphere.io').post('/oauth/token')
-                    .reply(200, {
-                        "access_token":"70kNDuiU_UstkLgWro3UYlhLbpXO5ywU",
-                        "token_type":"Bearer",
-                        "expires_in":172800,"scope":"manage_project:elasticio"
-                    });
-
             var scope = nock('https://api.sphere.io');
-
             scope.get('/elasticio/customers/42').reply(200, {"version":12, id: 42});
-
-
             scope.post('/elasticio/customers/42').reply(200, {"version":12, id: 42});
 
-            
             runs(function() {
                 updateCustomers.process.call(self, msg, cfg, callback);
             });
@@ -47,11 +44,16 @@ describe('Sphereio update customers external id', function () {
         });
 
         it('should call callback with right params', function() {
-            expect(self.emit).toHaveBeenCalled();
-            expect(self.emit).toHaveBeenCalledWith('end');
-            expect(self.emit).not.toHaveBeenCalledWith('error');
             var data = self.emit.calls[0].args[1].body;
             expect(data).toEqual({ version: 12, id: 42 });
+        });
+
+        it('should emit error', function() {
+            expect(self.emit).not.toHaveBeenCalledWith('error');
+        });
+
+        it('should call end event', function() {
+            expect(self.emit).toHaveBeenCalledWith('end');
         });
     });
 
@@ -67,27 +69,10 @@ describe('Sphereio update customers external id', function () {
                 }
             };
 
-            var cfg = {
-                client: 1,
-                clientSecret: 1,
-                project: 'elasticio'
-            };
-     
-            nock('https://auth.sphere.io').post('/oauth/token')
-                    .reply(200, {
-                        "access_token":"70kNDuiU_UstkLgWro3UYlhLbpXO5ywU",
-                        "token_type":"Bearer",
-                        "expires_in":172800,"scope":"manage_project:elasticio"
-                    });
-
             var scope = nock('https://api.sphere.io');
-
             scope.get('/elasticio/customers/42').reply(200, {"version":12, id: 42});
-
-
             scope.post('/elasticio/customers/42').reply(409, {statusCode: 409});
 
-            
             runs(function() {
                 updateCustomers.process.call(self, msg, cfg, callback);
             });
@@ -99,9 +84,15 @@ describe('Sphereio update customers external id', function () {
 
         it('should rebound message', function() {
             expect(self.emit).toHaveBeenCalledWith('rebound');
-            expect(self.emit).toHaveBeenCalledWith('end');
+        });
+
+        it('should not emit error', function() {
             expect(self.emit).not.toHaveBeenCalledWith('error');
         });
+
+        it('should emit end', function() {
+            expect(self.emit).toHaveBeenCalledWith('end');
+        })
     });
 
     describe('not found error', function() {
@@ -116,21 +107,7 @@ describe('Sphereio update customers external id', function () {
                 }
             };
 
-            var cfg = {
-                client: 1,
-                clientSecret: 1,
-                project: 'elasticio'
-            };
-     
-            nock('https://auth.sphere.io').post('/oauth/token')
-                    .reply(200, {
-                        "access_token":"70kNDuiU_UstkLgWro3UYlhLbpXO5ywU",
-                        "token_type":"Bearer",
-                        "expires_in":172800,"scope":"manage_project:elasticio"
-                    });
-
             var scope = nock('https://api.sphere.io');
-
             scope.get('/elasticio/customers/54').reply(404, {statusCode: 404});
             
             runs(function() {
@@ -142,10 +119,16 @@ describe('Sphereio update customers external id', function () {
             }, "Timed out", 1000);
         });
 
-        it('should emit error', function() {
+        it('should emit right error', function() {
             expect(self.emit).toHaveBeenCalledWith('error', { statusCode : 404, message : 'Endpoint \'/elasticio/customers/54\' not found.', originalRequest : { endpoint : '/customers/54' } });
-            expect(self.emit).toHaveBeenCalledWith('end');
+        });
+
+        it('should not emmit data', function() {
             expect(self.emit).not.toHaveBeenCalledWith('data');
+        });
+
+        it('should emmit end', function() {
+            expect(self.emit).toHaveBeenCalledWith('end');
         });
     });
 });
