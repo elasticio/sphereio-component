@@ -2,11 +2,12 @@ describe('Sphere.io queryCustomers.js', function () {
     var nock = require('nock');
     var allCustomers = require('../data/all_customers.json.js');
     var modifiedCustomers = require('../data/modified_customers.json.js');
+    var emptyResult = {"offset": 0, "count": 0, "total": 49, "results": []};
 
     nock('https://auth.sphere.io')
         .filteringRequestBody(/.*/, '*')
         .post('/oauth/token', "*")
-        .times(3)
+        .times(4)
         .reply(200, {
             "access_token": "i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA",
             "token_type": "Bearer",
@@ -20,7 +21,9 @@ describe('Sphere.io queryCustomers.js', function () {
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22')
         .reply(200, modifiedCustomers)
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22')
-        .reply(500, 'Ouch');
+        .reply(500, 'Ouch')
+        .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22')
+        .reply(200, emptyResult);
 
     var next = jasmine.createSpy('next');
     var queryCustomers = require('../../lib/triggers/queryCustomers.js');
@@ -108,5 +111,28 @@ describe('Sphere.io queryCustomers.js', function () {
                 expect(calls[1].args[0]).toEqual('end');
             });
         });
+        
+        it('should emit new message only if customers count more than 0', function () {
+            spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
+            var date = "2014-08-25T00:00:00.000Z";
+            var snapshot = {
+                lastModifiedAt: date
+            };
+            queryCustomers.process.call(self, msg, cfg, next, snapshot);
+
+            waitsFor(function () {
+                return self.emit.calls.length;
+            });
+
+            runs(function () {
+                expect(self.emit.calls.length).toEqual(2);
+                var calls = self.emit.calls;
+
+                expect(calls[0].args[0]).toEqual('snapshot');
+                expect(calls[0].args[1].lastModifiedAt).toEqual(date);
+
+                expect(calls[1].args[0]).toEqual('end');
+            });
+        });        
     });
 });
