@@ -61,7 +61,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 expect(Object.keys(calls[1].args[1]).length).toEqual(0);
                 expect(calls[2].args[0]).toEqual('end');
                 var newMsg = self.emit.calls[0].args[1];
-                expect(newMsg.body).toEqual(allCustomers);
+                expect(newMsg.body.length).toEqual(allCustomers.length);
             });
         });
 
@@ -87,7 +87,7 @@ describe('Sphere.io queryCustomers.js', function () {
 
                 expect(calls[2].args[0]).toEqual('end');
                 var newMsg = self.emit.calls[0].args[1];
-                expect(newMsg.body).toEqual(modifiedCustomers);
+                expect(newMsg.body.length).toEqual(modifiedCustomers.length);
             });
         });
         
@@ -134,5 +134,80 @@ describe('Sphere.io queryCustomers.js', function () {
                 expect(calls[1].args[0]).toEqual('end');
             });
         });        
+    });
+
+    describe('when some customer has addreses', function() {
+        var msg;
+        var self;
+        var cfg;
+
+        beforeEach(function() {
+            nock('https://auth.sphere.io')
+                .filteringRequestBody(/.*/, '*')
+                .post('/oauth/token', "*")
+                .reply(200, {
+                    "access_token": "i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA",
+                    "token_type": "Bearer",
+                    "expires_in": 172800,
+                    "scope": "manage_project:test_project"
+                });
+
+            nock('https://api.sphere.io')
+                .get('/test_project/customers')
+                .reply(200, allCustomers)
+                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22')
+                .reply(200, modifiedCustomers)
+                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22')
+                .reply(500, 'Ouch');
+
+            msg = {};
+            self = jasmine.createSpyObj('self', ['emit']);
+            cfg = {
+                client: 'test_client',
+                clientSecret: 'so_secret',
+                project: 'test_project'
+            };
+            spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
+            runs(function() {
+                queryCustomers.process.call(self, msg, cfg, next, {});
+            });
+            waitsFor(function () {
+                return self.emit.calls.length;
+            });
+        });
+
+        it('should set shipping and billing addresses and clear unneccessary properties', function() {
+            var result = self.emit.calls[0].args[1].body.results;
+            var idWidthAddreses = '3927ef3d-b5a1-476c-a61c-d719752ae2dd';
+            var customer = result.filter(function(r) { return r.id === idWidthAddreses; }).pop();
+            expect(customer.shippingAddress).toEqual(
+                {
+                    id : 'CdKj2Gn7',
+                    salutation : 'mr',
+                    firstName : 'sdgf',
+                    lastName : 'dgfsgsdfgsdg',
+                    country : 'BH'
+                });
+            expect(customer.billingAddress).toEqual(
+                {
+                    id : 'vc4aX5Cd',
+                    title : 'te',
+                    salutation : 'mr',
+                    firstName : 'sfdg',
+                    lastName : 'sdfg',
+                    streetName : 'dsfg',
+                    streetNumber : '345',
+                    postalCode : '53453',
+                    country : 'BH',
+                    company : 'sdfg',
+                    department : 'sdfg',
+                    building : '345',
+                    pOBox : '5345',
+                    email : 'sfg@rtrewt.lol'
+                });
+            expect(customer.addresses).toEqual(undefined);
+            expect(customer.defaultBillingAddressId).toEqual(undefined);
+            expect(customer.defaultShippingAddressId).toEqual(undefined);
+        });
     });
 });

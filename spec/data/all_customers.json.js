@@ -7,7 +7,31 @@ module.exports = {"offset": 0, "count": 20, "total": 49, "results": [
         "firstName":       "Homer",
         "lastName":        "Simpson",
         "password":        "lMSvxVxgfvh+Fd/XWmck9dBdee7ANnqwXo4WKhvfLs0=$ATR5aBtNNKVtypblOYLWLAh9gkc4uPmSatuvbhDVYUQ=",
-        "addresses":       [],
+        "addresses": [ 
+            { 
+                "id": 'vc4aX5Cd',
+                "title": 'te',
+                "salutation": 'mr',
+                "firstName": 'sfdg',
+                "lastName": 'sdfg',
+                "streetName": 'dsfg',
+                "streetNumber": '345',
+                "postalCode": '53453',
+                "country": 'BH',
+                "company": 'sdfg',
+                "department": 'sdfg',
+                "building": '345',
+                "pOBox": '5345',
+                "email": 'sfg@rtrewt.lol' },
+             { 
+                "id": 'CdKj2Gn7',
+                "salutation": 'mr',
+                "firstName": 'sdgf',
+                "lastName": 'dgfsgsdfgsdg',
+                "country": 'BH' } 
+        ],
+        "defaultShippingAddressId": 'CdKj2Gn7',
+        "defaultBillingAddressId": 'vc4aX5Cd',
         "isEmailVerified": false,
         "createdAt":       "1970-01-01T00:00:00.001Z",
         "lastModifiedAt":  "2014-08-19T00:00:00.001Z"
