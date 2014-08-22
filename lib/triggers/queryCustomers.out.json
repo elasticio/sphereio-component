@@ -72,17 +72,193 @@
                     "title": "Title",
                     "type": "string"
                 },
-                "addresses": {
-                    "title": "Addresses",
-                    "type": "array"
+                "shippingAddress": {
+                    "title": "Shipping address",
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "ID",
+                            "type": "string"
+                        },
+                        "title": {
+                            "title": "Title",
+                            "type": "string"
+                        },
+                        "salutation": {
+                            "title": "Salutation",
+                            "type": "string"
+                        },
+                        "firstName": {
+                            "title": "First name",
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "title": "Last name",
+                            "type": "string"
+                        },
+                        "streetName": {
+                            "title": "Street name",
+                            "type": "string"
+                        },
+                        "streetNumber": {
+                            "title": "Street number",
+                            "type": "string"
+                        },
+                        "additionalStreetInfo": {
+                            "title": "Additional street info",
+                            "type": "string"
+                        },
+                        "postalCode": {
+                            "title": "Postal code",
+                            "type": "string"
+                        },
+                        "city": {
+                            "title": "City",
+                            "type": "string"
+                        },
+                        "region": {
+                            "title": "Region",
+                            "type": "string"
+                        },
+                        "state": {
+                            "title": "State",
+                            "type": "string"
+                        },
+                        "country": {
+                            "title": "Country",
+                            "type": "string"
+                        },
+                        "company": {
+                            "title": "Company",
+                            "type": "string"
+                        },
+                        "department": {
+                            "title": "Department",
+                            "type": "string"
+                        },
+                        "building": {
+                            "title": "Building",
+                            "type": "string"
+                        },
+                        "apartment": {
+                            "title": "apartment",
+                            "type": "string"
+                        },
+                        "pOBox": {
+                            "title": "pOBox",
+                            "type": "string"
+                        },
+                        "phone": {
+                            "title": "Phone",
+                            "type": "string"
+                        },
+                        "mobile": {
+                            "title": "Mobile",
+                            "type": "string"
+                        },
+                        "email": {
+                            "title": "Email",
+                            "type": "string"
+                        },
+                        "additionalAddressInfo": {
+                            "title": "Additional address info",
+                            "type": "string"
+                        }
+                    }
                 },
-                "defaultShippingAddressId": {
-                    "title": "Default shipping address ID",
-                    "type": "string"
-                },
-                "defaultBillingAddressId": {
+                "billingAddress": {
                     "title": "Default billing address ID",
-                    "type": "string"
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "ID",
+                            "type": "string"
+                        },
+                        "title": {
+                            "title": "Title",
+                            "type": "string"
+                        },
+                        "salutation": {
+                            "title": "Salutation",
+                            "type": "string"
+                        },
+                        "firstName": {
+                            "title": "First name",
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "title": "Last name",
+                            "type": "string"
+                        },
+                        "streetName": {
+                            "title": "Street name",
+                            "type": "string"
+                        },
+                        "streetNumber": {
+                            "title": "Street number",
+                            "type": "string"
+                        },
+                        "additionalStreetInfo": {
+                            "title": "Additional street info",
+                            "type": "string"
+                        },
+                        "postalCode": {
+                            "title": "Postal code",
+                            "type": "string"
+                        },
+                        "city": {
+                            "title": "City",
+                            "type": "string"
+                        },
+                        "region": {
+                            "title": "Region",
+                            "type": "string"
+                        },
+                        "state": {
+                            "title": "State",
+                            "type": "string"
+                        },
+                        "country": {
+                            "title": "Country",
+                            "type": "string"
+                        },
+                        "company": {
+                            "title": "Company",
+                            "type": "string"
+                        },
+                        "department": {
+                            "title": "Department",
+                            "type": "string"
+                        },
+                        "building": {
+                            "title": "Building",
+                            "type": "string"
+                        },
+                        "apartment": {
+                            "title": "apartment",
+                            "type": "string"
+                        },
+                        "pOBox": {
+                            "title": "pOBox",
+                            "type": "string"
+                        },
+                        "phone": {
+                            "title": "Phone",
+                            "type": "string"
+                        },
+                        "mobile": {
+                            "title": "Mobile",
+                            "type": "string"
+                        },
+                        "email": {
+                            "title": "Email",
+                            "type": "string"
+                        },
+                        "additionalAddressInfo": {
+                            "title": "Additional address info",
+                            "type": "string"
+                        }
+                    }
                 },
                 "isEmailVerified": {
                     "title": "Is email verified",
