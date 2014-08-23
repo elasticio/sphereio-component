@@ -1,0 +1,32 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "title": "Id",
+            "type": "string"
+        },
+        "version": {
+            "title": "Version",
+            "type": "number"
+        },
+        "createdAt": {
+            "title": "Created At",
+            "type": "Date",
+            "required": true
+        },
+        "lastModifiedAt": {
+            "title": "Last Modified At",
+            "type": "Date",
+            "required": true
+        },
+        "customerId": {
+            "title": "Customer Id",
+            "type": "string"
+        },
+        "customerEmail": {
+            "title": "Customer Email",
+            "type": "string",
+            "required": true
+        }
+    }
+}

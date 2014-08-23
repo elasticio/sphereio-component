@@ -53,6 +53,40 @@
                 },
                 "out": "./lib/actions/updateCustomer.out.json"
             }
+        },
+        "getCustomerByID": {
+            "main": "./lib/actions/getCustomerByID.js",
+            "title": "Get Customer By ID",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Customer id",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                "out": "./lib/actions/updateCustomer.out.json"
+            }
+        },
+        "getOrderByID": {
+            "main": "./lib/actions/getOrderByID.js",
+            "title": "Get Order By ID",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Order id",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                "out": "./lib/actions/order.json"
+            }
         }
     }
 
