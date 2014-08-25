@@ -28,6 +28,13 @@
             "type": "polling",
             "metadata": {
                 "out" : "./lib/triggers/queryCustomers.out.json"
+            },
+            "fields": {
+                "where": {
+                    "label": "Additional predicate to filter customers",
+                    "required": false,
+                    "viewClass": "TextFieldView"
+                }
             }
         }
     },
