@@ -16,7 +16,7 @@ describe('Sphere.io queryCustomers.js', function () {
         });
 
     nock('https://api.sphere.io')
-        .get('/test_project/customers')
+        .get('/test_project/customers?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22')
         .reply(200, allCustomers)
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22')
         .reply(200, modifiedCustomers)
@@ -133,7 +133,7 @@ describe('Sphere.io queryCustomers.js', function () {
 
                 expect(calls[1].args[0]).toEqual('end');
             });
-        });        
+        });
     });
 
     describe('when some customer has addreses', function() {
@@ -142,6 +142,7 @@ describe('Sphere.io queryCustomers.js', function () {
         var cfg;
 
         beforeEach(function() {
+
             nock('https://auth.sphere.io')
                 .filteringRequestBody(/.*/, '*')
                 .post('/oauth/token', "*")
@@ -153,7 +154,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 });
 
             nock('https://api.sphere.io')
-                .get('/test_project/customers')
+                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22')
                 .reply(200, allCustomers)
                 .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22')
                 .reply(200, modifiedCustomers)
