@@ -16,13 +16,13 @@ describe('Sphere.io queryCustomers.js', function () {
         });
 
     nock('https://api.sphere.io')
-        .get('/test_project/customers?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22')
+        .get('/test_project/customers?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(200, allCustomers)
-        .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22')
+        .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(200, modifiedCustomers)
-        .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22')
+        .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(500, 'Ouch')
-        .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22')
+        .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(200, emptyResult);
 
     var next = jasmine.createSpy('next');
@@ -154,7 +154,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 });
 
             nock('https://api.sphere.io')
-                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined')
+                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined&limit=20&sort=lastModifiedAt%20asc')
                 .reply(200, allCustomers);
 
             msg = {};
@@ -208,11 +208,11 @@ describe('Sphere.io queryCustomers.js', function () {
                 });
 
             nock('https://api.sphere.io')
-                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22')
+                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
                 .reply(200, allCustomers)
-                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22')
+                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
                 .reply(200, modifiedCustomers)
-                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22')
+                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
                 .reply(500, 'Ouch');
 
             msg = {};
