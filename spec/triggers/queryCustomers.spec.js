@@ -136,6 +136,60 @@ describe('Sphere.io queryCustomers.js', function () {
         });
     });
 
+    describe('when sousing where field', function() {
+        var msg;
+        var self;
+        var cfg;
+
+        beforeEach(function() {
+
+            nock('https://auth.sphere.io')
+                .filteringRequestBody(/.*/, '*')
+                .post('/oauth/token', "*")
+                .reply(200, {
+                    "access_token": "i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA",
+                    "token_type": "Bearer",
+                    "expires_in": 172800,
+                    "scope": "manage_project:test_project"
+                });
+
+            nock('https://api.sphere.io')
+                .get('/test_project/customers?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined')
+                .reply(200, allCustomers);
+
+            msg = {};
+            self = jasmine.createSpyObj('self', ['emit']);
+            cfg = {
+                client: 'test_client',
+                clientSecret: 'so_secret',
+                project: 'test_project',
+                where : 'externalId is defined'
+            };
+
+            spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
+        });
+
+        it('should emit new message if first query was successful', function() {
+
+            queryCustomers.process.call(self, msg, cfg, next, {});
+
+            waitsFor(function () {
+                return self.emit.calls.length;
+            });
+
+            runs(function () {
+                expect(self.emit.calls.length).toEqual(3);
+                var calls = self.emit.calls;
+                expect(calls[0].args[0]).toEqual('data');
+                expect(calls[1].args[0]).toEqual('snapshot');
+                expect(Object.keys(calls[1].args[1]).length).toEqual(0);
+                expect(calls[2].args[0]).toEqual('end');
+                var newMsg = self.emit.calls[0].args[1];
+                expect(newMsg.body.length).toEqual(allCustomers.length);
+            });
+        });
+    });
+
     describe('when some customer has addreses', function() {
         var msg;
         var self;
