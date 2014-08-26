@@ -36,6 +36,14 @@
                     "viewClass": "TextFieldView"
                 }
             }
+        },
+        "getOrders":{
+            "main":"./lib/triggers/queryOrders.js",
+            "title": "Query Orders",
+            "type": "polling",
+            "metadata": {
+                "out" : "./lib/triggers/queryOrders.out.json"
+            }
         }
     },
     "actions": {
