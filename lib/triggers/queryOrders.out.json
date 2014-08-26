@@ -29,6 +29,7 @@
                     "required": false
                 },
                 "id": {
+                    "title": "ID",
                     "type": "string",
                     "required": false
                 },
@@ -37,6 +38,7 @@
                     "required": false
                 },
                 "lastModifiedAt": {
+                    "title": "Last Modified",
                     "type": "string",
                     "required": false
                 },
@@ -48,6 +50,7 @@
                         "required": false,
                         "properties": {
                             "id": {
+                                "title": "Item ID",
                                 "type": "string",
                                 "required": false
                             },
@@ -56,6 +59,7 @@
                                 "required": false,
                                 "properties": {
                                     "en": {
+                                        "title": "Item Name (EN)",
                                         "type": "string",
                                         "required": false
                                     }
@@ -70,6 +74,7 @@
                                         "required": false,
                                         "properties": {
                                             "centAmount": {
+                                                "title": "Item Price",
                                                 "type": "number",
                                                 "required": false
                                             },
@@ -82,10 +87,12 @@
                                 }
                             },
                             "productId": {
+                                "title": "Item Product ID",
                                 "type": "string",
                                 "required": false
                             },
                             "quantity": {
+                                "title": "Item Quantity",
                                 "type": "number",
                                 "required": false
                             },
@@ -217,6 +224,7 @@
                     }
                 },
                 "orderState": {
+                    "title": "Order State",
                     "type": "string",
                     "required": false
                 },
@@ -313,10 +321,12 @@
                     "required": false,
                     "properties": {
                         "centAmount": {
+                            "title": "Total Price (cents)",
                             "type": "number",
                             "required": false
                         },
                         "currencyCode": {
+                            "title": "Currency Code",
                             "type": "string",
                             "required": false
                         }
@@ -327,10 +337,12 @@
                     "required": false
                 },
                 "type": {
+                    "title": "Type",
                     "type": "string",
                     "required": false
                 },
                 "version": {
+                    "title": "Version",
                     "type": "number",
                     "required": false
                 }
