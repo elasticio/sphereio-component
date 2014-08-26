@@ -21,6 +21,7 @@
             "required": true,
             "properties": {
                 "createdAt": {
+                    "title": "Created at",
                     "type": "string",
                     "required": false
                 },
@@ -76,6 +77,7 @@
                                             "required": false
                                         },
                                         "currencyCode": {
+                                            "title": "Item Currency Code",
                                             "type": "string",
                                             "required": false
                                         }
@@ -98,6 +100,7 @@
                             "required": false,
                             "properties": {
                                 "quantity": {
+                                    "title": "Item State Quantity",
                                     "type": "number",
                                     "required": false
                                 },
@@ -122,22 +125,27 @@
                             "required": false,
                             "properties": {
                                 "amount": {
+                                    "title": "Item Tax Amount",
                                     "type": "number",
                                     "required": false
                                 },
                                 "country": {
+                                    "title": "Item Tax Country",
                                     "type": "string",
                                     "required": false
                                 },
                                 "id": {
+                                    "title": "Item Tax ID",
                                     "type": "string",
                                     "required": false
                                 },
                                 "includedInPrice": {
+                                    "title": "Item Tax Included",
                                     "type": "boolean",
                                     "required": false
                                 },
                                 "name": {
+                                    "title": "Item Tax Name",
                                     "type": "string",
                                     "required": false
                                 }
@@ -148,10 +156,12 @@
                             "required": false,
                             "properties": {
                                 "attributes": {
+                                    "title": "Item Variant Types",
                                     "type": "array",
                                     "required": false
                                 },
                                 "id": {
+                                    "title": "Item Variant ID",
                                     "type": "number",
                                     "required": false
                                 },
@@ -174,6 +184,7 @@
                                             }
                                         },
                                         "url": {
+                                            "title": "Item Variant Images URL",
                                             "type": "string",
                                             "required": false
                                         }
@@ -188,10 +199,12 @@
                                             "required": false,
                                             "properties": {
                                                 "centAmount": {
+                                                    "title": "Item Prices, Amount",
                                                     "type": "number",
                                                     "required": false
                                                 },
                                                 "currencyCode": {
+                                                    "title": "Item Prices, Currency Code",
                                                     "type": "string",
                                                     "required": false
                                                 }
@@ -200,6 +213,7 @@
                                     }
                                 },
                                 "sku": {
+                                    "title": "Item SKU",
                                     "type": "string",
                                     "required": false
                                 }
@@ -221,14 +235,17 @@
                     "required": false,
                     "properties": {
                         "country": {
+                            "title": "Shipping Country",
                             "type": "string",
                             "required": false
                         },
                         "firstName": {
+                            "title": "Shipping First Name",
                             "type": "string",
                             "required": false
                         },
                         "lastName": {
+                            "title": "Shipping Last Name",
                             "type": "string",
                             "required": false
                         }
