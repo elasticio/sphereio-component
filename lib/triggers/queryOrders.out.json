@@ -45,179 +45,163 @@
                 "lineItems": {
                     "type": "array",
                     "required": false,
-                    "items": {
-                        "type": "object",
-                        "required": false,
-                        "properties": {
-                            "id": {
-                                "title": "Item ID",
-                                "type": "string",
-                                "required": false
-                            },
-                            "name": {
-                                "type": "object",
-                                "required": false,
-                                "properties": {
-                                    "en": {
-                                        "title": "Item Name (EN)",
-                                        "type": "string",
-                                        "required": false
-                                    }
+                    "properties": {
+                        "id": {
+                            "title": "Item ID",
+                            "type": "string",
+                            "required": false
+                        },
+                        "name": {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "en": {
+                                    "title": "Item Name (EN)",
+                                    "type": "string",
+                                    "required": false
                                 }
-                            },
-                            "price": {
-                                "type": "object",
-                                "required": false,
-                                "properties": {
-                                    "value": {
-                                        "type": "object",
-                                        "required": false,
-                                        "properties": {
-                                            "centAmount": {
-                                                "title": "Item Price",
-                                                "type": "number",
-                                                "required": false
-                                            },
-                                            "currencyCode": {
-                                                "type": "string",
-                                                "required": false
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            "productId": {
-                                "title": "Item Product ID",
-                                "type": "string",
-                                "required": false
-                            },
-                            "quantity": {
-                                "title": "Item Quantity",
-                                "type": "number",
-                                "required": false
-                            },
-                            "state": {
-                                "type": "array",
-                                "required": false,
-                                "items": {
+                            }
+                        },
+                        "price": {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "value": {
                                     "type": "object",
                                     "required": false,
                                     "properties": {
-                                        "quantity": {
+                                        "centAmount": {
+                                            "title": "Item Price",
                                             "type": "number",
                                             "required": false
                                         },
-                                        "state": {
-                                            "type": "object",
-                                            "required": false,
-                                            "properties": {
-                                                "id": {
-                                                    "type": "string",
-                                                    "required": false
-                                                },
-                                                "typeId": {
-                                                    "type": "string",
-                                                    "required": false
-                                                }
-                                            }
+                                        "currencyCode": {
+                                            "type": "string",
+                                            "required": false
                                         }
                                     }
                                 }
-                            },
-                            "taxRate": {
-                                "type": "object",
-                                "required": false,
-                                "properties": {
-                                    "amount": {
-                                        "type": "number",
-                                        "required": false
-                                    },
-                                    "country": {
-                                        "type": "string",
-                                        "required": false
-                                    },
-                                    "id": {
-                                        "type": "string",
-                                        "required": false
-                                    },
-                                    "includedInPrice": {
-                                        "type": "boolean",
-                                        "required": false
-                                    },
-                                    "name": {
-                                        "type": "string",
-                                        "required": false
+                            }
+                        },
+                        "productId": {
+                            "title": "Item Product ID",
+                            "type": "string",
+                            "required": false
+                        },
+                        "quantity": {
+                            "title": "Item Quantity",
+                            "type": "number",
+                            "required": false
+                        },
+                        "state": {
+                            "type": "array",
+                            "required": false,
+                            "properties": {
+                                "quantity": {
+                                    "type": "number",
+                                    "required": false
+                                },
+                                "state": {
+                                    "type": "object",
+                                    "required": false,
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "required": false
+                                        },
+                                        "typeId": {
+                                            "type": "string",
+                                            "required": false
+                                        }
                                     }
                                 }
-                            },
-                            "variant": {
-                                "type": "object",
-                                "required": false,
-                                "properties": {
-                                    "attributes": {
-                                        "type": "array",
-                                        "required": false
-                                    },
-                                    "id": {
-                                        "type": "number",
-                                        "required": false
-                                    },
-                                    "images": {
-                                        "type": "array",
-                                        "required": false,
-                                        "items": {
+                            }
+                        },
+                        "taxRate": {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "amount": {
+                                    "type": "number",
+                                    "required": false
+                                },
+                                "country": {
+                                    "type": "string",
+                                    "required": false
+                                },
+                                "id": {
+                                    "type": "string",
+                                    "required": false
+                                },
+                                "includedInPrice": {
+                                    "type": "boolean",
+                                    "required": false
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "required": false
+                                }
+                            }
+                        },
+                        "variant": {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "attributes": {
+                                    "type": "array",
+                                    "required": false
+                                },
+                                "id": {
+                                    "type": "number",
+                                    "required": false
+                                },
+                                "images": {
+                                    "type": "array",
+                                    "required": false,
+                                    "properties": {
+                                        "dimensions": {
                                             "type": "object",
                                             "required": false,
                                             "properties": {
-                                                "dimensions": {
-                                                    "type": "object",
-                                                    "required": false,
-                                                    "properties": {
-                                                        "h": {
-                                                            "type": "number",
-                                                            "required": false
-                                                        },
-                                                        "w": {
-                                                            "type": "number",
-                                                            "required": false
-                                                        }
-                                                    }
+                                                "h": {
+                                                    "type": "number",
+                                                    "required": false
                                                 },
-                                                "url": {
+                                                "w": {
+                                                    "type": "number",
+                                                    "required": false
+                                                }
+                                            }
+                                        },
+                                        "url": {
+                                            "type": "string",
+                                            "required": false
+                                        }
+                                    }
+                                },
+                                "prices": {
+                                    "type": "array",
+                                    "required": false,
+                                    "properties": {
+                                        "value": {
+                                            "type": "object",
+                                            "required": false,
+                                            "properties": {
+                                                "centAmount": {
+                                                    "type": "number",
+                                                    "required": false
+                                                },
+                                                "currencyCode": {
                                                     "type": "string",
                                                     "required": false
                                                 }
                                             }
                                         }
-                                    },
-                                    "prices": {
-                                        "type": "array",
-                                        "required": false,
-                                        "items": {
-                                            "type": "object",
-                                            "required": false,
-                                            "properties": {
-                                                "value": {
-                                                    "type": "object",
-                                                    "required": false,
-                                                    "properties": {
-                                                        "centAmount": {
-                                                            "type": "number",
-                                                            "required": false
-                                                        },
-                                                        "currencyCode": {
-                                                            "type": "string",
-                                                            "required": false
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "sku": {
-                                        "type": "string",
-                                        "required": false
                                     }
+                                },
+                                "sku": {
+                                    "type": "string",
+                                    "required": false
                                 }
                             }
                         }
@@ -261,28 +245,24 @@
                         "taxPortions": {
                             "type": "array",
                             "required": false,
-                            "items": {
-                                "type": "object",
-                                "required": false,
-                                "properties": {
-                                    "amount": {
-                                        "type": "object",
-                                        "required": false,
-                                        "properties": {
-                                            "centAmount": {
-                                                "type": "number",
-                                                "required": false
-                                            },
-                                            "currencyCode": {
-                                                "type": "string",
-                                                "required": false
-                                            }
+                            "properties": {
+                                "amount": {
+                                    "type": "object",
+                                    "required": false,
+                                    "properties": {
+                                        "centAmount": {
+                                            "type": "number",
+                                            "required": false
+                                        },
+                                        "currencyCode": {
+                                            "type": "string",
+                                            "required": false
                                         }
-                                    },
-                                    "rate": {
-                                        "type": "number",
-                                        "required": false
                                     }
+                                },
+                                "rate": {
+                                    "type": "number",
+                                    "required": false
                                 }
                             }
                         },
