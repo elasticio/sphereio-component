@@ -101,9 +101,11 @@
                                     "type": "object",
                                     "properties": {
                                         "id": {
+                                            "title": "Item State ID",
                                             "type": "string"
                                         },
                                         "typeId": {
+                                            "title": "Item State Type ID",
                                             "type": "string"
                                         }
                                     }
@@ -154,9 +156,11 @@
                                             "type": "object",
                                             "properties": {
                                                 "h": {
+                                                    "title": "Item Image Height",
                                                     "type": "number"
                                                 },
                                                 "w": {
+                                                    "title": "Item Image Width",
                                                     "type": "number"
                                                 }
                                             }
@@ -222,14 +226,17 @@
                                     "type": "object",
                                     "properties": {
                                         "centAmount": {
+                                            "title": "Item Taxed Price (cents)",
                                             "type": "number"
                                         },
                                         "currencyCode": {
+                                            "title": "Item Taxed Price (currency)",
                                             "type": "string"
                                         }
                                     }
                                 },
                                 "rate": {
+                                    "title": "Item Taxed Price Rate",
                                     "type": "number"
                                 }
                             }
@@ -238,9 +245,11 @@
                             "type": "object",
                             "properties": {
                                 "centAmount": {
+                                    "title": "Item Taxed Price Gross (cents)",
                                     "type": "number"
                                 },
                                 "currencyCode": {
+                                    "title": "Item Taxed Price Gross, Currency",
                                     "type": "string"
                                 }
                             }
@@ -249,9 +258,11 @@
                             "type": "object",
                             "properties": {
                                 "centAmount": {
+                                    "title": "Item Taxed Price Net (cents)",
                                     "type": "number"
                                 },
                                 "currencyCode": {
+                                    "title": "Item Taxed Price Net, Currency",
                                     "type": "string"
                                 }
                             }
