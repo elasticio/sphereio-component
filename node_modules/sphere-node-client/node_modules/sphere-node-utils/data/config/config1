@@ -1,0 +1,3 @@
+project-a:clientId1:clientSecret1
+project-b:clientId2:clientSecret2
+project-z:"clientId100:foooo":clientSecret100
