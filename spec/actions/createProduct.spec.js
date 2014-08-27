@@ -20,6 +20,7 @@ describe('Sphereio create product', function () {
 
     describe('request product meta data', function() {
         var callback = jasmine.createSpy('callback');
+
         var expectedMetaData = JSON.parse(fs.readFileSync(__dirname + '/expectedProductMetaData.json').toString());
 
         beforeEach(function() {
