@@ -1,0 +1,50 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "lstring",
+            "title": "Name",
+            "required": false
+        },
+        "productType": {
+            "type": "string",
+            "title": "Reference to ProductType",
+            "required": false
+        },
+        "slug": {
+            "type": "lstring",
+            "title": "Slug",
+            "required": false
+        },
+        "description": {
+            "type": "lstring",
+            "title": "Description",
+            "required": false
+        },
+        "metaTitle": {
+            "type": "lstring",
+            "title": "MetaTitle",
+            "required": false
+        },
+        "metaDescription": {
+            "type": "lstring",
+            "title": "MetaDescription",
+            "required": false
+        },
+        "categories": {
+            "type": "array",
+            "title": "Categories",
+            "required": false
+        },
+        "masterVariant": {
+            "type": "object",
+            "title": "MasterVariant",
+            "required": false
+        },
+        "variants": {
+            "type": "array",
+            "title": "Variants",
+            "required": false
+        }
+    }
+}

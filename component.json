@@ -61,6 +61,11 @@
                 "out": "./lib/actions/updateCustomer.out.json"
             }
         },
+        "createProduct": {
+            "main": "./lib/actions/createProduct.js",
+            "title": "Create a product",
+            "dynamicMetadata": true
+        },
         "getCustomerByID": {
             "main": "./lib/actions/getCustomerByID.js",
             "title": "Get Customer By ID",
