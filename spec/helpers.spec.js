@@ -1,6 +1,7 @@
 describe('Sphere.io queryCustomers.js', function () {
     var helpers = require('../lib/helpers.js');
     var allCustomers = require('./data/all_customers.json.js');
+    var allOrders = require('./data/all_orders.json.js');
 
     it('Should update snapshot field `lastModifiedAt` if this field is empty', function () {
         var snapshot = {};
@@ -23,5 +24,11 @@ describe('Sphere.io queryCustomers.js', function () {
         };
         helpers.updateSnapshotWithLastModified(allCustomers.results, snapshot);
         expect(snapshot.lastModifiedAt).toEqual(future);
+    });
+
+    it('Should update snapshot field `lastModifiedAt` if this field is empty', function () {
+        var snapshot = {};
+        helpers.updateSnapshotWithLastModified(allOrders.results, snapshot);
+        expect(snapshot.lastModifiedAt).toEqual(allOrders.results[1].lastModifiedAt);
     });
 });
