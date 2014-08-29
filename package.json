@@ -7,7 +7,7 @@
     },
     "dependencies": {
         "node-uuid": "^1.4.1",
-        "sphere-node-client": "^0.8.1",
+        "sphere-node-client": ">=0.8.1",
         "moment": "2.0.0",
         "underscore": "1.4.2"
     },
