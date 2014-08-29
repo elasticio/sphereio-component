@@ -6,11 +6,6 @@
             "title": "Name",
             "required": false
         },
-        "productType": {
-            "type": "string",
-            "title": "Reference to ProductType",
-            "required": false
-        },
         "slug": {
             "type": "lstring",
             "title": "Slug",
@@ -31,20 +26,93 @@
             "title": "MetaDescription",
             "required": false
         },
-        "categories": {
-            "type": "array",
-            "title": "Categories",
-            "required": false
-        },
         "masterVariant": {
             "type": "object",
             "title": "MasterVariant",
-            "required": false
+            "required": false,
+            "properties": {
+                "sku": {
+                    "type": "string",
+                    "required": false,
+                    "title": "Master variant sku"
+                },
+                "prices": {
+                    "type": "array",
+                    "required": false,
+                    "properties": {
+                        "currencyCode": {
+                            "type": "string",
+                            "required": false,
+                            "title": "Master variant currency code"
+                        },
+                        "centAmount": {
+                            "type": "number",
+                            "required": false,
+                            "title": "Master variant the amount in cents (the smallest indivisible unit of the currency)"
+                        }
+                    }
+                },
+                "attributes":{
+                    "type": "array",
+                    "required": false,
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "required": false,
+                            "title": "Master variant attribute title"
+                        },
+                        "value": {
+                            "type": "mixed",
+                            "required": false,
+                            "title": "Master variant value of attribute"
+                        }
+                    }
+                }
+            }
         },
         "variants": {
             "type": "array",
             "title": "Variants",
-            "required": false
+            "required": false,
+            "properties": {
+                "sku": {
+                    "type": "string",
+                    "required": false,
+                    "title": "Variants sku"
+                },
+                "prices": {
+                    "type": "array",
+                    "required": false,
+                    "properties": {
+                        "currencyCode": {
+                            "type": "string",
+                            "required": false,
+                            "title": "Variants currency code"
+                        },
+                        "centAmount": {
+                            "type": "number",
+                            "required": false,
+                            "title": "Variants the amount in cents (the smallest indivisible unit of the currency)"
+                        }
+                    }
+                },
+                "attributes":{
+                    "type": "array",
+                    "required": false,
+                    "properties": {
+                        "name": {
+                            "type": "string",
+                            "required": false,
+                            "title": "Variants attribute title"
+                        },
+                        "value": {
+                            "type": "mixed",
+                            "required": false,
+                            "title": "Variants value of attribute"
+                        }
+                    }
+                }
+            }
         }
     }
 }

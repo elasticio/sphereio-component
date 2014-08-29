@@ -4,15 +4,15 @@ describe('Sphereio create product', function () {
     var fs = require('fs');
 
     var cfg = {
-        client: 'c7bsQTE5gopuIh-hEcBm4k26',
-        clientSecret: '-mMPrPnv_vSNQr4v4YASnX716ggQ_D_z',
+        client: '1',
+        clientSecret: '2',
         project: 'elasticio'
     };
 
     beforeEach(function() {
         nock('https://auth.sphere.io').post('/oauth/token')
             .reply(200, {
-                "access_token":"70kNDuiU_UstkLgWro3UYlhLbpXO5ywU",
+                "access_token":"73",
                 "token_type":"Bearer",
                 "expires_in":172800,"scope":"manage_project:elasticio"
             });
@@ -124,6 +124,38 @@ describe('Sphereio create product', function () {
 
         it('should not emit more then two events', function() {
             expect(self.emit.calls.length).toEqual(2);
+        });
+    });
+
+
+    describe('request product types', function() {
+        var callback = jasmine.createSpy('callback');
+
+        beforeEach(function() {
+            var scope = nock('https://api.sphere.io');
+            scope.get('/elasticio/product-types').reply(200, {results: [
+                {
+                    id: 1,
+                    name: 'food'
+                },
+                {
+                    id:2,
+                    name: 'arms'
+                }
+            ]});
+
+            runs(function() {
+                createProduct.getProductTypeSelectModel(cfg, callback);
+            });
+
+            waitsFor(function() {
+                return callback.calls.length;
+            }, "Timed out", 1000);
+
+        });
+
+        it('should call callback with formated product types', function() {
+            expect(callback).toHaveBeenCalledWith(null, { 1 : 'food', 2 : 'arms' });
         });
     });
 

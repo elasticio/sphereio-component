@@ -64,6 +64,15 @@
         "createProduct": {
             "main": "./lib/actions/createProduct.js",
             "title": "Create a product",
+            "fields": {
+                "productType": {
+                    "viewClass": "SelectView",
+                    "label": "Product type",
+                    "required": false,
+                    "model": "getProductTypeSelectModel",
+                    "prompt": "Please select a product type"
+                }
+            },
             "dynamicMetadata": true
         },
         "getCustomerByID": {
