@@ -1,0 +1,53 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "title": "Id",
+            "type": "string",
+            "required": true
+        },
+        "version": {
+            "title": "Version",
+            "type": "number",
+            "required": true
+        },
+        "createdAt": {
+            "title": "Created At",
+            "type": "Date",
+            "required": true
+        },
+        "lastModifiedAt": {
+            "title": "Last Modified At",
+            "type": "Date",
+            "required": true
+        },
+        "orderNumber": {
+            "title": "Order Number",
+            "type": "string"
+        },
+        "customerId": {
+            "title": "Customer Id",
+            "type": "string"
+        },
+        "customerEmail": {
+            "title": "Customer Email",
+            "type": "string"
+        },
+        "lineItems": {
+            "title": "Line Items",
+            "type": "array",
+            "properties" : {
+                "id": {
+                    "title": "Line Item Id",
+                    "type": "string",
+                    "required": true
+                },
+                "productId": {
+                    "title": "Line Item Product Id",
+                    "type": "string",
+                    "required": true
+                }
+            }
+        }
+    }
+}
