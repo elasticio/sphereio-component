@@ -54,6 +54,15 @@ module.exports = function (grunt) {
             }
         },
 
+        copy: {
+            specDepedencies: {
+                files: [
+                    // includes files within path
+                    {expand: true, src: ['spec/**/*.json', 'lib/**/*.json'], dest: './coverage/instrument/'}
+                ]
+            }
+        },
+
         // end - code coverage settings
 
         coveralls: {
@@ -75,6 +84,8 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
 
+    grunt.loadNpmTasks('grunt-contrib-copy');
+
     grunt.loadNpmTasks('grunt-istanbul');
 
     grunt.loadNpmTasks('grunt-env');
@@ -85,5 +96,5 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['clean', 'jshint', 'jasmine_node:spec']);
 
     grunt.registerTask('coverage', ['clean', 'env:coverage',
-        'instrument', 'jasmine_node:instrumented', 'storeCoverage', 'makeReport', 'coveralls:test']);
+        'instrument', 'copy:specDepedencies', 'jasmine_node:instrumented', 'storeCoverage', 'makeReport', 'coveralls:test']);
 };
