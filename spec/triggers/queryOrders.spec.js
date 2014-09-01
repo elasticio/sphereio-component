@@ -46,8 +46,6 @@ describe('Sphere.io queryOrders.js', function () {
 
         it('should emit new message if first query was successful', function () {
 
-            expect(true).toEqual(false);
-
             queryOrders.process.call(self, msg, cfg, next, {});
 
             waitsFor(function () {
