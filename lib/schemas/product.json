@@ -58,28 +58,6 @@
                                 }
                             }
                         }
-                    },
-                    "attributes":{
-                        "type": "array",
-                        "required": false,
-                        "properties": {
-                            "value": {
-                                "type": "object",
-                                "required": false,
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "required": false,
-                                        "title": "Master variant attribute title"
-                                    },
-                                    "value": {
-                                        "type": "mixed",
-                                        "required": false,
-                                        "title": "Master variant value of attribute"
-                                    }
-                                }
-                            }
-                        }
                     }
                 }
             },
@@ -106,22 +84,6 @@
                                 "type": "number",
                                 "required": false,
                                 "title": "Variants the amount in cents (the smallest indivisible unit of the currency)"
-                            }
-                        }
-                    },
-                    "attributes":{
-                        "type": "array",
-                        "required": false,
-                        "properties": {
-                            "name": {
-                                "type": "string",
-                                "required": false,
-                                "title": "Variants attribute title"
-                            },
-                            "value": {
-                                "type": "mixed",
-                                "required": false,
-                                "title": "Variants value of attribute"
                             }
                         }
                     }
