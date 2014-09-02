@@ -5,12 +5,12 @@
             "name": {
                 "type": "lstring",
                 "title": "Name",
-                "required": false
+                "required": true
             },
             "slug": {
                 "type": "lstring",
                 "title": "Slug",
-                "required": false
+                "required": true
             },
             "description": {
                 "type": "lstring",
@@ -41,15 +41,20 @@
                         "type": "array",
                         "required": false,
                         "properties": {
-                            "currencyCode": {
-                                "type": "string",
-                                "required": false,
-                                "title": "Master variant currency code"
-                            },
-                            "centAmount": {
-                                "type": "number",
-                                "required": false,
-                                "title": "Master variant the amount in cents (the smallest indivisible unit of the currency)"
+                            "value": {
+                                "type": "object",
+                                "properties": {
+                                    "currencyCode": {
+                                        "type": "string",
+                                        "required": false,
+                                        "title": "Master variant currency code"
+                                    },
+                                    "centAmount": {
+                                        "type": "number",
+                                        "required": false,
+                                        "title": "Master variant the amount in cents (the smallest indivisible unit of the currency)"
+                                    }
+                                }
                             }
                         }
                     },
@@ -85,15 +90,20 @@
                         "type": "array",
                         "required": false,
                         "properties": {
-                            "currencyCode": {
-                                "type": "string",
-                                "required": false,
-                                "title": "Variants currency code"
-                            },
-                            "centAmount": {
-                                "type": "number",
-                                "required": false,
-                                "title": "Variants the amount in cents (the smallest indivisible unit of the currency)"
+                            "value": {
+                                "type": "object",
+                                "properties": {
+                                    "currencyCode": {
+                                        "type": "string",
+                                        "required": false,
+                                        "title": "Master variant currency code"
+                                    },
+                                    "centAmount": {
+                                        "type": "number",
+                                        "required": false,
+                                        "title": "Master variant the amount in cents (the smallest indivisible unit of the currency)"
+                                    }
+                                }
                             }
                         }
                     },
