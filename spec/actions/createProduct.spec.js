@@ -7,7 +7,7 @@ describe('Sphereio create product', function () {
         client: '1',
         clientSecret: '2',
         project: 'elasticio',
-        productType: 1
+        productType: 12
     };
 
     beforeEach(function() {
@@ -18,7 +18,7 @@ describe('Sphereio create product', function () {
                 "expires_in":172800,"scope":"manage_project:elasticio"
             });
 
-        nock('https://api.sphere.io').get('/elasticio/product-types/1')
+        nock('https://api.sphere.io').get('/elasticio/product-types/12')
             .reply(200, {attributes: []});
     });
 
