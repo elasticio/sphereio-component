@@ -1,0 +1,4 @@
+- pluralize String method (https://github.com/epeli/underscore.string/issues/258)
+- xml helpers
+- csv helpers
+- getAllVariants that give you masterVariant + all other variants of one product.
