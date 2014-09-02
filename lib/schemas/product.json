@@ -53,7 +53,7 @@
                                     "centAmount": {
                                         "type": "number",
                                         "required": false,
-                                        "title": "Master variant the amount in cents (the smallest indivisible unit of the currency)"
+                                        "title": "Master variant amount in cents (the smallest indivisible unit of the currency)"
                                     }
                                 }
                             }
@@ -81,12 +81,12 @@
                                     "currencyCode": {
                                         "type": "string",
                                         "required": false,
-                                        "title": "Master variant currency code"
+                                        "title": "Variants currency code"
                                     },
                                     "centAmount": {
                                         "type": "number",
                                         "required": false,
-                                        "title": "Master variant the amount in cents (the smallest indivisible unit of the currency)"
+                                        "title": "Variants amount in cents (the smallest indivisible unit of the currency)"
                                     }
                                 }
                             }
