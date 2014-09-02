@@ -248,3 +248,38 @@ describe('readAttributes', function () {
         expect(result).toEqual([]);
     });
 });
+
+
+/*describe('addAttributes', function () {
+
+    var nock = require('nock');
+    nock.recorder.rec();
+
+    var product = require(__dirname + '/data/product.json');
+    var attributes = require(__dirname + '/data/attributes.json');
+    var product_with_attributes = require(__dirname + '/data/product_with_attributes.json');
+
+    it('Should add attributes', function(){
+        attributeManager.addAttributes(product, attributes);
+        expect(product).toEqual(product_with_attributes);
+    });
+
+    it('Should not fail when metadata is undefined', function(){
+        expect(function(){
+            attributeManager.addAttributes(undefined, attributes);
+        }).not.toThrow();
+    });
+
+    it('Should not fail when metadata.in is undefined', function(){
+        expect(function(){
+            attributeManager.addAttributes({}, attributes);
+        }).not.toThrow();
+    });
+
+    it('Should not fail when metadata.in.properties are undefined', function(){
+        var metadata = {in: {someParameter: 'someParameterValue'}};
+        attributeManager.addAttributes(metadata, attributes);
+        expect(metadata.in.properties).toBeDefined();
+        expect(_.keys(metadata.in.properties).length).toEqual(attributes.length);
+    });
+});*/
