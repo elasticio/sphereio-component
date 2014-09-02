@@ -43,6 +43,7 @@
                         "properties": {
                             "value": {
                                 "type": "object",
+                                "required": false,
                                 "properties": {
                                     "currencyCode": {
                                         "type": "string",
@@ -62,15 +63,21 @@
                         "type": "array",
                         "required": false,
                         "properties": {
-                            "name": {
-                                "type": "string",
-                                "required": false,
-                                "title": "Master variant attribute title"
-                            },
                             "value": {
-                                "type": "mixed",
+                                "type": "object",
                                 "required": false,
-                                "title": "Master variant value of attribute"
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "required": false,
+                                        "title": "Master variant attribute title"
+                                    },
+                                    "value": {
+                                        "type": "mixed",
+                                        "required": false,
+                                        "title": "Master variant value of attribute"
+                                    }
+                                }
                             }
                         }
                     }
@@ -221,15 +228,21 @@
                                     "type": "array",
                                     "required": false,
                                     "properties": {
-                                        "currencyCode": {
-                                            "type": "string",
+                                        "value": {
+                                            "type": "object",
                                             "required": false,
-                                            "title": "Variants currency code"
-                                        },
-                                        "centAmount": {
-                                            "type": "number",
-                                            "required": false,
-                                            "title": "Variants the amount in cents (the smallest indivisible unit of the currency)"
+                                            "properties": {
+                                                "currencyCode": {
+                                                    "type": "string",
+                                                    "required": false,
+                                                    "title": "Variants currency code"
+                                                },
+                                                "centAmount": {
+                                                    "type": "number",
+                                                    "required": false,
+                                                    "title": "Variants the amount in cents (the smallest indivisible unit of the currency)"
+                                                }
+                                            }
                                         }
                                     }
                                 }
