@@ -202,7 +202,7 @@ describe('readAttributeFromMessage', function () {
 
 describe('readAttributes', function () {
 
-    var attributes = {
+    var data = {
         attribute1: 'value1',
         attribute2: {'en': 'value2'},
         attribute3: 'value3',
@@ -211,19 +211,15 @@ describe('readAttributes', function () {
         attribute7: 'value7'
     };
 
-    var productTypeData = {
-        body: {
-            attributes: [
-                {"name": "attribute1", "type": {"name": "text"}},
-                {"name": "attribute2", "type": {"name": "ltext"}},
-                {"name": "attribute3", "type": {"name": "enum"}},
-                {"name": "attribute4", "type": {"name": "number"}},
-                {"name": "attribute5", "type": {"name": "money"}},
-                {"name": "attribute6", "type": {"name": "money"}},
-                {"name": "attribute7", "type": {"name": "unknownType"}}
-            ]
-        }
-    };
+    var productTypeAttributes = [
+            {"name": "attribute1", "type": {"name": "text"}},
+            {"name": "attribute2", "type": {"name": "ltext"}},
+            {"name": "attribute3", "type": {"name": "enum"}},
+            {"name": "attribute4", "type": {"name": "number"}},
+            {"name": "attribute5", "type": {"name": "money"}},
+            {"name": "attribute6", "type": {"name": "money"}},
+            {"name": "attribute7", "type": {"name": "unknownType"}}
+    ];
 
     var expected = [
         {name: 'attribute1',value: 'value1'},
@@ -234,52 +230,95 @@ describe('readAttributes', function () {
     ];
 
     it('Should read attributes properly', function(){
-        var result = attributeManager.readAttributes(attributes, productTypeData);
+        var result = attributeManager.readAttributes(data, productTypeAttributes);
         expect(result).toEqual(expected);
     });
 
     it('Should return empty array if message is undefined', function(){
-        var result = attributeManager.readAttributes(attributes, undefined);
+        var result = attributeManager.readAttributes(data, undefined);
         expect(result).toEqual([]);
     });
 
     it('Should return empty array if message body is empty', function(){
-        var result = attributeManager.readAttributes(attributes, {});
+        var result = attributeManager.readAttributes(data, {});
         expect(result).toEqual([]);
     });
 });
 
 
-/*describe('addAttributes', function () {
+describe('addAttributes', function () {
 
-    var nock = require('nock');
-    nock.recorder.rec();
+    var attributes = [
+        {
+            "type": {
+                "name": "text"
+            },
+            "name": "attr1",
+            "label": {
+                "en": "Attr1 Label"
+            },
+            "isRequired": true,
+            "inputHint": "SingleLine",
+            "displayGroup": "Other",
+            "isSearchable": true,
+            "attributeConstraint": "None"
+        },
+        {
+            "type": {
+                "name": "number"
+            },
+            "name": "attr2",
+            "label": {
+                "en": "Attr2 Label 1",
+                "au": "Attr2 Label 2"
+            },
+            "isRequired": false,
+            "inputHint": "SingleLine",
+            "displayGroup": "Other",
+            "isSearchable": true,
+            "attributeConstraint": "None"
+        },
+        {
+            "type": {
+                "name": "ltext"
+            },
+            "name": "attr3",
+            "label": {
+                "en": "Attr3 Label 1",
+                "au": "Attr3 Label 2"
+            },
+            "isRequired": true,
+            "inputHint": "SingleLine",
+            "displayGroup": "Other",
+            "isSearchable": true,
+            "attributeConstraint": "None"
+        }
+    ];
 
-    var product = require(__dirname + '/data/product.json');
-    var attributes = require(__dirname + '/data/attributes.json');
-    var product_with_attributes = require(__dirname + '/data/product_with_attributes.json');
+    var description = {
+        type : 'object',
+        required : false,
+        properties : {
+            attr1 : {
+                title : 'Master Variant Attr1 Label',
+                required : true,
+                type : 'string'
+            },
+            attr2 : {
+                title : 'Master Variant Attr2 Label 1',
+                required : false,
+                type : 'number'
+            },
+            attr3 : {
+                title : 'Master Variant Attr3 Label 1',
+                required : true,
+                type : 'lstring'
+            }
+        }
+    };
 
-    it('Should add attributes', function(){
-        attributeManager.addAttributes(product, attributes);
-        expect(product).toEqual(product_with_attributes);
+    it('Should describe attributes', function(){
+        var result = attributeManager.describeAttributes('Master Variant', attributes);
+        expect(result).toEqual(description);
     });
-
-    it('Should not fail when metadata is undefined', function(){
-        expect(function(){
-            attributeManager.addAttributes(undefined, attributes);
-        }).not.toThrow();
-    });
-
-    it('Should not fail when metadata.in is undefined', function(){
-        expect(function(){
-            attributeManager.addAttributes({}, attributes);
-        }).not.toThrow();
-    });
-
-    it('Should not fail when metadata.in.properties are undefined', function(){
-        var metadata = {in: {someParameter: 'someParameterValue'}};
-        attributeManager.addAttributes(metadata, attributes);
-        expect(metadata.in.properties).toBeDefined();
-        expect(_.keys(metadata.in.properties).length).toEqual(attributes.length);
-    });
-});*/
+});
