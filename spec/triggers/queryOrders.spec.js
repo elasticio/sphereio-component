@@ -140,7 +140,7 @@ describe('Sphere.io queryOrders.js', function () {
         });
     });
 
-    describe('when sousing where field', function() {
+    describe('when where field is provided', function() {
         var msg;
         var self;
         var cfg;
