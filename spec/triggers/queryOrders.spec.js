@@ -251,7 +251,7 @@ describe('Sphere.io queryOrders.js getMetaModel', function () {
         runs(function () {
             expect(next.calls.length).toEqual(1);
             var schema = next.calls[0].args[1];
-            var nameProperty = schema.properties.results.properties.lineItems.properties.name;
+            var nameProperty = schema.out.properties.results.properties.lineItems.properties.name;
             expect(nameProperty).toEqual(nameSchemaConverted);
         });
     });
@@ -290,7 +290,7 @@ describe('Sphere.io queryOrders.js getMetaModel', function () {
         runs(function () {
             expect(next.calls.length).toEqual(1);
             var schema = next.calls[0].args[1];
-            var nameProperty = schema.properties.results.properties.lineItems.properties.name;
+            var nameProperty = schema.out.properties.results.properties.lineItems.properties.name;
             expect(nameProperty).toEqual(nameSchemaConverted);
         });
     });
