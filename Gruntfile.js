@@ -78,9 +78,9 @@ module.exports = function (grunt) {
         },
         jscs: {
             src: [
-                "lib/actions/queryProductVariant.js",
                 "lib/actions/addPrice.js",
                 "lib/actions/createProduct.js",
+                "lib/actions/queryProductVariant.js",
                 "lib/triggers/queryOrders.js",
                 "lib/attributeManager.js",
                 "spec/actions/addPrice.spec.js",
