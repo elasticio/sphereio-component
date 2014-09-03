@@ -196,102 +196,101 @@ describe('Sphere.io queryOrders.js', function () {
             });
         });
     });
-});
 
-describe('Sphere.io queryOrders.js getMetaModel', function () {
-    var nock = require('nock');
-    var queryOrders = require('../../lib/triggers/queryOrders.js');
+    describe('Sphere.io queryOrders.js getMetaModel', function () {
 
-    var cfg = {
-        client: 'test_client',
-        clientSecret: 'so_secret',
-        project: 'test_project'
-    };
+        var cfg = {
+            client: 'test_client',
+            clientSecret: 'so_secret',
+            project: 'test_project'
+        };
 
-    beforeEach(function(){
-        nock('https://auth.sphere.io')
-            .filteringRequestBody(/.*/, '*')
-            .post('/oauth/token', "*")
-            .times(40)
-            .reply(200, {
-                "access_token": "i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA",
-                "token_type": "Bearer",
-                "expires_in": 172800,
-                "scope": "manage_project:test_project"
+        beforeEach(function(){
+            nock('https://auth.sphere.io')
+                .filteringRequestBody(/.*/, '*')
+                .post('/oauth/token', "*")
+                .times(40)
+                .reply(200, {
+                    "access_token": "i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA",
+                    "token_type": "Bearer",
+                    "expires_in": 172800,
+                    "scope": "manage_project:test_project"
+                });
+        });
+
+        it('should convert lstring to array of 2 strings', function () {
+
+            nock('https://api.sphere.io')
+                .get('/test_project')
+                .reply(200, {languages: ['en', 'de']});
+
+            var nameSchemaConverted = {
+                type : 'object',
+                properties : {
+                    de : {
+                        title : 'Item Name (de)',
+                        type : 'string',
+                        required : true },
+                    en : {
+                        title : 'Item Name (en)',
+                        type : 'string',
+                        required : true }
+                }
+            };
+
+            var next = jasmine.createSpy('next');
+            queryOrders.getMetaModel(cfg, next);
+
+            waitsFor(function () {
+                return next.calls.length;
             });
-    });
 
-    it('should convert lstring to array of 2 strings', function () {
-
-        nock('https://api.sphere.io')
-            .get('/test_project')
-            .reply(200, {languages: ['en', 'de']}).log(console.log);
-
-        var nameSchemaConverted = {
-            type : 'object',
-            properties : {
-                de : {
-                    title : 'Item Name (de)',
-                    type : 'string',
-                    required : true },
-                en : {
-                    title : 'Item Name (en)',
-                    type : 'string',
-                    required : true }
-            }
-        };
-
-        var next = jasmine.createSpy('next');
-        queryOrders.getMetaModel(cfg, next);
-
-        waitsFor(function () {
-            return next.calls.length;
+            runs(function () {
+                expect(next.calls.length).toEqual(1);
+                var schema = next.calls[0].args[1];
+                var nameProperty = schema.out.properties.results.properties.lineItems.properties.name;
+                expect(nameProperty).toEqual(nameSchemaConverted);
+            });
         });
 
-        runs(function () {
-            expect(next.calls.length).toEqual(1);
-            var schema = next.calls[0].args[1];
-            var nameProperty = schema.out.properties.results.properties.lineItems.properties.name;
-            expect(nameProperty).toEqual(nameSchemaConverted);
-        });
-    });
+        it('should convert lstring to array of 3 strings', function () {
 
-    it('should convert lstring to array of 3 strings', function () {
+            nock('https://api.sphere.io')
+                .get('/test_project')
+                .reply(200, {languages: ['en', 'de', 'ru']});
 
-        nock('https://api.sphere.io')
-            .get('/test_project')
-            .reply(200, {languages: ['en', 'de', 'ru']}).log(console.log);
+            var nameSchemaConverted = {
+                type : 'object',
+                properties : {
+                    de : {
+                        title : 'Item Name (de)',
+                        type : 'string',
+                        required : true },
+                    en : {
+                        title : 'Item Name (en)',
+                        type : 'string',
+                        required : true },
+                    ru : {
+                        title : 'Item Name (ru)',
+                        type : 'string',
+                        required : true }
+                }
+            };
 
-        var nameSchemaConverted = {
-            type : 'object',
-            properties : {
-                de : {
-                    title : 'Item Name (de)',
-                    type : 'string',
-                    required : true },
-                en : {
-                    title : 'Item Name (en)',
-                    type : 'string',
-                    required : true },
-                ru : {
-                    title : 'Item Name (ru)',
-                    type : 'string',
-                    required : true }
-            }
-        };
+            var next = jasmine.createSpy('next');
+            queryOrders.getMetaModel(cfg, next);
 
-        var next = jasmine.createSpy('next');
-        queryOrders.getMetaModel(cfg, next);
+            waitsFor(function () {
+                return next.calls.length;
+            });
 
-        waitsFor(function () {
-            return next.calls.length;
-        });
-
-        runs(function () {
-            expect(next.calls.length).toEqual(1);
-            var schema = next.calls[0].args[1];
-            var nameProperty = schema.out.properties.results.properties.lineItems.properties.name;
-            expect(nameProperty).toEqual(nameSchemaConverted);
+            runs(function () {
+                expect(next.calls.length).toEqual(1);
+                var schema = next.calls[0].args[1];
+                var nameProperty = schema.out.properties.results.properties.lineItems.properties.name;
+                expect(nameProperty).toEqual(nameSchemaConverted);
+            });
         });
     });
 });
+
