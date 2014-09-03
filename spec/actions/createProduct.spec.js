@@ -7,7 +7,7 @@ describe('Sphereio create product', function () {
         client: '1',
         clientSecret: '2',
         project: 'elasticio',
-        productType: 12
+        productType: '3'
     };
 
     beforeEach(function() {
@@ -18,8 +18,10 @@ describe('Sphereio create product', function () {
                 "expires_in":172800,"scope":"manage_project:elasticio"
             });
 
-        nock('https://api.sphere.io').get('/elasticio/product-types/12')
-            .reply(200, {attributes: []});
+        nock('https://api.sphere.io').get('/elasticio/product-types/3')
+            .reply(200, {attributes: [
+                {"name": "attribute1", "label": { "en": "Attribute 1"}, "type": {"name": "text"}, "isRequired": true},
+                {"name": "attribute2", "label": { "en": "Attribute 2"}, "type": {"name": "text"}, "isRequired": false}]});
     });
 
     describe('request product meta data', function() {
@@ -119,7 +121,7 @@ describe('Sphereio create product', function () {
         });
 
         it('should emit an error', function() {
-            expect(self.emit).toHaveBeenCalledWith('error', { message : 'Request body does not contain valid JSON.', originalRequest : { endpoint : '/products', payload : { productType : { typeId : 'product-type', id : undefined } } } });
+            expect(self.emit).toHaveBeenCalledWith('error', { message : 'Request body does not contain valid JSON.', originalRequest : { endpoint : '/products', payload : { productType : { typeId : 'product-type', id : '3' } } } });
         });
 
         it('should emit end event', function() {

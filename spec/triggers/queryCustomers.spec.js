@@ -21,7 +21,7 @@ describe('Sphere.io queryCustomers.js', function () {
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(200, modifiedCustomers)
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
-        .reply(500, 'Ouch')
+        .reply(500, JSON.stringify({message: 'Ouch'}))
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(200, emptyResult);
 
@@ -107,7 +107,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 expect(self.emit.calls.length).toEqual(2);
                 var calls = self.emit.calls;
                 expect(calls[0].args[0]).toEqual('error');
-                expect(calls[0].args[1].stripColors).toEqual('Ouch');
+                expect(calls[0].args[1].message).toEqual('Ouch');
                 expect(calls[1].args[0]).toEqual('end');
             });
         });
@@ -213,7 +213,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
                 .reply(200, modifiedCustomers)
                 .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
-                .reply(500, 'Ouch');
+                .reply(500, JSON.stringify({message: 'Ouch'}));
 
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
