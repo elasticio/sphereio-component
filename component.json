@@ -93,7 +93,7 @@
                             "required": true
                         },
                         "amount": {
-                            "title": "Price in cents",
+                            "title": "Price amount",
                             "type": "number",
                             "required": true
                         },
