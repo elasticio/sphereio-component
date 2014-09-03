@@ -1,0 +1,1029 @@
+{
+    "type": "object",
+    "properties": {
+        "offset": {
+            "type": "number",
+            "title": "Offset",
+            "required": true
+        },
+        "total": {
+            "type": "number",
+            "title": "Total",
+            "required": true
+        },
+        "count": {
+            "type": "number",
+            "title": "Count",
+            "required": true
+        },
+        "results": {
+            "type": "array",
+            "required": true,
+            "properties": {
+                "id": {
+                    "title": "ID",
+                    "type": "string",
+                    "required": true
+                },
+                "version": {
+                    "title": "Version",
+                    "type": "number",
+                    "required": true
+                },
+                "createdAt": {
+                    "title": "Created at",
+                    "type": "string",
+                    "required": true
+                },
+                "lastModifiedAt": {
+                    "title": "Last Modified",
+                    "type": "string",
+                    "required": true
+                },
+                "orderNumber": {
+                    "title": "Order Number",
+                    "type": "string"
+                },
+                "customerEmail": {
+                    "title": "Customer Email",
+                    "type": "string"
+                },
+                "lineItems": {
+                    "type": "array",
+                    "properties": {
+                        "id": {
+                            "title": "Item ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "productId": {
+                            "title": "Item Product ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "name": {
+                            "title": "Item Name",
+                            "type": "lstring",
+                            "required": true
+                        },
+                        "variant": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "id": {
+                                    "title": "Item Variant ID",
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "sku": {
+                                    "title": "Item Variant SKU",
+                                    "type": "string",
+                                    "required": false
+                                },
+                                "prices": {
+                                    "type": "array",
+                                    "required": false,
+                                    "properties": {
+                                        "value": {
+                                            "type": "object",
+                                            "required": true,
+                                            "properties": {
+                                                "centAmount": {
+                                                    "title": "Item Variant Prices, Amount",
+                                                    "type": "number",
+                                                    "required": true
+                                                },
+                                                "currencyCode": {
+                                                    "title": "Item Variant Prices, Currency Code",
+                                                    "type": "string",
+                                                    "required": true
+                                                }
+                                            }
+                                        },
+                                        "country":{
+                                            "title": "Item Variant Price Country",
+                                            "type": "string",
+                                            "required": false
+                                        },
+                                        "customerGroup":{
+                                            "type": "object",
+                                            "required": false,
+                                            "properties": {
+                                                "id": {
+                                                    "title": "Item Variant Price Customer Group ID",
+                                                    "type": "string",
+                                                    "required": true
+                                                }
+                                            }
+                                        },
+                                        "channel":{
+                                            "type": "object",
+                                            "required": false,
+                                            "properties": {
+                                                "id": {
+                                                    "title": "Item Variant Price Channel ID",
+                                                    "type": "string",
+                                                    "required": true
+                                                }
+                                            }
+                                        },
+                                        "discounted": {
+                                            "type": "object",
+                                            "required": false,
+                                            "properties": {
+                                                "value": {
+                                                    "type": "object",
+                                                    "required": true,
+                                                    "properties": {
+                                                        "centAmount": {
+                                                            "title": "Item Variant Price Discount, Amount",
+                                                            "type": "number",
+                                                            "required": true
+                                                        },
+                                                        "currencyCode": {
+                                                            "title": "Item Variant Price Discount, Currency Code",
+                                                            "type": "string",
+                                                            "required": true
+                                                        }
+                                                    }
+                                                },
+                                                "discount":{
+                                                    "type": "object",
+                                                    "required": true,
+                                                    "properties": {
+                                                        "id": {
+                                                            "title": "Item Variant Price Discount ID",
+                                                            "type": "string",
+                                                            "required": true
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
+                                "attributes": {
+                                    "type": "array",
+                                    "required": false,
+                                    "properties": {
+                                        "name": {
+                                            "title": "Item Variant Attribute Name",
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "value": {
+                                            "title": "Item Variant Attribute Value",
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                },
+                                "images": {
+                                    "type": "array",
+                                    "required": true,
+                                    "properties": {
+                                        "url": {
+                                            "title": "Item Variant Image URL",
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "dimensions": {
+                                            "type": "object",
+                                            "required": true,
+                                            "properties": {
+                                                "h": {
+                                                    "title": "Item Variant Image Height",
+                                                    "type": "number",
+                                                    "required": true
+                                                },
+                                                "w": {
+                                                    "title": "Item Variant Image Width",
+                                                    "type": "number",
+                                                    "required": true
+                                                }
+                                            }
+                                        },
+                                        "label": {
+                                            "title": "Item Variant Image Label",
+                                            "type": "string",
+                                            "required": false
+                                        }
+                                    }
+                                },
+                                "availability": {
+                                    "type": "object",
+                                    "required": false,
+                                    "properties": {
+                                        "isOnStock": {
+                                            "title": "Item Variant Is On Stock?",
+                                            "type": "boolean",
+                                            "required": true
+                                        },
+                                        "restockableInDays": {
+                                            "title": "Item Variant Restockable Days",
+                                            "type": "number",
+                                            "required": false
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "price": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "value": {
+                                    "type": "object",
+                                    "required": true,
+                                    "properties": {
+                                        "centAmount": {
+                                            "title": "Item Price",
+                                            "type": "number",
+                                            "required": true
+                                        },
+                                        "currencyCode": {
+                                            "title": "Item Price Currency",
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                },
+                                "country": {
+                                    "title": "Item Price, Country",
+                                    "type": "string",
+                                    "required": false
+                                },
+                                "customerGroup":{
+                                    "type": "object",
+                                    "required": false,
+                                    "properties": {
+                                        "id": {
+                                            "title": "Item Price Customer Group ID",
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                },
+                                "channel":{
+                                    "type": "object",
+                                    "required": false,
+                                    "properties": {
+                                        "id": {
+                                            "title": "Item Price Channel ID",
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                },
+                                "discounted": {
+                                    "type": "object",
+                                    "required": false,
+                                    "properties": {
+                                        "value": {
+                                            "type": "object",
+                                            "required": true,
+                                            "properties": {
+                                                "centAmount": {
+                                                    "title": "Item Price Discount, Amount",
+                                                    "type": "number",
+                                                    "required": true
+                                                },
+                                                "currencyCode": {
+                                                    "title": "Item Price Discount, Currency Code",
+                                                    "type": "string",
+                                                    "required": true
+                                                }
+                                            }
+                                        },
+                                        "discount":{
+                                            "type": "object",
+                                            "required": true,
+                                            "properties": {
+                                                "id": {
+                                                    "title": "Item Price Discount ID",
+                                                    "type": "string",
+                                                    "required": true
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "quantity": {
+                            "title": "Item Quantity",
+                            "type": "number",
+                            "required": true
+                        },
+                        "state": {
+                            "type": "array",
+                            "required": true,
+                            "properties": {
+                                "quantity": {
+                                    "title": "Item State Quantity",
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "state": {
+                                    "type": "object",
+                                    "required": true,
+                                    "properties": {
+                                        "id": {
+                                            "title": "Item State ID",
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "taxRate": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "id": {
+                                    "title": "Item Tax ID",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "name": {
+                                    "title": "Item Tax Name",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "amount": {
+                                    "title": "Item Tax Amount",
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "includedInPrice": {
+                                    "title": "Item Tax Included",
+                                    "type": "boolean",
+                                    "required": true
+                                },
+                                "country": {
+                                    "title": "Item Tax Country Code",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "state": {
+                                    "title": "Item Tax State",
+                                    "type": "string",
+                                    "required": false
+                                }
+                            }
+                        },
+                        "supplyChannel": {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "id": {
+                                    "title": "Item Supply Channel ID",
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        }
+                    }
+                },
+                "customLineItems": {
+                    "type": "array",
+                    "properties": {
+                        "id": {
+                            "title": "Custom Item ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "name": {
+                            "title": "Custom Item Name",
+                            "type": "lstring",
+                            "required": true
+                        },
+                        "money": {
+                            "title": "Custom Item Cost",
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "centAmount": {
+                                    "title": "Total Price (cents)",
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "currencyCode": {
+                                    "title": "Currency Code",
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "slug": {
+                            "title": "Custom Item Slug",
+                            "type": "string",
+                            "required": true
+                        },
+                        "quantity": {
+                            "title": "Custom Item Quantity",
+                            "type": "number",
+                            "required": true
+                        },
+                        "state": {
+                            "type": "array",
+                            "required": true,
+                            "properties": {
+                                "state": {
+                                    "type": "object",
+                                    "required": true,
+                                    "properties": {
+                                        "id": {
+                                            "title": "Custom Item State ID",
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                },
+                                "quantity": {
+                                    "title": "Custom Item State Quantity",
+                                    "type": "number",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "taxCategory": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "id": {
+                                    "title": "Custom Item Tax Category ID",
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "taxRate": {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "id": {
+                                    "title": "Item Tax ID",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "name": {
+                                    "title": "Item Tax Name",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "amount": {
+                                    "title": "Item Tax Amount",
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "includedInPrice": {
+                                    "title": "Item Tax Included",
+                                    "type": "boolean",
+                                    "required": true
+                                },
+                                "country": {
+                                    "title": "Item Tax Country Code",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "state": {
+                                    "title": "Item Tax State",
+                                    "type": "string",
+                                    "required": false
+                                }
+                            }
+                        }
+                    }
+                },
+                "totalPrice": {
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                        "centAmount": {
+                            "title": "Total Price (cents)",
+                            "type": "number",
+                            "required": true
+                        },
+                        "currencyCode": {
+                            "title": "Total Price Currency",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                "taxedPrice": {
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                        "totalNet": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "centAmount": {
+                                    "title": "Item Taxed Price Net (cents)",
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "currencyCode": {
+                                    "title": "Item Taxed Price Net, Currency",
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "totalGross": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "centAmount": {
+                                    "title": "Item Taxed Price Gross (cents)",
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "currencyCode": {
+                                    "title": "Item Taxed Price Gross, Currency",
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "taxPortions": {
+                            "type": "array",
+                            "required": true,
+                            "properties": {
+                                "rate": {
+                                    "title": "Item Taxed Price Rate",
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "amount": {
+                                    "type": "object",
+                                    "required": true,
+                                    "properties": {
+                                        "centAmount": {
+                                            "title": "Item Taxed Price (cents)",
+                                            "type": "number",
+                                            "required": true
+                                        },
+                                        "currencyCode": {
+                                            "title": "Item Taxed Price (currency)",
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "shippingAddress": {
+                    "title": "Shipping address",
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                        "id": {
+                            "title": "Shipping address ID",
+                            "type": "string"
+                        },
+                        "title": {
+                            "title": "Shipping address title",
+                            "type": "string"
+                        },
+                        "salutation": {
+                            "title": "Shipping address salutation",
+                            "type": "string"
+                        },
+                        "firstName": {
+                            "title": "Shipping address first name",
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "title": "Shipping address last name",
+                            "type": "string"
+                        },
+                        "streetName": {
+                            "title": "Shipping address street name",
+                            "type": "string"
+                        },
+                        "streetNumber": {
+                            "title": "Shipping address street number",
+                            "type": "string"
+                        },
+                        "additionalStreetInfo": {
+                            "title": "Shipping address additional street info",
+                            "type": "string"
+                        },
+                        "postalCode": {
+                            "title": "Shipping address postal code",
+                            "type": "string"
+                        },
+                        "city": {
+                            "title": "Shipping address city",
+                            "type": "string"
+                        },
+                        "region": {
+                            "title": "Shipping address region",
+                            "type": "string"
+                        },
+                        "state": {
+                            "title": "Shipping address state",
+                            "type": "string"
+                        },
+                        "country": {
+                            "title": "Shipping address country",
+                            "type": "string"
+                        },
+                        "company": {
+                            "title": "Shipping address company",
+                            "type": "string"
+                        },
+                        "department": {
+                            "title": "Shipping address department",
+                            "type": "string"
+                        },
+                        "building": {
+                            "title": "Shipping address building",
+                            "type": "string"
+                        },
+                        "apartment": {
+                            "title": "Shipping address apartment",
+                            "type": "string"
+                        },
+                        "pOBox": {
+                            "title": "Shipping address pOBox",
+                            "type": "string"
+                        },
+                        "phone": {
+                            "title": "Shipping address Phone",
+                            "type": "string"
+                        },
+                        "mobile": {
+                            "title": "Shipping address mobile",
+                            "type": "string"
+                        },
+                        "email": {
+                            "title": "Shipping address email",
+                            "type": "string"
+                        },
+                        "additionalAddressInfo": {
+                            "title": "Shipping address additional address info",
+                            "type": "string"
+                        }
+                    }
+                },
+                "billingAddress": {
+                    "title": "Default billing address ID",
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                        "id": {
+                            "title": "Billing address ID",
+                            "type": "string"
+                        },
+                        "title": {
+                            "title": "Billing address title",
+                            "type": "string"
+                        },
+                        "salutation": {
+                            "title": "Billing address salutation",
+                            "type": "string"
+                        },
+                        "firstName": {
+                            "title": "Billing address first name",
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "title": "Billing address last name",
+                            "type": "string"
+                        },
+                        "streetName": {
+                            "title": "Billing address street name",
+                            "type": "string"
+                        },
+                        "streetNumber": {
+                            "title": "Billing address street number",
+                            "type": "string"
+                        },
+                        "additionalStreetInfo": {
+                            "title": "Billing address additional street info",
+                            "type": "string"
+                        },
+                        "postalCode": {
+                            "title": "Billing address postal code",
+                            "type": "string"
+                        },
+                        "city": {
+                            "title": "Billing address city",
+                            "type": "string"
+                        },
+                        "region": {
+                            "title": "Billing address region",
+                            "type": "string"
+                        },
+                        "state": {
+                            "title": "Billing address state",
+                            "type": "string"
+                        },
+                        "country": {
+                            "title": "Billing address country",
+                            "type": "string"
+                        },
+                        "company": {
+                            "title": "Billing address  company",
+                            "type": "string"
+                        },
+                        "department": {
+                            "title": "Billing address department",
+                            "type": "string"
+                        },
+                        "building": {
+                            "title": "Billing address building",
+                            "type": "string"
+                        },
+                        "apartment": {
+                            "title": "Billing address apartment",
+                            "type": "string"
+                        },
+                        "pOBox": {
+                            "title": "Billing address pOBox",
+                            "type": "string"
+                        },
+                        "phone": {
+                            "title": "Billing address phone",
+                            "type": "string"
+                        },
+                        "mobile": {
+                            "title": "Billing address mobile",
+                            "type": "string"
+                        },
+                        "email": {
+                            "title": "Billing address email",
+                            "type": "string"
+                        },
+                        "additionalAddressInfo": {
+                            "title": "Billing address additional address info",
+                            "type": "string"
+                        }
+                    }
+                },
+                "orderState": {
+                    "title": "Order State",
+                    "type": "string",
+                    "required": true
+                },
+                "shipmentState": {
+                    "title": "Shipment State",
+                    "type": "string",
+                    "required": false
+
+                },
+                "paymentState": {
+                    "title": "Payment State",
+                    "type": "string",
+                    "required": false
+                },
+                "shippingInfo": {
+                    "title": "Shipping Info",
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                        "shippingMethodName": {
+                            "title": "Shipping Method Name",
+                            "type": "string",
+                            "required": true
+                        },
+                        "price": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "centAmount": {
+                                    "title": "Shipping Price (cents)",
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "currencyCode": {
+                                    "title": "Shipping Price (currency)",
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "shippingRate": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "price": {
+                                    "type": "object",
+                                    "required": true,
+                                    "properties": {
+                                        "centAmount": {
+                                            "title": "Shipping Rate (cents)",
+                                            "type": "number",
+                                            "required": true
+                                        },
+                                        "currencyCode": {
+                                            "title": "Shipping Rate (currency)",
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                },
+                                "freeAbove": {
+                                    "type": "object",
+                                    "required": false,
+                                    "properties": {
+                                        "centAmount": {
+                                            "title": "Shipping Free Above (cents)",
+                                            "type": "number",
+                                            "required": true
+                                        },
+                                        "currencyCode": {
+                                            "title": "Shipping Free Above (currency)",
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "taxRate": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "id": {
+                                    "title": "Shipping Tax ID",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "name": {
+                                    "title": "Shipping Tax Name",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "amount": {
+                                    "title": "Shipping Tax Amount",
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "includedInPrice": {
+                                    "title": "Shipping Tax Included",
+                                    "type": "boolean",
+                                    "required": true
+                                },
+                                "country": {
+                                    "title": "Shipping Tax Country Code",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "state": {
+                                    "title": "Shipping Tax State",
+                                    "type": "string",
+                                    "required": false
+                                }
+                            }
+                        },
+                        "taxCategory": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "id": {
+                                    "title": "Shipping Tax Category ID",
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "shippingMethod": {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "id": {
+                                    "title": "Shipping Method ID",
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "deliveries": {
+                            "type": "array",
+                            "required": true,
+                            "properties": {
+                                "id": {
+                                    "title": "Delivery ID",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "createdAt": {
+                                    "title": "Delivery Created At",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "items": {
+                                    "title": "Delivery Items",
+                                    "type": "array",
+                                    "required": true,
+                                    "properties": {
+                                        "id": {
+                                            "title": "Delivery item ID",
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "quantity": {
+                                            "title": "Delivery item Quantity",
+                                            "type": "number",
+                                            "required": true
+                                        }
+                                    }
+                                },
+                                "parcels": {
+                                    "title": "Delivery Parcels",
+                                    "type": "array",
+                                    "required": true,
+                                    "properties": {
+                                        "id": {
+                                            "title": "Delivery Parcel ID",
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "createdAt": {
+                                            "title": "Delivery Parcel Created At",
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "measurements": {
+                                            "title": "Delivery Parcel Measurements",
+                                            "type": "object",
+                                            "required": false,
+                                            "properties": {
+                                                "heightInMillimeter": {
+                                                    "title": "Delivery Parcel Height",
+                                                    "type": "number",
+                                                    "required": true
+                                                },
+                                                "lengthInMillimeter": {
+                                                    "title": "Delivery Parcel Length",
+                                                    "type": "number",
+                                                    "required": true
+                                                },
+                                                "widthInMillimeter": {
+                                                    "title": "Delivery Parcel Width",
+                                                    "type": "number",
+                                                    "required": true
+                                                },
+                                                "weightInGram": {
+                                                    "title": "Delivery Parcel Weight",
+                                                    "type": "number",
+                                                    "required": true
+                                                }
+                                            }
+                                        },
+                                        "trackingData": {
+                                            "title": "Delivery Tracking data",
+                                            "required": false,
+                                            "type": "object",
+                                            "properties": {
+                                                "trackingId": {
+                                                    "title": "Delivery Tracking Height",
+                                                    "type": "string",
+                                                    "required": false
+                                                },
+                                                "carrier": {
+                                                    "title": "Delivery Tracking Length",
+                                                    "type": "string",
+                                                    "required": false
+                                                },
+                                                "provider": {
+                                                    "title": "Delivery Tracking Width",
+                                                    "type": "string",
+                                                    "required": false
+                                                },
+                                                "providerTransaction": {
+                                                    "title": "Delivery Tracking Weight",
+                                                    "type": "string",
+                                                    "required": false
+                                                },
+                                                "isReturn": {
+                                                    "title": "Delivery Tracking Weight",
+                                                    "type": "boolean",
+                                                    "required": false
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "lastMessageSequenceNumber": {
+                    "title": "Last message sequence number",
+                    "type": "number",
+                    "required": true
+                }
+            }
+        }
+    }
+}
