@@ -75,6 +75,16 @@ module.exports = function (grunt) {
                 // coveralls.io is down). Optional, defaults to false.
                 force: false
             }
+        },
+        jscs: {
+            src: [
+                "lib/actions/queryProductVariant.js",
+                "lib/actions/addPrice.js",
+                "spec/actions/addPrice.spec.js"
+            ],
+            options: {
+                config: ".jscsrc"
+            }
         }
     });
 
@@ -92,9 +102,11 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-coveralls');
 
+    grunt.loadNpmTasks("grunt-jscs");
+
     // Default task(s).
     grunt.registerTask('default', ['clean', 'jshint', 'jasmine_node:spec']);
 
-    grunt.registerTask('coverage', ['clean', 'env:coverage',
+    grunt.registerTask('coverage', ['clean', 'jscs', 'env:coverage',
         'instrument', 'copy:specDepedencies', 'jasmine_node:instrumented', 'storeCoverage', 'makeReport', 'coveralls:test']);
 };

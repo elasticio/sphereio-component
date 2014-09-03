@@ -75,6 +75,88 @@
             },
             "dynamicMetadata": true
         },
+        "addPriceToVariant": {
+            "main": "./lib/actions/addPrice.js",
+            "title": "Add Price to Variant",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "productId": {
+                            "title": "Product ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "variantId": {
+                            "title": "Variant ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "amount": {
+                            "title": "Price in cents",
+                            "type": "number",
+                            "required": true
+                        },
+                        "currency": {
+                            "title": "Price currency",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
+        },
+        "getProductVariant": {
+            "main": "./lib/actions/queryProductVariant.js",
+            "title": "Query Product Variant ID",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Variant external ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "amount": {
+                            "title": "Price amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        "currency": {
+                            "title": "Price currency",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                "out": {
+                    "type": "object",
+                    "properties": {
+                        "productId": {
+                            "title": "Product ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "variantId": {
+                            "title": "Variant ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "amount": {
+                            "title": "Price amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        "currency": {
+                            "title": "Price currency",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
+        },
         "getCustomerByID": {
             "main": "./lib/actions/getCustomerByID.js",
             "title": "Get Customer By ID",
