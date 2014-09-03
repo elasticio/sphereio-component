@@ -5,20 +5,20 @@ describe('describeAttribute', function () {
     it('Should format text attribute', function(){
 
         var attribute = {
-            "type": {
-                "name": "text"
+            'type': {
+                'name': 'text'
             },
-            "name": "attr1",
-            "label": {
-                "en": "Attr1 Label"
+            'name': 'attr1',
+            'label': {
+                'en': 'Attr1 Label'
             },
-            "isRequired": true
+            'isRequired': true
         };
 
         var expected = {
-            "type": "string",
-            "title": "Attr1 Label",
-            "required": true
+            'type': 'string',
+            'title': 'Attr1 Label',
+            'required': true
         };
 
         var result = attributeManager.describeAttribute(attribute);
@@ -28,20 +28,20 @@ describe('describeAttribute', function () {
     it('Should format number attribute', function(){
 
         var attribute = {
-            "type": {
-                "name": "number"
+            'type': {
+                'name': 'number'
             },
-            "name": "attr2",
-            "label": {
-                "en": "Attr2 Label"
+            'name': 'attr2',
+            'label': {
+                'en': 'Attr2 Label'
             },
-            "isRequired": true
+            'isRequired': true
         };
 
         var expected = {
-            "type": "number",
-            "title": "Attr2 Label",
-            "required": true
+            'type': 'number',
+            'title': 'Attr2 Label',
+            'required': true
         };
 
         var result = attributeManager.describeAttribute(attribute);
@@ -51,14 +51,14 @@ describe('describeAttribute', function () {
     it('Should format money attribute', function(){
 
         var attribute = {
-            "type": {
-                "name": "money"
+            'type': {
+                'name': 'money'
             },
-            "name": "attr3",
-            "label": {
-                "en": "Attr3 Label"
+            'name': 'attr3',
+            'label': {
+                'en': 'Attr3 Label'
             },
-            "isRequired": true
+            'isRequired': true
         };
 
         var expected = {
@@ -69,7 +69,8 @@ describe('describeAttribute', function () {
                 currencyCode : {
                     type : 'string',
                     title : 'Attr3 Label (currency)',
-                    required : true },
+                    required : true
+                },
                 centAmount : {
                     type : 'number',
                     title : 'Attr3 Label (amount)',
@@ -85,20 +86,20 @@ describe('describeAttribute', function () {
     it('Should format ltext attribute', function(){
 
         var attribute = {
-            "type": {
-                "name": "ltext"
+            'type': {
+                'name': 'ltext'
             },
-            "name": "attr4",
-            "label": {
-                "en": "Attr4 Label"
+            'name': 'attr4',
+            'label': {
+                'en': 'Attr4 Label'
             },
-            "isRequired": true
+            'isRequired': true
         };
 
         var expected = {
-            "type": "lstring",
-            "title": "Attr4 Label",
-            "required": true
+            'type': 'lstring',
+            'title': 'Attr4 Label',
+            'required': true
         };
 
         var result = attributeManager.describeAttribute(attribute);
@@ -165,36 +166,36 @@ describe('readAttributeFromMessage', function () {
                 attribute2: {'en': 'value2'},
                 attribute3: 'value3',
                 attribute4: '12',
-                attribute5: {"currencyCode": 'USD', "centAmount": 12},
+                attribute5: {'currencyCode': 'USD', 'centAmount': 12},
                 attribute7: 'value7'
             }
         };
 
-        var attr1 = {"name": "attribute1", "type": {"name": "text"}};
+        var attr1 = {'name': 'attribute1', 'type': {'name': 'text'}};
         var value1 = attributeManager.readAttribute(attr1, variant.attributes);
         expect(value1).toEqual('value1');
 
-        var attr2 = {"name": "attribute2", "type": {"name": "ltext"}};
+        var attr2 = {'name': 'attribute2', 'type': {'name': 'ltext'}};
         var value2 = attributeManager.readAttribute(attr2, variant.attributes);
         expect(value2).toEqual({'en': 'value2'});
 
-        var attr3 = {"name": "attribute3", "type": {"name": "enum"}};
+        var attr3 = {'name': 'attribute3', 'type': {'name': 'enum'}};
         var value3 = attributeManager.readAttribute(attr3, variant.attributes);
         expect(value3).toEqual('value3');
 
-        var attr4 = {"name": "attribute4", "type": {"name": "number"}};
+        var attr4 = {'name': 'attribute4', 'type': {'name': 'number'}};
         var value4 = attributeManager.readAttribute(attr4, variant.attributes);
         expect(value4).toEqual(12);
 
-        var attr5 = {"name": "attribute5", "type": {"name": "money"}};
+        var attr5 = {'name': 'attribute5', 'type': {'name': 'money'}};
         var value5 = attributeManager.readAttribute(attr5, variant.attributes);
-        expect(value5).toEqual({"currencyCode": 'USD', "centAmount": 12});
+        expect(value5).toEqual({'currencyCode': 'USD', 'centAmount': 12});
 
-        var attr6 = {"name": "attribute6", "type": {"name": "money"}};
+        var attr6 = {'name': 'attribute6', 'type': {'name': 'money'}};
         var value6 = attributeManager.readAttribute(attr6, variant.attributes);
         expect(value6).toEqual(undefined);
 
-        var attr7 = {"name": "attribute7", "type": {"name": "unknownType"}};
+        var attr7 = {'name': 'attribute7', 'type': {'name': 'unknownType'}};
         var value7 = attributeManager.readAttribute(attr7, variant.attributes);
         expect(value7).toEqual(undefined);
     });
@@ -207,18 +208,18 @@ describe('readAttributes', function () {
         attribute2: {'en': 'value2'},
         attribute3: 'value3',
         attribute4: '12',
-        attribute5: {"currencyCode": 'USD', "centAmount": 12},
+        attribute5: {'currencyCode': 'USD', 'centAmount': 12},
         attribute7: 'value7'
     };
 
     var productTypeAttributes = [
-            {"name": "attribute1", "type": {"name": "text"}},
-            {"name": "attribute2", "type": {"name": "ltext"}},
-            {"name": "attribute3", "type": {"name": "enum"}},
-            {"name": "attribute4", "type": {"name": "number"}},
-            {"name": "attribute5", "type": {"name": "money"}},
-            {"name": "attribute6", "type": {"name": "money"}},
-            {"name": "attribute7", "type": {"name": "unknownType"}}
+        {'name': 'attribute1', 'type': {'name': 'text'}},
+        {'name': 'attribute2', 'type': {'name': 'ltext'}},
+        {'name': 'attribute3', 'type': {'name': 'enum'}},
+        {'name': 'attribute4', 'type': {'name': 'number'}},
+        {'name': 'attribute5', 'type': {'name': 'money'}},
+        {'name': 'attribute6', 'type': {'name': 'money'}},
+        {'name': 'attribute7', 'type': {'name': 'unknownType'}}
     ];
 
     var expected = [
@@ -250,48 +251,48 @@ describe('addAttributes', function () {
 
     var attributes = [
         {
-            "type": {
-                "name": "text"
+            'type': {
+                'name': 'text'
             },
-            "name": "attr1",
-            "label": {
-                "en": "Attr1 Label"
+            'name': 'attr1',
+            'label': {
+                'en': 'Attr1 Label'
             },
-            "isRequired": true,
-            "inputHint": "SingleLine",
-            "displayGroup": "Other",
-            "isSearchable": true,
-            "attributeConstraint": "None"
+            'isRequired': true,
+            'inputHint': 'SingleLine',
+            'displayGroup': 'Other',
+            'isSearchable': true,
+            'attributeConstraint': 'None'
         },
         {
-            "type": {
-                "name": "number"
+            'type': {
+                'name': 'number'
             },
-            "name": "attr2",
-            "label": {
-                "en": "Attr2 Label 1",
-                "au": "Attr2 Label 2"
+            'name': 'attr2',
+            'label': {
+                'en': 'Attr2 Label 1',
+                'au': 'Attr2 Label 2'
             },
-            "isRequired": false,
-            "inputHint": "SingleLine",
-            "displayGroup": "Other",
-            "isSearchable": true,
-            "attributeConstraint": "None"
+            'isRequired': false,
+            'inputHint': 'SingleLine',
+            'displayGroup': 'Other',
+            'isSearchable': true,
+            'attributeConstraint': 'None'
         },
         {
-            "type": {
-                "name": "ltext"
+            'type': {
+                'name': 'ltext'
             },
-            "name": "attr3",
-            "label": {
-                "en": "Attr3 Label 1",
-                "au": "Attr3 Label 2"
+            'name': 'attr3',
+            'label': {
+                'en': 'Attr3 Label 1',
+                'au': 'Attr3 Label 2'
             },
-            "isRequired": true,
-            "inputHint": "SingleLine",
-            "displayGroup": "Other",
-            "isSearchable": true,
-            "attributeConstraint": "None"
+            'isRequired': true,
+            'inputHint': 'SingleLine',
+            'displayGroup': 'Other',
+            'isSearchable': true,
+            'attributeConstraint': 'None'
         }
     ];
 

@@ -80,7 +80,15 @@ module.exports = function (grunt) {
             src: [
                 "lib/actions/queryProductVariant.js",
                 "lib/actions/addPrice.js",
-                "spec/actions/addPrice.spec.js"
+                "lib/actions/createProduct.js",
+                "lib/triggers/queryOrders.js",
+                "lib/attributeManager.js",
+                "spec/actions/addPrice.spec.js",
+                "spec/actions/createProduct.spec.js",
+                "spec/triggers/queryOrders.spec.js",
+                "spec/attributeManager.spec.js",
+                "spec/helpers.spec.js",
+                "spec/sphere.spec.js"
             ],
             options: {
                 config: ".jscsrc"

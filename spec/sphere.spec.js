@@ -15,13 +15,13 @@ describe('getProductTypeAttributes', function () {
 
         nock('https://auth.sphere.io')
             .filteringRequestBody(/.*/, '*')
-            .post('/oauth/token', "*")
+            .post('/oauth/token', '*')
             .times(4)
             .reply(200, {
-                "access_token": "i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA",
-                "token_type": "Bearer",
-                "expires_in": 172800,
-                "scope": "manage_project:test_project"
+                'access_token': 'i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA',
+                'token_type': 'Bearer',
+                'expires_in': 172800,
+                'scope': 'manage_project:test_project'
             });
     });
 
@@ -38,7 +38,7 @@ describe('getProductTypeAttributes', function () {
 
         waitsFor(function() {
             return callback.calls.length;
-        }, "Timed out", 1000);
+        }, 'Timed out', 1000);
 
         runs(function() {
             expect(callback).toHaveBeenCalledWith(null, { attr1 : 'value1', attr2 : 'value2' });

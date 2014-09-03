@@ -2,17 +2,17 @@ describe('Sphere.io queryOrders.js', function () {
     var nock = require('nock');
     var allOrders = require('../data/all_orders.json.js');
     var modifiedOrders = require('../data/modified_orders.json.js');
-    var emptyResult = {"offset": 0, "count": 0, "total": 49, "results": []};
+    var emptyResult = {'offset': 0, 'count': 0, 'total': 49, 'results': []};
 
     nock('https://auth.sphere.io')
         .filteringRequestBody(/.*/, '*')
-        .post('/oauth/token', "*")
+        .post('/oauth/token', '*')
         .times(4)
         .reply(200, {
-            "access_token": "i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA",
-            "token_type": "Bearer",
-            "expires_in": 172800,
-            "scope": "manage_project:test_project"
+            'access_token': 'i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA',
+            'token_type': 'Bearer',
+            'expires_in': 172800,
+            'scope': 'manage_project:test_project'
         });
 
     nock('https://api.sphere.io')
@@ -61,7 +61,7 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(newMsg.body.length).toEqual(allOrders.length);
 
                 expect(calls[1].args[0]).toEqual('snapshot');
-                expect(calls[1].args[1].lastModifiedAt).toEqual("2014-08-20T09:22:36.569Z");
+                expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
 
                 expect(calls[2].args[0]).toEqual('end');
 
@@ -69,9 +69,9 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit new message if second query was successful (with snapshop `lastModifiedAt` param)', function () {
-            var date = "2014-08-21T00:00:00.000Z";
+            var date = '2014-08-21T00:00:00.000Z';
             var snapshot = {
-                "lastModifiedAt": date
+                'lastModifiedAt': date
             };
             queryOrders.process.call(self, msg, cfg, next, snapshot);
 
@@ -93,10 +93,10 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(calls[2].args[0]).toEqual('end');
             });
         });
-        
+
         it('should emit error if request to sphere.io was failed', function () {
             var snapshot = {
-                "lastModifiedAt": "2014-09-21T00:00:00.000Z"
+                'lastModifiedAt': '2014-09-21T00:00:00.000Z'
             };
 
             queryOrders.process.call(self, msg, cfg, next, snapshot);
@@ -108,19 +108,16 @@ describe('Sphere.io queryOrders.js', function () {
             runs(function () {
                 var calls = self.emit.calls;
                 expect(calls.length).toEqual(2);
-
                 expect(calls[0].args[0]).toEqual('error');
                 expect(calls[0].args[1].message).toEqual('Ouch');
 
                 expect(calls[1].args[0]).toEqual('end');
             });
         });
-        
+
         it('should emit new message only if orders count more than 0', function () {
-            var date = "2014-08-25T00:00:00.000Z";
-            var snapshot = {
-                lastModifiedAt: date
-            };
+            var date = '2014-08-25T00:00:00.000Z';
+            var snapshot = {lastModifiedAt: date};
 
             queryOrders.process.call(self, msg, cfg, next, snapshot);
 
@@ -149,12 +146,12 @@ describe('Sphere.io queryOrders.js', function () {
 
             nock('https://auth.sphere.io')
                 .filteringRequestBody(/.*/, '*')
-                .post('/oauth/token', "*")
+                .post('/oauth/token', '*')
                 .reply(200, {
-                    "access_token": "i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA",
-                    "token_type": "Bearer",
-                    "expires_in": 172800,
-                    "scope": "manage_project:test_project"
+                    'access_token': 'i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA',
+                    'token_type': 'Bearer',
+                    'expires_in': 172800,
+                    'scope': 'manage_project:test_project'
                 });
 
             nock('https://api.sphere.io')
@@ -190,7 +187,7 @@ describe('Sphere.io queryOrders.js', function () {
 
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(Object.keys(calls[1].args[1]).length).toEqual(1);
-                expect(calls[1].args[1].lastModifiedAt).toEqual("2014-08-20T09:22:36.569Z");
+                expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
 
                 expect(calls[2].args[0]).toEqual('end');
             });
@@ -208,13 +205,13 @@ describe('Sphere.io queryOrders.js', function () {
         beforeEach(function(){
             nock('https://auth.sphere.io')
                 .filteringRequestBody(/.*/, '*')
-                .post('/oauth/token', "*")
+                .post('/oauth/token', '*')
                 .times(40)
                 .reply(200, {
-                    "access_token": "i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA",
-                    "token_type": "Bearer",
-                    "expires_in": 172800,
-                    "scope": "manage_project:test_project"
+                    'access_token': 'i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA',
+                    'token_type': 'Bearer',
+                    'expires_in': 172800,
+                    'scope': 'manage_project:test_project'
                 });
         });
 
@@ -227,14 +224,16 @@ describe('Sphere.io queryOrders.js', function () {
             var nameSchemaConverted = {
                 type : 'object',
                 properties : {
-                    de : {
+                    de: {
                         title : 'Item Name (de)',
                         type : 'string',
-                        required : true },
-                    en : {
+                        required : true
+                    },
+                    en: {
                         title : 'Item Name (en)',
                         type : 'string',
-                        required : true }
+                        required : true
+                    }
                 }
             };
 
@@ -265,15 +264,18 @@ describe('Sphere.io queryOrders.js', function () {
                     de : {
                         title : 'Item Name (de)',
                         type : 'string',
-                        required : true },
+                        required : true
+                    },
                     en : {
                         title : 'Item Name (en)',
                         type : 'string',
-                        required : true },
+                        required : true
+                    },
                     ru : {
                         title : 'Item Name (ru)',
                         type : 'string',
-                        required : true }
+                        required : true
+                    }
                 }
             };
 

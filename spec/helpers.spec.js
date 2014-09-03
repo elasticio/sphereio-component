@@ -6,19 +6,19 @@ describe('Sphere.io helpers', function () {
     it('Should update snapshot field `lastModifiedAt` if this field is empty', function () {
         var snapshot = {};
         helpers.updateSnapshotWithLastModified(allCustomers.results, snapshot);
-        expect(snapshot.lastModifiedAt).toEqual("2014-08-19T00:00:00.001Z");
+        expect(snapshot.lastModifiedAt).toEqual('2014-08-19T00:00:00.001Z');
     });
 
     it('Should update snapshot field `lastModifiedAt` if snapshot\'s field in the past', function () {
         var snapshot = {
-            lastModifiedAt: "2014-08-18T00:00:00.001Z"
+            lastModifiedAt: '2014-08-18T00:00:00.001Z'
         };
         helpers.updateSnapshotWithLastModified(allCustomers.results, snapshot);
-        expect(snapshot.lastModifiedAt).toEqual("2014-08-19T00:00:00.001Z");
+        expect(snapshot.lastModifiedAt).toEqual('2014-08-19T00:00:00.001Z');
     });
 
     it('Should not update snapshot field `lastModifiedAt` if snapshot\'s field in the future', function () {
-        var future = "2014-08-22T00:00:00.001Z";
+        var future = '2014-08-22T00:00:00.001Z';
         var snapshot = {
             lastModifiedAt: future
         };
@@ -36,31 +36,31 @@ describe('Sphere.io helpers', function () {
     describe('Sphere.io helpers convertLStrings', function () {
 
         var input = {
-            "type": "object",
-            "properties": {
-                "offset": {
-                    "type": "number",
-                    "title": "Offset",
-                    "required": true
+            'type': 'object',
+            'properties': {
+                'offset': {
+                    'type': 'number',
+                    'title': 'Offset',
+                    'required': true
                 },
-                "total": {
-                    "type": "number",
-                    "title": "Total",
-                    "required": true
+                'total': {
+                    'type': 'number',
+                    'title': 'Total',
+                    'required': true
                 },
-                "results": {
-                    "type": "array",
-                    "required": true,
-                    "properties": {
-                        "id": {
-                            "title": "ID",
-                            "type": "string",
-                            "required": true
+                'results': {
+                    'type': 'array',
+                    'required': true,
+                    'properties': {
+                        'id': {
+                            'title': 'ID',
+                            'type': 'string',
+                            'required': true
                         },
-                        "name": {
-                            "title": "Name",
-                            "type": "lstring",
-                            "required": true
+                        'name': {
+                            'title': 'Name',
+                            'type': 'lstring',
+                            'required': true
                         }
                     }
                 }
