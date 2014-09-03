@@ -21,7 +21,7 @@ describe('Sphere.io queryCustomers.js', function () {
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(200, modifiedCustomers)
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
-        .reply(500, JSON.stringify({message :'Ouch'}))
+        .reply(500, 'Ouch')
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(200, emptyResult);
 
@@ -45,6 +45,7 @@ describe('Sphere.io queryCustomers.js', function () {
         });
 
         it('should emit new message if first query was successful', function () {
+            spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
 
             queryCustomers.process.call(self, msg, cfg, next, {});
 
@@ -57,8 +58,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 var calls = self.emit.calls;
                 expect(calls[0].args[0]).toEqual('data');
                 expect(calls[1].args[0]).toEqual('snapshot');
-                expect(Object.keys(calls[1].args[1]).length).toEqual(1);
-                expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-19T00:00:00.001Z');
+                expect(Object.keys(calls[1].args[1]).length).toEqual(0);
                 expect(calls[2].args[0]).toEqual('end');
                 var newMsg = self.emit.calls[0].args[1];
                 expect(newMsg.body.length).toEqual(allCustomers.length);
@@ -66,6 +66,7 @@ describe('Sphere.io queryCustomers.js', function () {
         });
 
         it('should emit new message if second query was successful (with snapshop `lastModifiedAt` param)', function () {
+            spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
             var date = "2014-08-21T00:00:00.000Z";
             var snapshot = {
                 "lastModifiedAt": date
@@ -82,7 +83,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 expect(calls[0].args[0]).toEqual('data');
 
                 expect(calls[1].args[0]).toEqual('snapshot');
-                expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-21T10:00:00.001Z');
+                expect(calls[1].args[1].lastModifiedAt).toEqual(date);
 
                 expect(calls[2].args[0]).toEqual('end');
                 var newMsg = self.emit.calls[0].args[1];
@@ -91,6 +92,7 @@ describe('Sphere.io queryCustomers.js', function () {
         });
         
         it('should emit error if request to sphere.io was failed', function () {
+            spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
             var snapshot = {
                 "lastModifiedAt": "2014-09-21T00:00:00.000Z"
             };
@@ -105,12 +107,13 @@ describe('Sphere.io queryCustomers.js', function () {
                 expect(self.emit.calls.length).toEqual(2);
                 var calls = self.emit.calls;
                 expect(calls[0].args[0]).toEqual('error');
-                expect(calls[0].args[1].message).toEqual('Ouch');
+                expect(calls[0].args[1].stripColors).toEqual('Ouch');
                 expect(calls[1].args[0]).toEqual('end');
             });
         });
         
         it('should emit new message only if customers count more than 0', function () {
+            spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
             var date = "2014-08-25T00:00:00.000Z";
             var snapshot = {
                 lastModifiedAt: date
@@ -162,6 +165,8 @@ describe('Sphere.io queryCustomers.js', function () {
                 project: 'test_project',
                 where : 'externalId is defined'
             };
+
+            spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
         });
 
         it('should emit new message if first query was successful', function() {
@@ -177,9 +182,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 var calls = self.emit.calls;
                 expect(calls[0].args[0]).toEqual('data');
                 expect(calls[1].args[0]).toEqual('snapshot');
-                expect(Object.keys(calls[1].args[1]).length).toEqual(1);
-                expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-19T00:00:00.001Z');
-
+                expect(Object.keys(calls[1].args[1]).length).toEqual(0);
                 expect(calls[2].args[0]).toEqual('end');
                 var newMsg = self.emit.calls[0].args[1];
                 expect(newMsg.body.length).toEqual(allCustomers.length);
@@ -219,6 +222,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 clientSecret: 'so_secret',
                 project: 'test_project'
             };
+            spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
             runs(function() {
                 queryCustomers.process.call(self, msg, cfg, next, {});
             });
