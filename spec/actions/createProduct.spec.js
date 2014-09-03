@@ -6,7 +6,8 @@ describe('Sphereio create product', function () {
     var cfg = {
         client: '1',
         clientSecret: '2',
-        project: 'elasticio'
+        project: 'elasticio',
+        productType: 12
     };
 
     beforeEach(function() {
@@ -16,6 +17,9 @@ describe('Sphereio create product', function () {
                 "token_type":"Bearer",
                 "expires_in":172800,"scope":"manage_project:elasticio"
             });
+
+        nock('https://api.sphere.io').get('/elasticio/product-types/12')
+            .reply(200, {attributes: []});
     });
 
     describe('request product meta data', function() {
