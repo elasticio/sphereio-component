@@ -36,6 +36,22 @@
                     "viewClass": "TextFieldView"
                 }
             }
+        },
+        "getOrders":{
+            "main":"./lib/triggers/queryOrders.js",
+            "title": "Query Orders",
+            "dynamicMetadata": true,
+            "type": "polling",
+            "metadata": {
+                "out" : "./lib/triggers/queryOrders.out.json"
+            },
+            "fields": {
+                "where": {
+                    "label": "Additional predicate to filter orders",
+                    "required": false,
+                    "viewClass": "TextFieldView"
+                }
+            }
         }
     },
     "actions": {
@@ -93,7 +109,7 @@
                             "required": true
                         },
                         "amount": {
-                            "title": "Price in cents",
+                            "title": "Price amount",
                             "type": "number",
                             "required": true
                         },
