@@ -32,8 +32,8 @@ describe('getProductTypeAttributes', function () {
             .reply(200, {attributes: { attr1 : 'value1', attr2 : 'value2' }});
 
         runs(function() {
-            var client = sphere.createClient(cfg);
-            sphere.getProductTypeAttributes(client, cfg.productType).then(callback).done();
+            var connection = sphere.createConnection(cfg);
+            sphere.getProductTypeAttributes(connection, cfg.productType, callback);
         });
 
         waitsFor(function() {
@@ -41,7 +41,7 @@ describe('getProductTypeAttributes', function () {
         }, "Timed out", 1000);
 
         runs(function() {
-            expect(callback).toHaveBeenCalledWith({ attr1 : 'value1', attr2 : 'value2' });
+            expect(callback).toHaveBeenCalledWith(null, { attr1 : 'value1', attr2 : 'value2' });
         });
     });
 });
