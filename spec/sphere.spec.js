@@ -32,8 +32,8 @@ describe('getProductTypeAttributes', function () {
             .reply(200, {attributes: { attr1 : 'value1', attr2 : 'value2' }});
 
         runs(function() {
-            var connection = sphere.createConnection(cfg);
-            sphere.getProductTypeAttributes(connection, cfg.productType).then(callback);
+            var client = sphere.createClient(cfg);
+            sphere.getProductTypeAttributes(client, cfg.productType).then(callback);
         });
 
         waitsFor(function() {
