@@ -143,6 +143,10 @@ describe('readAttribute', function () {
         var attr7 = {'name': 'attribute7', 'type': {'name': 'unknownType'}};
         var value7 = sphere2elastic.readAttribute(attr7, data);
         expect(value7).toEqual(undefined);
+
+        var attr8 = {'name': 'attribute8', 'type': {'name': 'number'}};
+        var value8 = sphere2elastic.readAttribute(attr8, data);
+        expect(value8).toEqual(undefined);
     });
 });
 
