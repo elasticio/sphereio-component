@@ -33,7 +33,7 @@ describe('getProductTypeAttributes', function () {
 
         runs(function() {
             var connection = sphere.createConnection(cfg);
-            sphere.getProductTypeAttributes(connection, cfg.productType, callback);
+            sphere.getProductTypeAttributes(connection, cfg.productType).then(callback);
         });
 
         waitsFor(function() {
@@ -41,7 +41,7 @@ describe('getProductTypeAttributes', function () {
         }, 'Timed out', 1000);
 
         runs(function() {
-            expect(callback).toHaveBeenCalledWith(null, { attr1 : 'value1', attr2 : 'value2' });
+            expect(callback).toHaveBeenCalledWith({ attr1 : 'value1', attr2 : 'value2' });
         });
     });
 });
