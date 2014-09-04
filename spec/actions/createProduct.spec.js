@@ -6,15 +6,33 @@ describe('Sphereio create product', function () {
     var cfg = {
         client: '1',
         clientSecret: '2',
-        project: 'elasticio'
+        project: 'elasticio',
+        productType: '3'
     };
 
     beforeEach(function() {
         nock('https://auth.sphere.io').post('/oauth/token')
             .reply(200, {
-                "access_token":"73",
-                "token_type":"Bearer",
-                "expires_in":172800,"scope":"manage_project:elasticio"
+                'access_token':'73',
+                'token_type':'Bearer',
+                'expires_in':172800,'scope':'manage_project:elasticio'
+            });
+
+        nock('https://api.sphere.io').get('/elasticio/product-types/3')
+            .reply(200, {
+                attributes: [
+                    {
+                        'name': 'attribute1',
+                        'label': { 'en': 'Attribute 1'},
+                        'type': {'name': 'text'},
+                        'isRequired': true
+                    },{
+                        'name': 'attribute2',
+                        'label': { 'en': 'Attribute 2'},
+                        'type': {'name': 'text'},
+                        'isRequired': false
+                    }
+                ]
             });
     });
 
@@ -25,13 +43,15 @@ describe('Sphereio create product', function () {
 
         beforeEach(function() {
             var scope = nock('https://api.sphere.io');
-            scope.get('/elasticio').reply(200, { key: 'elasticio',
-                     name: 'elastic.io Demo Project',
-                     countries: [ 'AS', 'DE', 'DZ', 'US' ],
-                     currencies: [ 'EUR' ],
-                     languages: [ 'en' ],
-                     createdAt: '1970-01-01T00:00:00.000Z',
-                     trialUntil: '2014-01' });
+            scope.get('/elasticio').reply(200, {
+                key: 'elasticio',
+                name: 'elastic.io Demo Project',
+                countries: ['AS', 'DE', 'DZ', 'US'],
+                currencies: ['EUR'],
+                languages: ['en'],
+                createdAt: '1970-01-01T00:00:00.000Z',
+                trialUntil: '2014-01'
+            });
 
             runs(function() {
                 createProduct.getMetaModel(cfg, callback);
@@ -39,7 +59,7 @@ describe('Sphereio create product', function () {
 
             waitsFor(function() {
                 return callback.calls.length;
-            }, "Timed out", 1000);
+            }, 'Timed out', 1000);
 
         });
 
@@ -66,8 +86,7 @@ describe('Sphereio create product', function () {
         beforeEach(function() {
             self = jasmine.createSpyObj('self', ['emit']);
             nock('https://api.sphere.io').post('/elasticio/products')
-                .reply(201, { id: 'c5d24489-22e6-4c86-a441-f6733be10ac1',
-                              version: 1});
+                .reply(201, {id: 'c5d24489-22e6-4c86-a441-f6733be10ac1', version: 1});
 
             runs(function() {
                 createProduct.process.call(self, msg, cfg, callback);
@@ -75,7 +94,7 @@ describe('Sphereio create product', function () {
 
             waitsFor(function() {
                 return self.emit.calls.length;
-            }, "Timed out", 1000);
+            }, 'Timed out', 1000);
         });
 
         it('should call callback with right params', function() {
@@ -111,11 +130,11 @@ describe('Sphereio create product', function () {
 
             waitsFor(function() {
                 return self.emit.calls.length;
-            }, "Timed out", 1000);
+            }, 'Timed out', 1000);
         });
 
         it('should emit an error', function() {
-            expect(self.emit).toHaveBeenCalledWith('error', { message : 'Request body does not contain valid JSON.', originalRequest : { endpoint : '/products', payload : { productType : { typeId : 'product-type', id : undefined } } } });
+            expect(self.emit).toHaveBeenCalledWith('error', { message : 'Request body does not contain valid JSON.', originalRequest : { endpoint : '/products', payload : { productType : { typeId : 'product-type', id : '3' } } } });
         });
 
         it('should emit end event', function() {
@@ -150,7 +169,7 @@ describe('Sphereio create product', function () {
 
             waitsFor(function() {
                 return callback.calls.length;
-            }, "Timed out", 1000);
+            }, 'Timed out', 1000);
 
         });
 
