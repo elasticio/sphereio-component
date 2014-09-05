@@ -1,0 +1,10 @@
+{
+  "project-b": {
+    "client_id": "clientId3",
+    "client_secret": "clientSecret3"
+  },
+  "project-c": {
+    "client_id": "clientId4",
+    "client_secret": "clientSecret4"
+  }
+}

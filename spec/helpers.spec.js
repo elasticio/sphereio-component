@@ -1,0 +1,91 @@
+describe('Sphere.io helpers', function () {
+    var helpers = require('../lib/helpers.js');
+    var allCustomers = require('./data/all_customers.json.js');
+    var allOrders = require('./data/all_orders.json.js');
+
+    it('Should update snapshot field `lastModifiedAt` if this field is empty', function () {
+        var snapshot = {};
+        helpers.updateSnapshotWithLastModified(allCustomers.results, snapshot);
+        expect(snapshot.lastModifiedAt).toEqual('2014-08-19T00:00:00.001Z');
+    });
+
+    it('Should update snapshot field `lastModifiedAt` if snapshot\'s field in the past', function () {
+        var snapshot = {
+            lastModifiedAt: '2014-08-18T00:00:00.001Z'
+        };
+        helpers.updateSnapshotWithLastModified(allCustomers.results, snapshot);
+        expect(snapshot.lastModifiedAt).toEqual('2014-08-19T00:00:00.001Z');
+    });
+
+    it('Should not update snapshot field `lastModifiedAt` if snapshot\'s field in the future', function () {
+        var future = '2014-08-22T00:00:00.001Z';
+        var snapshot = {
+            lastModifiedAt: future
+        };
+        helpers.updateSnapshotWithLastModified(allCustomers.results, snapshot);
+        expect(snapshot.lastModifiedAt).toEqual(future);
+    });
+
+    it('Should update snapshot field `lastModifiedAt` if this field is empty', function () {
+        var snapshot = {};
+        helpers.updateSnapshotWithLastModified(allOrders.results, snapshot);
+        expect(snapshot.lastModifiedAt).toEqual(allOrders.results[1].lastModifiedAt);
+    });
+
+
+    describe('Sphere.io helpers convertLStrings', function () {
+
+        var input = {
+            'type': 'object',
+            'properties': {
+                'offset': {
+                    'type': 'number',
+                    'title': 'Offset',
+                    'required': true
+                },
+                'total': {
+                    'type': 'number',
+                    'title': 'Total',
+                    'required': true
+                },
+                'results': {
+                    'type': 'array',
+                    'required': true,
+                    'properties': {
+                        'id': {
+                            'title': 'ID',
+                            'type': 'string',
+                            'required': true
+                        },
+                        'name': {
+                            'title': 'Name',
+                            'type': 'lstring',
+                            'required': true
+                        }
+                    }
+                }
+            }
+        };
+
+        var nameConverted = {
+            type : 'object',
+            properties : {
+                en : {
+                    title : 'Name (en)',
+                    type : 'string',
+                    required : true
+                },
+                de : {
+                    title : 'Name (de)',
+                    type : 'string',
+                    required : true
+                }
+            }
+        };
+
+        it('Should convert lstring property to array of string properties', function () {
+            var result = helpers.convertLStrings(input, ['de', 'en']);
+            expect(result.properties.results.properties.name).toEqual(nameConverted);
+        });
+    });
+});

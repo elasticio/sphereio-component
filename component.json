@@ -1,0 +1,212 @@
+{
+    "title": "Sphere.io",
+    "description": "SPHERE.IO is the most versatile cloud based commerce platform. You can call it Software-as-a-Service or Platform-as-a-Service - we call it: Cloud eCommerce OS.",
+    "external": true,
+    "credentials": {
+        "fields": {
+            "project":      {
+                "label":     "Project Name",
+                "required":  true,
+                "viewClass": "TextFieldView"
+            },
+            "client":       {
+                "label":     "Client ID",
+                "required":  true,
+                "viewClass": "TextFieldView"
+            },
+            "clientSecret": {
+                "label":     "Client Secret",
+                "required":  true,
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers":{
+        "getCustomers":{
+            "main":"./lib/triggers/queryCustomers.js",
+            "title": "Query Customers",
+            "type": "polling",
+            "metadata": {
+                "out" : "./lib/triggers/queryCustomers.out.json"
+            },
+            "fields": {
+                "where": {
+                    "label": "Additional predicate to filter customers",
+                    "required": false,
+                    "viewClass": "TextFieldView"
+                }
+            }
+        },
+        "getOrders":{
+            "main":"./lib/triggers/queryOrders.js",
+            "title": "Query Orders",
+            "dynamicMetadata": true,
+            "type": "polling",
+            "metadata": {
+                "out" : "./lib/triggers/queryOrders.out.json"
+            },
+            "fields": {
+                "where": {
+                    "label": "Additional predicate to filter orders",
+                    "required": false,
+                    "viewClass": "TextFieldView"
+                }
+            }
+        }
+    },
+    "actions": {
+        "updateCustomer": {
+            "main": "./lib/actions/updateCustomer.js",
+            "title": "Update a customer",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Customer id",
+                            "type": "string",
+                            "required": true
+                        },
+                        "external_id": {
+                            "title": "External id",
+                            "type": "string",
+                            "required": false
+                        }
+                    }
+                },
+                "out": "./lib/actions/updateCustomer.out.json"
+            }
+        },
+        "createProduct": {
+            "main": "./lib/actions/createProduct.js",
+            "title": "Create a product",
+            "fields": {
+                "productType": {
+                    "viewClass": "SelectView",
+                    "label": "Product type",
+                    "required": false,
+                    "model": "getProductTypeSelectModel",
+                    "prompt": "Please select a product type"
+                }
+            },
+            "dynamicMetadata": true
+        },
+        "addPriceToVariant": {
+            "main": "./lib/actions/addPrice.js",
+            "title": "Add Price to Variant",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "productId": {
+                            "title": "Product ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "variantId": {
+                            "title": "Variant ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "amount": {
+                            "title": "Price amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        "currency": {
+                            "title": "Price currency",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
+        },
+        "getProductVariant": {
+            "main": "./lib/actions/queryProductVariant.js",
+            "title": "Query Product Variant ID",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Variant external ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "amount": {
+                            "title": "Price amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        "currency": {
+                            "title": "Price currency",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                "out": {
+                    "type": "object",
+                    "properties": {
+                        "productId": {
+                            "title": "Product ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "variantId": {
+                            "title": "Variant ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "amount": {
+                            "title": "Price amount",
+                            "type": "number",
+                            "required": true
+                        },
+                        "currency": {
+                            "title": "Price currency",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
+        },
+        "getCustomerByID": {
+            "main": "./lib/actions/getCustomerByID.js",
+            "title": "Get Customer By ID",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Customer id",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                "out": "./lib/actions/updateCustomer.out.json"
+            }
+        },
+        "getOrderByID": {
+            "main": "./lib/actions/getOrderByID.js",
+            "title": "Get Order By ID",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Order id",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                "out": "./lib/actions/order.json"
+            }
+        }
+    }
+
+}
