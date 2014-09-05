@@ -146,6 +146,34 @@ describe('Sphereio create product', function () {
         });
     });
 
+    describe('report an error if failed to read a product from message', function() {
+        var callback = jasmine.createSpy('callback');
+        var msg = {};
+        var self;
+
+        beforeEach(function() {
+            self = jasmine.createSpyObj('self', ['emit']);
+            runs(function() {
+                createProduct.process.call(self, msg, cfg, callback);
+            });
+
+            waitsFor(function() {
+                return self.emit.calls.length;
+            }, 'Timed out', 1000);
+        });
+
+        it('should emit an error', function() {
+            expect(self.emit).toHaveBeenCalled();
+        });
+
+        it('should emit end event', function() {
+            expect(self.emit).toHaveBeenCalledWith('end');
+        });
+
+        it('should not emit more then two events', function() {
+            expect(self.emit.calls.length).toEqual(2);
+        });
+    });
 
     describe('request product types', function() {
         var callback = jasmine.createSpy('callback');
