@@ -81,19 +81,19 @@ describe('readAttributes', function () {
         expect(result).toEqual(expected);
     });
 
-    it('Should return undefined if message is null', function(){
+    it('Should return empty array if message is null', function(){
         var result = attributeManager.readAttributes(null, {});
-        expect(result).toEqual(undefined);
+        expect(result).toEqual([]);
     });
 
-    it('Should return undefined if message is undefined', function(){
+    it('Should return empty array if message is undefined', function(){
         var result = attributeManager.readAttributes(undefined, {});
-        expect(result).toEqual(undefined);
+        expect(result).toEqual([]);
     });
 
-    it('Should return undefined if productTypeAttributes are undefined', function(){
+    it('Should return empty array if productTypeAttributes are undefined', function(){
         var result = attributeManager.readAttributes(data, undefined);
-        expect(result).toEqual(undefined);
+        expect(result).toEqual([]);
     });
 
 
@@ -304,6 +304,113 @@ describe('readProduct', function () {
                         {
                             'name': 'attribute2',
                             'value': 700
+                        }
+                    ]
+                }
+            ]
+        };
+
+        var cfg = {
+            productType: 'product-type-id'
+        };
+
+        var attributeDescriptions = [
+            {'name': 'attribute1', 'type': {'name': 'text'}},
+            {'name': 'attribute2', 'type': {'name': 'number'}},
+            {'name': 'attribute3', 'type': {'name': 'ltext'}}
+        ];
+
+        var result = attributeManager.readProduct(cfg, msg, attributeDescriptions);
+        expect(result).toEqual(expectedProduct);
+    });
+
+    it('Should read product without attributes in correct way', function(){
+
+        var msg = {
+            body: {
+                name: {
+                    en: 'Product Name'
+                },
+                slug:  {
+                    en: 'Product Slug'
+                },
+                description: {
+                    en: 'Product Description'
+                },
+                categories: '',
+                metaTitle: {
+                    en: 'Product metaTitle'
+                },
+                metaDescription: {
+                    en: 'Product metaDescription'
+                },
+                metaKeywords: {
+                    en: 'Product metaKeywords'
+                },
+                masterVariant: {
+                    sku: 'master-variant-sku',
+                    prices: [{
+                        value: {
+                            'currencyCode': 'EUR',
+                            'centAmount': '1200'
+                        }
+                    }]
+                },
+                variants: [{
+                    sku: 'variant-sku',
+                    prices: [{
+                        value: {
+                            'currencyCode': 'EUR',
+                            'centAmount': '8000'
+                        }
+                    }]
+                }]
+            }
+        };
+
+        var expectedProduct = {
+            'name': {
+                'en': 'Product Name'
+            },
+            'productType': {
+                'typeId': 'product-type',
+                'id': 'product-type-id'
+            },
+            'slug': {
+                'en': 'Product Slug'
+            },
+            'description': {
+                'en': 'Product Description'
+            },
+            'metaTitle': {
+                'en': 'Product metaTitle'
+            },
+            'metaDescription': {
+                'en': 'Product metaDescription'
+            },
+            'metaKeywords': {
+                'en': 'Product metaKeywords'
+            },
+            'masterVariant': {
+                'sku': 'master-variant-sku',
+                'prices': [
+                    {
+                        'value': {
+                            'currencyCode': 'EUR',
+                            'centAmount': 1200
+                        }
+                    }
+                ]
+            },
+            'variants': [
+                {
+                    'sku': 'variant-sku',
+                    'prices': [
+                        {
+                            'value': {
+                                'currencyCode': 'EUR',
+                                'centAmount': 8000
+                            }
                         }
                     ]
                 }
