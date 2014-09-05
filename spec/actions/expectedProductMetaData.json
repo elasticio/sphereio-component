@@ -1,0 +1,288 @@
+{"in": {
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "object",
+            "properties": {
+                "en": {
+                    "title": "Name (en)",
+                    "type": "string",
+                    "required": true
+                }
+            }
+        },
+        "slug": {
+            "type": "object",
+            "properties": {
+                "en": {
+                    "title": "Slug (en)",
+                    "type": "string",
+                    "required": true
+                }
+            }
+        },
+        "description": {
+            "type": "object",
+            "properties": {
+                "en": {
+                    "title": "Description (en)",
+                    "type": "string",
+                    "required": false
+                }
+            }
+        },
+        "metaTitle": {
+            "type": "object",
+            "properties": {
+                "en": {
+                    "title": "MetaTitle (en)",
+                    "type": "string",
+                    "required": false
+                }
+            }
+        },
+        "metaDescription": {
+            "type": "object",
+            "properties": {
+                "en": {
+                    "title": "MetaDescription (en)",
+                    "type": "string",
+                    "required": false
+                }
+            }
+        },
+        "masterVariant": {
+            "type": "object",
+            "title": "MasterVariant",
+            "required": false,
+            "properties": {
+                "sku": {
+                    "type": "string",
+                    "required": false,
+                    "title": "Master variant sku"
+                },
+                "prices": {
+                    "type": "array",
+                    "required": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "currencyCode": {
+                                    "type": "string",
+                                    "required": false,
+                                    "title": "Master variant currency code"
+                                },
+                                "centAmount": {
+                                    "type": "number",
+                                    "required": false,
+                                    "title": "Master variant amount in cents (the smallest indivisible unit of the currency)"
+                                }
+                            }
+                        }
+                    }
+                },
+                "attributes": {
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                        "attribute1": {
+                            "title": "MasterVariant Attribute 1",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "attribute2": {
+                            "title": "MasterVariant Attribute 2",
+                            "required": false,
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "variants": {
+            "type": "array",
+            "title": "Variants",
+            "required": false,
+            "properties": {
+                "sku": {
+                    "type": "string",
+                    "required": false,
+                    "title": "Variants sku"
+                },
+                "prices": {
+                    "type": "array",
+                    "required": false,
+                    "properties": {
+                        "value": {
+                            "type": "object",
+                            "properties": {
+                                "currencyCode": {
+                                    "type": "string",
+                                    "required": false,
+                                    "title": "Variants currency code"
+                                },
+                                "centAmount": {
+                                    "type": "number",
+                                    "required": false,
+                                    "title": "Variants amount in cents (the smallest indivisible unit of the currency)"
+                                }
+                            }
+                        }
+                    }
+                },
+                "attributes": {
+                    "type": "object",
+                    "required": false,
+                    "properties": {
+                        "attribute1": {
+                            "title": "Variants Attribute 1",
+                            "required": true,
+                            "type": "string"
+                        },
+                        "attribute2": {
+                            "title": "Variants Attribute 2",
+                            "required": false,
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}, "out": {
+    "id": {
+        "type": "string",
+        "title": "Id",
+        "required": true
+    },
+    "version": {
+        "type": "number",
+        "required": true,
+        "title": "Version"
+    },
+    "createdAt": {
+        "type": "datetime",
+        "required": true,
+        "title": "Created at"
+    },
+    "lastModifiedAt": {
+        "type": "datetime",
+        "required": true,
+        "title": "Last modified at"
+    },
+    "productType": {
+        "type": "object",
+        "required": true,
+        "properties": {
+            "typeId": {
+                "type": "string",
+                "required": true,
+                "title": "Product type reference type"
+            },
+            "id": {
+                "type": "string",
+                "required": true,
+                "title": "Product type id"
+            }
+        }
+    },
+    "masterData": {
+        "type": "object",
+        "required": false,
+        "properties": {
+            "published": {
+                "type": "boolean",
+                "required": false,
+                "title": "Master data published"
+            },
+            "current": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                    "name": {
+                        "type": "lstring",
+                        "title": "Name",
+                        "required": false
+                    },
+                    "slug": {
+                        "type": "lstring",
+                        "title": "Slug",
+                        "required": false
+                    },
+                    "description": {
+                        "type": "lstring",
+                        "title": "Description",
+                        "required": false
+                    },
+                    "metaTitle": {
+                        "type": "lstring",
+                        "title": "MetaTitle",
+                        "required": false
+                    },
+                    "metaDescription": {
+                        "type": "lstring",
+                        "title": "MetaDescription",
+                        "required": false
+                    },
+                    "variants": {
+                        "type": "array",
+                        "title": "Variants",
+                        "required": false,
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "required": false,
+                                "title": "Variants id"
+                            },
+                            "sku": {
+                                "type": "string",
+                                "required": false,
+                                "title": "Variants sku"
+                            },
+                            "prices": {
+                                "type": "array",
+                                "required": false,
+                                "properties": {
+                                    "value": {
+                                        "type": "object",
+                                        "required": false,
+                                        "properties": {
+                                            "currencyCode": {
+                                                "type": "string",
+                                                "required": false,
+                                                "title": "Variants currency code"
+                                            },
+                                            "centAmount": {
+                                                "type": "number",
+                                                "required": false,
+                                                "title": "Variants the amount in cents (the smallest indivisible unit of the currency)"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "taxCategory": {
+        "type": "object",
+        "required": true,
+        "properties": {
+            "typeId": {
+                "type": "string",
+                "required": true,
+                "title": "Tax category type reference type"
+            },
+            "id": {
+                "type": "string",
+                "required": true,
+                "title": "Tax categoryid"
+            }
+        }
+    }
+}}

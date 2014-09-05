@@ -1,0 +1,279 @@
+{
+    "type": "object",
+    "properties": {
+        "offset": {
+            "type": "number",
+            "title": "Offset",
+            "required": true
+        },
+        "total": {
+            "type": "number",
+            "title": "Total",
+            "required": true
+        },
+        "count": {
+            "type": "number",
+            "title": "Count",
+            "required": true
+        },
+        "results": {
+            "type": "array",
+            "required": true,
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "title": "ID",
+                    "required":true
+                },
+                "version": {
+                    "type": "number",
+                    "title": "Version",
+                    "required": true
+                },
+                "customerNumber": {
+                    "title": "Customer number",
+                    "type": "string"
+                },
+                "createdAt": {
+                    "title": "Created at",
+                    "type": "string",
+                    "required": true
+                },
+                "lastModifiedAt":{
+                    "title": "Last modified at",
+                    "type": "string",
+                    "required": true
+                },
+                "email":{
+                    "title": "Email",
+                    "type": "string",
+                    "required": true
+                },
+                "firstName": {
+                    "title": "First name",
+                    "type": "string",
+                    "required": true
+                },
+                "lastName": {
+                    "title": "Last name",
+                    "type": "string",
+                    "required": true
+                },
+                "password": {
+                    "title": "Password",
+                    "type": "string",
+                    "required": true
+                },
+                "middleName": {
+                    "title": "Middle name",
+                    "type": "string"
+                },
+                "title": {
+                    "title": "Title",
+                    "type": "string"
+                },
+                "shippingAddress": {
+                    "title": "Shipping address",
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Shipping address ID",
+                            "type": "string"
+                        },
+                        "title": {
+                            "title": "Shipping address title",
+                            "type": "string"
+                        },
+                        "salutation": {
+                            "title": "Shipping address salutation",
+                            "type": "string"
+                        },
+                        "firstName": {
+                            "title": "Shipping address first name",
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "title": "Shipping address last name",
+                            "type": "string"
+                        },
+                        "streetName": {
+                            "title": "Shipping address street name",
+                            "type": "string"
+                        },
+                        "streetNumber": {
+                            "title": "Shipping address street number",
+                            "type": "string"
+                        },
+                        "additionalStreetInfo": {
+                            "title": "Shipping address additional street info",
+                            "type": "string"
+                        },
+                        "postalCode": {
+                            "title": "Shipping address postal code",
+                            "type": "string"
+                        },
+                        "city": {
+                            "title": "Shipping address city",
+                            "type": "string"
+                        },
+                        "region": {
+                            "title": "Shipping address region",
+                            "type": "string"
+                        },
+                        "state": {
+                            "title": "Shipping address state",
+                            "type": "string"
+                        },
+                        "country": {
+                            "title": "Shipping address country",
+                            "type": "string"
+                        },
+                        "company": {
+                            "title": "Shipping address company",
+                            "type": "string"
+                        },
+                        "department": {
+                            "title": "Shipping address department",
+                            "type": "string"
+                        },
+                        "building": {
+                            "title": "Shipping address building",
+                            "type": "string"
+                        },
+                        "apartment": {
+                            "title": "Shipping address apartment",
+                            "type": "string"
+                        },
+                        "pOBox": {
+                            "title": "Shipping address pOBox",
+                            "type": "string"
+                        },
+                        "phone": {
+                            "title": "Shipping address Phone",
+                            "type": "string"
+                        },
+                        "mobile": {
+                            "title": "Shipping address mobile",
+                            "type": "string"
+                        },
+                        "email": {
+                            "title": "Shipping address email",
+                            "type": "string"
+                        },
+                        "additionalAddressInfo": {
+                            "title": "Shipping address additional address info",
+                            "type": "string"
+                        }
+                    }
+                },
+                "billingAddress": {
+                    "title": "Default billing address ID",
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Billing address ID",
+                            "type": "string"
+                        },
+                        "title": {
+                            "title": "Billing address title",
+                            "type": "string"
+                        },
+                        "salutation": {
+                            "title": "Billing address salutation",
+                            "type": "string"
+                        },
+                        "firstName": {
+                            "title": "Billing address first name",
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "title": "Billing address last name",
+                            "type": "string"
+                        },
+                        "streetName": {
+                            "title": "Billing address street name",
+                            "type": "string"
+                        },
+                        "streetNumber": {
+                            "title": "Billing address street number",
+                            "type": "string"
+                        },
+                        "additionalStreetInfo": {
+                            "title": "Billing address additional street info",
+                            "type": "string"
+                        },
+                        "postalCode": {
+                            "title": "Billing address postal code",
+                            "type": "string"
+                        },
+                        "city": {
+                            "title": "Billing address city",
+                            "type": "string"
+                        },
+                        "region": {
+                            "title": "Billing address region",
+                            "type": "string"
+                        },
+                        "state": {
+                            "title": "Billing address state",
+                            "type": "string"
+                        },
+                        "country": {
+                            "title": "Billing address country",
+                            "type": "string"
+                        },
+                        "company": {
+                            "title": "Billing address  company",
+                            "type": "string"
+                        },
+                        "department": {
+                            "title": "Billing address department",
+                            "type": "string"
+                        },
+                        "building": {
+                            "title": "Billing address building",
+                            "type": "string"
+                        },
+                        "apartment": {
+                            "title": "Billing address apartment",
+                            "type": "string"
+                        },
+                        "pOBox": {
+                            "title": "Billing address pOBox",
+                            "type": "string"
+                        },
+                        "phone": {
+                            "title": "Billing address phone",
+                            "type": "string"
+                        },
+                        "mobile": {
+                            "title": "Billing address mobile",
+                            "type": "string"
+                        },
+                        "email": {
+                            "title": "Billing address email",
+                            "type": "string"
+                        },
+                        "additionalAddressInfo": {
+                            "title": "Billing address additional address info",
+                            "type": "string"
+                        }
+                    }
+                },
+                "isEmailVerified": {
+                    "title": "Is email verified",
+                    "type": "boolean",
+                    "required": true
+                },
+                "externalId": {
+                    "title": "External ID",
+                    "type": "string"
+                },
+                "customerGroup": {
+                    "title": "Customer group",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
