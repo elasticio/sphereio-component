@@ -235,75 +235,75 @@ describe('readProduct', function () {
         };
 
         var expectedProduct = {
-            "name": {
-                "en": "Product Name"
+            'name': {
+                'en': 'Product Name'
             },
-            "productType": {
-                "typeId": "product-type",
-                "id": "product-type-id"
+            'productType': {
+                'typeId': 'product-type',
+                'id': 'product-type-id'
             },
-            "slug": {
-                "en": "Product Slug"
+            'slug': {
+                'en': 'Product Slug'
             },
-            "description": {
-                "en": "Product Description"
+            'description': {
+                'en': 'Product Description'
             },
-            "metaTitle": {
-                "en": "Product metaTitle"
+            'metaTitle': {
+                'en': 'Product metaTitle'
             },
-            "metaDescription": {
-                "en": "Product metaDescription"
+            'metaDescription': {
+                'en': 'Product metaDescription'
             },
-            "metaKeywords": {
-                "en": "Product metaKeywords"
+            'metaKeywords': {
+                'en': 'Product metaKeywords'
             },
-            "masterVariant": {
-                "sku": "master-variant-sku",
-                "prices": [
+            'masterVariant': {
+                'sku': 'master-variant-sku',
+                'prices': [
                     {
-                        "value": {
-                            "currencyCode": "EUR",
-                            "centAmount": 1200
+                        'value': {
+                            'currencyCode': 'EUR',
+                            'centAmount': 1200
                         }
                     }
                 ],
-                "attributes": [
+                'attributes': [
                     {
-                        "name": "attribute1",
-                        "value": "Lorem Ipsum"
+                        'name': 'attribute1',
+                        'value': 'Lorem Ipsum'
                     },
                     {
-                        "name": "attribute2",
-                        "value": 500
+                        'name': 'attribute2',
+                        'value': 500
                     },
                     {
-                        "name": "attribute3",
-                        "value": {
-                            "en": "English",
-                            "de": "Deutsch"
+                        'name': 'attribute3',
+                        'value': {
+                            'en': 'English',
+                            'de': 'Deutsch'
                         }
                     }
                 ]
             },
-            "variants": [
+            'variants': [
                 {
-                    "sku": "variant-sku",
-                    "prices": [
+                    'sku': 'variant-sku',
+                    'prices': [
                         {
-                            "value": {
-                                "currencyCode": "EUR",
-                                "centAmount": 8000
+                            'value': {
+                                'currencyCode': 'EUR',
+                                'centAmount': 8000
                             }
                         }
                     ],
-                    "attributes": [
+                    'attributes': [
                         {
-                            "name": "attribute1",
-                            "value": "Lorem Ipsum"
+                            'name': 'attribute1',
+                            'value': 'Lorem Ipsum'
                         },
                         {
-                            "name": "attribute2",
-                            "value": 700
+                            'name': 'attribute2',
+                            'value': 700
                         }
                     ]
                 }
