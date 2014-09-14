@@ -1,33 +1,34 @@
+§
 {
     "title": "Sphere.io",
     "description": "SPHERE.IO is the most versatile cloud based commerce platform. You can call it Software-as-a-Service or Platform-as-a-Service - we call it: Cloud eCommerce OS.",
     "external": true,
     "credentials": {
         "fields": {
-            "project":      {
-                "label":     "Project Name",
-                "required":  true,
+            "project": {
+                "label": "Project Name",
+                "required": true,
                 "viewClass": "TextFieldView"
             },
-            "client":       {
-                "label":     "Client ID",
-                "required":  true,
+            "client": {
+                "label": "Client ID",
+                "required": true,
                 "viewClass": "TextFieldView"
             },
             "clientSecret": {
-                "label":     "Client Secret",
-                "required":  true,
+                "label": "Client Secret",
+                "required": true,
                 "viewClass": "TextFieldView"
             }
         }
     },
-    "triggers":{
-        "getCustomers":{
-            "main":"./lib/triggers/queryCustomers.js",
+    "triggers": {
+        "getCustomers": {
+            "main": "./lib/triggers/queryCustomers.js",
             "title": "Query Customers",
             "type": "polling",
             "metadata": {
-                "out" : "./lib/triggers/queryCustomers.out.json"
+                "out": "./lib/triggers/queryCustomers.out.json"
             },
             "fields": {
                 "where": {
@@ -37,13 +38,13 @@
                 }
             }
         },
-        "getOrders":{
-            "main":"./lib/triggers/queryOrders.js",
+        "getOrders": {
+            "main": "./lib/triggers/queryOrders.js",
             "title": "Query Orders",
             "dynamicMetadata": true,
             "type": "polling",
             "metadata": {
-                "out" : "./lib/triggers/queryOrders.out.json"
+                "out": "./lib/triggers/queryOrders.out.json"
             },
             "fields": {
                 "where": {
@@ -206,7 +207,37 @@
                 },
                 "out": "./lib/actions/order.json"
             }
+        },
+        "addVariant": {
+            "main": "./lib/actions/addVariant.js",
+            "title": "Add Product Variant",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "masterVariantReference": {
+                            "type": "string",
+                            "title": "Master Variant Reference",
+                            "required": true
+                        },
+                        "sku": {
+                            "type": "string",
+                            "title": "Sku",
+                            "required": true
+                        },
+                        "name": {
+                            "type": "string",
+                            "title": "Product Variant Name",
+                            "required": false
+                        },
+                        "description": {
+                            "type": "string",
+                            "title": "Product Variant Description",
+                            "required": false
+                        }
+                    }
+                }
+            }
         }
     }
-
 }
