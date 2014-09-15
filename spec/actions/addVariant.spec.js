@@ -30,7 +30,7 @@ describe('Add Variant', function() {
             });
 
             runs(function() {
-                expect(executor.emit).toHaveBeenCalledWith('error', new Error);
+                expect(executor.emit).toHaveBeenCalledWith('error', new Error('A master variant reference has to be provided.'));
                 expect(executor.emit).toHaveBeenCalledWith('end');
             });
 
@@ -54,7 +54,7 @@ describe('Add Variant', function() {
             });
 
             runs(function() {
-                expect(executor.emit).toHaveBeenCalledWith('error', new Error);
+                expect(executor.emit).toHaveBeenCalledWith('error', new Error('Variant SKU has to be provided.'));
                 expect(executor.emit).toHaveBeenCalledWith('end');
             });
         });
