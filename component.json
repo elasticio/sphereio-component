@@ -223,16 +223,6 @@
                             "type": "string",
                             "title": "Sku",
                             "required": true
-                        },
-                        "name": {
-                            "type": "string",
-                            "title": "Product Variant Name",
-                            "required": false
-                        },
-                        "description": {
-                            "type": "string",
-                            "title": "Product Variant Description",
-                            "required": false
                         }
                     }
                 }
