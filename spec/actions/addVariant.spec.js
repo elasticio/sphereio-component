@@ -10,6 +10,13 @@ describe('Add Variant', function() {
         project: 'elasticio',
     };
 
+    var authResponse = {
+        'access_token': '73',
+        'token_type': 'Bearer',
+        'expires_in': 172800,
+        'scope': 'manage_project:elasticio'
+    };
+
     describe('with invalid input', function() {
 
         it('should emit an error when no masterVariantReference is provided', function() {
@@ -64,13 +71,7 @@ describe('Add Variant', function() {
     describe('with no product found', function() {
 
         beforeEach(function() {
-            nock('https://auth.sphere.io').post('/oauth/token')
-                .reply(200, {
-                    'access_token': '73',
-                    'token_type': 'Bearer',
-                    'expires_in': 172800,
-                    'scope': 'manage_project:elasticio'
-                });
+            nock('https://auth.sphere.io').post('/oauth/token').reply(200, authResponse);
 
             nock('https://api.sphere.io:443')
                 .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%22aMasterVariantReference%22)))')
@@ -115,13 +116,7 @@ describe('Add Variant', function() {
     describe('when a product update fails for whatever reason', function() {
         beforeEach(function() {
 
-            nock('https://auth.sphere.io').post('/oauth/token')
-                .reply(200, {
-                    'access_token': '73',
-                    'token_type': 'Bearer',
-                    'expires_in': 172800,
-                    'scope': 'manage_project:elasticio'
-                });
+            nock('https://auth.sphere.io').post('/oauth/token').reply(200, authResponse);
 
             nock('https://api.sphere.io:443')
                 .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%22aMasterVariantReference%22)))')
@@ -163,13 +158,7 @@ describe('Add Variant', function() {
     describe('when a product update fails because of 409', function() {
         beforeEach(function() {
 
-            nock('https://auth.sphere.io').post('/oauth/token')
-                .reply(200, {
-                    'access_token': '73',
-                    'token_type': 'Bearer',
-                    'expires_in': 172800,
-                    'scope': 'manage_project:elasticio'
-                });
+            nock('https://auth.sphere.io').post('/oauth/token').reply(200, authResponse);
 
             nock('https://api.sphere.io:443')
                 .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%22aMasterVariantReference%22)))')
@@ -211,12 +200,7 @@ describe('Add Variant', function() {
         beforeEach(function() {
 
             nock('https://auth.sphere.io').post('/oauth/token')
-                .reply(200, {
-                    'access_token': '73',
-                    'token_type': 'Bearer',
-                    'expires_in': 172800,
-                    'scope': 'manage_project:elasticio'
-                });
+                .reply(200, authResponse);
 
             nock('https://api.sphere.io:443')
                 .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%22aMasterVariantReference%22)))')
