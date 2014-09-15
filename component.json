@@ -4,30 +4,30 @@
     "external": true,
     "credentials": {
         "fields": {
-            "project":      {
-                "label":     "Project Name",
-                "required":  true,
+            "project": {
+                "label": "Project Name",
+                "required": true,
                 "viewClass": "TextFieldView"
             },
-            "client":       {
-                "label":     "Client ID",
-                "required":  true,
+            "client": {
+                "label": "Client ID",
+                "required": true,
                 "viewClass": "TextFieldView"
             },
             "clientSecret": {
-                "label":     "Client Secret",
-                "required":  true,
+                "label": "Client Secret",
+                "required": true,
                 "viewClass": "TextFieldView"
             }
         }
     },
-    "triggers":{
-        "getCustomers":{
-            "main":"./lib/triggers/queryCustomers.js",
+    "triggers": {
+        "getCustomers": {
+            "main": "./lib/triggers/queryCustomers.js",
             "title": "Query Customers",
             "type": "polling",
             "metadata": {
-                "out" : "./lib/triggers/queryCustomers.out.json"
+                "out": "./lib/triggers/queryCustomers.out.json"
             },
             "fields": {
                 "where": {
@@ -37,13 +37,13 @@
                 }
             }
         },
-        "getOrders":{
-            "main":"./lib/triggers/queryOrders.js",
+        "getOrders": {
+            "main": "./lib/triggers/queryOrders.js",
             "title": "Query Orders",
             "dynamicMetadata": true,
             "type": "polling",
             "metadata": {
-                "out" : "./lib/triggers/queryOrders.out.json"
+                "out": "./lib/triggers/queryOrders.out.json"
             },
             "fields": {
                 "where": {
@@ -206,7 +206,27 @@
                 },
                 "out": "./lib/actions/order.json"
             }
+        },
+        "addVariant": {
+            "main": "./lib/actions/addVariant.js",
+            "title": "Add Product Variant",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "masterVariantReference": {
+                            "type": "string",
+                            "title": "Master Variant Reference",
+                            "required": true
+                        },
+                        "sku": {
+                            "type": "string",
+                            "title": "Sku",
+                            "required": true
+                        }
+                    }
+                }
+            }
         }
     }
-
 }
