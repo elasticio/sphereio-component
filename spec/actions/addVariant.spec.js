@@ -8,6 +8,7 @@ describe('Add Variant', function() {
         client: '1',
         clientSecret: '2',
         project: 'elasticio',
+        productType: '3'
     };
 
     var authResponse = {
@@ -22,6 +23,31 @@ describe('Add Variant', function() {
         "sku": "anSKU",
         "staged": false
     }];
+
+    beforeEach(function() {
+        nock('https://api.sphere.io').get('/elasticio/product-types/3')
+            .reply(200, {
+                attributes: [{
+                    'name': 'attribute1',
+                    'label': {
+                        'en': 'Attribute 1'
+                    },
+                    'type': {
+                        'name': 'text'
+                    },
+                    'isRequired': true
+                }, {
+                    'name': 'attribute2',
+                    'label': {
+                        'en': 'Attribute 2'
+                    },
+                    'type': {
+                        'name': 'text'
+                    },
+                    'isRequired': false
+                }]
+            });
+    });
 
     describe('with invalid input', function() {
 
@@ -214,7 +240,7 @@ describe('Add Variant', function() {
 
 
             nock('https://api.sphere.io:443')
-                .post('/elasticio/products/anId', action)
+                .post('/elasticio/products/anId', [{"action":"addVariant","sku":"anSKU","staged":false,"attributes":{"attribute1":"Nenad","attribute2":"Nikolic"}}])
                 .reply(200, responseData.addVariantResponse);
         });
 
@@ -223,7 +249,11 @@ describe('Add Variant', function() {
             var msg = {
                 body: {
                     sku: "anSKU",
-                    masterVariantReference: "aMasterVariantReference"
+                    masterVariantReference: "aMasterVariantReference",
+                    attributes: {
+                        attribute1: "Nenad",
+                        attribute2: "Nikolic"
+                    }
                 }
             };
 
