@@ -1,10 +1,11 @@
 {
     "in": {
         "type": "object",
+        "title": "Variant",
         "properties": {
-            "masterVariantReference": {
+            "masterVariantSku": {
                 "type": "string",
-                "title": "Master Variant Reference",
+                "title": "Master Variant SKU",
                 "required": true
             },
             "sku": {

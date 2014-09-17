@@ -10,9 +10,7 @@ describe('MetaModel#getMetaModel', function() {
     var fs = require('fs');
     var metaModel = require('../lib/metaModel');
 
-    var callback = jasmine.createSpy('callback');
 
-    var expectedMetaData = JSON.parse(fs.readFileSync(__dirname + '/actions/expectedProductMetaData.json').toString());
 
     beforeEach(function() {
 
@@ -58,6 +56,14 @@ describe('MetaModel#getMetaModel', function() {
             trialUntil: '2014-01'
         });
 
+
+
+    });
+
+    it('should call callback with metadata for product', function() {
+        var expectedMetaData = JSON.parse(fs.readFileSync(__dirname + '/actions/expectedProductMetaData.json').toString());
+        var callback = jasmine.createSpy('callback');
+
         runs(function() {
             metaModel.getMetaModel(cfg, 'product.json', callback);
         });
@@ -66,9 +72,62 @@ describe('MetaModel#getMetaModel', function() {
             return callback.calls.length;
         }, 'Timed out', 1000);
 
+        runs(function() {
+            expect(callback).toHaveBeenCalledWith(null, expectedMetaData);
+        });
     });
 
-    it('should call callback with metadata', function() {
-        expect(callback).toHaveBeenCalledWith(null, expectedMetaData);
+    it('should call callback with metadata for variant', function() {
+
+        var callback = jasmine.createSpy('callback');
+
+        runs(function() {
+            metaModel.getMetaModel(cfg, 'productVariant.json', callback);
+        });
+
+        waitsFor(function() {
+            return callback.calls.length;
+        }, 'Timed out', 1000);
+
+        var expectedMetadata = { in : {
+                type: 'object',
+                title: 'Variant',
+                properties: {
+                    masterVariantSku: {
+                        type: 'string',
+                        title: 'Master Variant SKU',
+                        required: true
+                    },
+                    sku: {
+                        type: 'string',
+                        title: 'Sku',
+                        required: true
+                    },
+                    attributes: {
+                        type: 'object',
+                        required: false,
+                        properties: {
+                            attribute1: {
+                                title: 'Variant Attribute 1',
+                                required: true,
+                                type: 'string'
+                            },
+                            attribute2: {
+                                title: 'Variant Attribute 2',
+                                required: false,
+                                type: 'string'
+                            }
+                        }
+                    }
+                }
+            },
+            out: {}
+        };
+
+        runs(function() {
+            expect(callback).toHaveBeenCalledWith(null, expectedMetadata);
+        });
+
     });
+
 });
