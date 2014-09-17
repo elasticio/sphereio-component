@@ -210,6 +210,16 @@
         "addVariant": {
             "main": "./lib/actions/addVariant.js",
             "title": "Add Product Variant",
+             "fields": {
+                "productType": {
+                    "viewClass": "SelectView",
+                    "label": "Product type",
+                    "required": false,
+                    "model": "getProductTypeSelectModel",
+                    "prompt": "Please select a product type"
+                }
+            },
+            "dynamicMetadata":true,
             "metadata": {
                 "in": {
                     "type": "object",
