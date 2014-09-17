@@ -51,7 +51,7 @@ describe('Add Variant', function() {
 
     describe('with invalid input', function() {
 
-        it('should emit an error when no masterVariantReference is provided', function() {
+        it('should emit an error when no masterVariantSku is provided', function() {
 
             var msg = {
                 body: {
@@ -79,7 +79,7 @@ describe('Add Variant', function() {
 
             var msg = {
                 body: {
-                    masterVariantReference: "aMasterVariantReference"
+                    masterVariantSku: "aMasterVariantReference"
                 }
             };
 
@@ -123,7 +123,7 @@ describe('Add Variant', function() {
             var msg = {
                 body: {
                     sku: "anSKU",
-                    masterVariantReference: "aMasterVariantReference"
+                    masterVariantSku: "aMasterVariantReference"
                 }
             };
 
@@ -137,7 +137,7 @@ describe('Add Variant', function() {
             });
 
             runs(function() {
-                expect(executor.emit).toHaveBeenCalledWith('rebound', 'No product with masterVariantReference aMasterVariantReference found.');
+                expect(executor.emit).toHaveBeenCalledWith('rebound', 'No product with masterVariantSku aMasterVariantReference found.');
                 expect(executor.emit).toHaveBeenCalledWith('end');
                 expect(executor.emit).not.toHaveBeenCalledWith('data', {});
             });
@@ -164,7 +164,7 @@ describe('Add Variant', function() {
             var msg = {
                 body: {
                     sku: "anSKU",
-                    masterVariantReference: "aMasterVariantReference"
+                    masterVariantSku: "aMasterVariantReference"
                 }
             };
 
@@ -178,7 +178,7 @@ describe('Add Variant', function() {
             });
 
             runs(function() {
-                expect(executor.emit).not.toHaveBeenCalledWith('rebound', 'No product with masterVariantReference aMasterVariantReference found.');
+                expect(executor.emit).not.toHaveBeenCalledWith('rebound', 'No product with masterVariantSku aMasterVariantReference found.');
                 expect(executor.emit).toHaveBeenCalledWith('error', jasmine.any(Object));
                 expect(executor.emit).toHaveBeenCalledWith('end');
                 expect(executor.emit).not.toHaveBeenCalledWith('data', {});
@@ -206,7 +206,7 @@ describe('Add Variant', function() {
             var msg = {
                 body: {
                     sku: "anSKU",
-                    masterVariantReference: "aMasterVariantReference"
+                    masterVariantSku: "aMasterVariantReference"
                 }
             };
 
@@ -249,7 +249,7 @@ describe('Add Variant', function() {
             var msg = {
                 body: {
                     sku: "anSKU",
-                    masterVariantReference: "aMasterVariantReference",
+                    masterVariantSku: "aMasterVariantReference",
                     attributes: {
                         attribute1: "Nenad",
                         attribute2: "Nikolic"
@@ -267,7 +267,7 @@ describe('Add Variant', function() {
             });
 
             runs(function() {
-                expect(executor.emit).not.toHaveBeenCalledWith('rebound', 'No product with masterVariantReference aMasterVariantReference found.');
+                expect(executor.emit).not.toHaveBeenCalledWith('rebound', 'No product with masterVariantSku aMasterVariantReference found.');
 
                 expect(executor.emit).toHaveBeenCalledWith('data', responseData.addVariantResponse);
 
