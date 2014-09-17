@@ -44,6 +44,10 @@
                     "title": "Order Number",
                     "type": "string"
                 },
+                "customerId": {
+                    "title": "Customer ID",
+                    "type": "string"
+                },
                 "customerEmail": {
                     "title": "Customer Email",
                     "type": "string"
