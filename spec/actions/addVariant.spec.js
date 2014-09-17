@@ -17,6 +17,12 @@ describe('Add Variant', function() {
         'scope': 'manage_project:elasticio'
     };
 
+    var action = [{
+        "action": "addVariant",
+        "sku": "anSKU",
+        "staged": false
+    }];
+
     describe('with invalid input', function() {
 
         it('should emit an error when no masterVariantReference is provided', function() {
@@ -124,7 +130,7 @@ describe('Add Variant', function() {
 
 
             nock('https://api.sphere.io:443')
-                .post('/elasticio/products/anId', [])
+                .post('/elasticio/products/anId', action)
                 .reply(400, {});
         });
 
@@ -166,7 +172,7 @@ describe('Add Variant', function() {
 
 
             nock('https://api.sphere.io:443')
-                .post('/elasticio/products/anId', [])
+                .post('/elasticio/products/anId', action)
                 .reply(409, responseData.reboundResponse);
         });
 
@@ -208,7 +214,7 @@ describe('Add Variant', function() {
 
 
             nock('https://api.sphere.io:443')
-                .post('/elasticio/products/anId', [])
+                .post('/elasticio/products/anId', action)
                 .reply(200, responseData.addVariantResponse);
         });
 
