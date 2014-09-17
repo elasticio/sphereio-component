@@ -245,5 +245,4 @@ describe('Add Variant', function() {
             });
         });
     });
-
 });

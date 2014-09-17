@@ -59,7 +59,7 @@ describe('MetaModel#getMetaModel', function() {
         });
 
         runs(function() {
-            metaModel.getMetaModel(cfg, '/../lib/schemas/product.json', callback);
+            metaModel.getMetaModel(cfg, 'product.json', callback);
         });
 
         waitsFor(function() {
