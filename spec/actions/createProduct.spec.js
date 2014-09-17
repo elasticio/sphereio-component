@@ -36,38 +36,6 @@ describe('Sphereio create product', function () {
             });
     });
 
-    describe('request product meta data', function() {
-        var callback = jasmine.createSpy('callback');
-
-        var expectedMetaData = JSON.parse(fs.readFileSync(__dirname + '/expectedProductMetaData.json').toString());
-
-        beforeEach(function() {
-            var scope = nock('https://api.sphere.io');
-            scope.get('/elasticio').reply(200, {
-                key: 'elasticio',
-                name: 'elastic.io Demo Project',
-                countries: ['AS', 'DE', 'DZ', 'US'],
-                currencies: ['EUR'],
-                languages: ['en'],
-                createdAt: '1970-01-01T00:00:00.000Z',
-                trialUntil: '2014-01'
-            });
-
-            runs(function() {
-                createProduct.getMetaModel(cfg, callback);
-            });
-
-            waitsFor(function() {
-                return callback.calls.length;
-            }, 'Timed out', 1000);
-
-        });
-
-        it('should call callback with metadata', function() {
-            expect(callback).toHaveBeenCalledWith(null, expectedMetaData);
-        });
-    });
-
     describe('post product to service', function() {
         var callback = jasmine.createSpy('callback');
         var product = {
