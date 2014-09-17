@@ -124,13 +124,13 @@
         },
         "getProductVariant": {
             "main": "./lib/actions/queryProductVariant.js",
-            "title": "Query Product Variant ID",
+            "title": "Query Product Variant By SKU",
             "metadata": {
                 "in": {
                     "type": "object",
                     "properties": {
                         "id": {
-                            "title": "Variant external ID",
+                            "title": "Variant SKU",
                             "type": "string",
                             "required": true
                         },
@@ -216,12 +216,12 @@
                     "properties": {
                         "masterVariantReference": {
                             "type": "string",
-                            "title": "Master Variant Reference",
+                            "title": "Master Variant SKU",
                             "required": true
                         },
                         "sku": {
                             "type": "string",
-                            "title": "Sku",
+                            "title": "SKU",
                             "required": true
                         }
                     }
