@@ -83,10 +83,12 @@ module.exports = function (grunt) {
                 "lib/actions/queryProductVariant.js",
                 "lib/triggers/queryOrders.js",
                 "lib/attributeManager.js",
+                "lib/actions/addVariant.js",
                 "spec/actions/addPrice.spec.js",
                 "spec/actions/createProduct.spec.js",
                 "spec/triggers/queryOrders.spec.js",
                 "spec/attributeManager.spec.js",
+                "spec/actions/addVariant.spec.js",
                 "spec/helpers.spec.js",
                 "spec/sphere.spec.js"
             ],

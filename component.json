@@ -210,23 +210,16 @@
         "addVariant": {
             "main": "./lib/actions/addVariant.js",
             "title": "Add Product Variant",
-            "metadata": {
-                "in": {
-                    "type": "object",
-                    "properties": {
-                        "masterVariantReference": {
-                            "type": "string",
-                            "title": "Master Variant SKU",
-                            "required": true
-                        },
-                        "sku": {
-                            "type": "string",
-                            "title": "SKU",
-                            "required": true
-                        }
-                    }
+             "fields": {
+                "productType": {
+                    "viewClass": "SelectView",
+                    "label": "Product type",
+                    "required": false,
+                    "model": "getProductTypeSelectModel",
+                    "prompt": "Please select a product type"
                 }
-            }
+            },
+            "dynamicMetadata":true
         }
     }
 }

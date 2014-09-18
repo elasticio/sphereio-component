@@ -1,0 +1,22 @@
+{
+    "in": {
+        "type": "object",
+        "title": "Variant",
+        "properties": {
+            "masterVariantSku": {
+                "type": "string",
+                "title": "Master Variant SKU",
+                "required": true
+            },
+            "sku": {
+                "type": "string",
+                "title": "Sku",
+                "required": true
+            }
+        }
+    },
+    "out": {
+
+    }
+
+}
