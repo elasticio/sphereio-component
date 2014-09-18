@@ -69,7 +69,7 @@ describe('Query Product Variant', function () {
         });
     });
     
-    xdescribe('get not master variant', function () {
+    describe('get not master variant', function () {
         var msg;
         var self;
         var next = jasmine.createSpy();
@@ -119,7 +119,7 @@ describe('Query Product Variant', function () {
         });
     });
 
-    xdescribe('not found variant', function () {
+    describe('not found variant', function () {
         var msg;
         var self;
         var next = jasmine.createSpy();
@@ -193,7 +193,7 @@ describe('Query Product Variant', function () {
             });
         });
         
-        xit('should call emit only 2 times', function () {
+        it('should call emit only 2 times', function () {
             expect(self.emit.calls.length).toEqual(2);
         });
         
@@ -207,7 +207,7 @@ describe('Query Product Variant', function () {
 
         });
         
-        xit('should emit end message', function () {
+        it('should emit end message', function () {
             var args = self.emit.calls[1].args;
             expect(args[0]).toEqual('end');
         });
