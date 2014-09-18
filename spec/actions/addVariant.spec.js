@@ -19,9 +19,9 @@ describe('Add Variant', function() {
     };
 
     var action = [{
-        "action": "addVariant",
-        "sku": "anSKU",
-        "staged": false
+        'action': 'addVariant',
+        'sku': 'anSKU',
+        'staged': false
     }];
 
     beforeEach(function() {
@@ -55,7 +55,7 @@ describe('Add Variant', function() {
 
             var msg = {
                 body: {
-                    sku: "anSKU"
+                    sku: 'anSKU'
                 }
             };
 
@@ -79,7 +79,7 @@ describe('Add Variant', function() {
 
             var msg = {
                 body: {
-                    masterVariantSku: "aMasterVariantReference"
+                    masterVariantSku: 'aMasterVariantReference'
                 }
             };
 
@@ -106,14 +106,14 @@ describe('Add Variant', function() {
             nock('https://auth.sphere.io').post('/oauth/token').reply(200, authResponse);
 
             nock('https://api.sphere.io:443')
-                .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%22aMasterVariantReference%22)))')
+                .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%20%22aMasterVariantReference%22%20)))')
                 .reply(200, {
-                    "statusCode": 200,
-                    "body": {
-                        "offset": 0,
-                        "count": 0,
-                        "total": 0,
-                        "results": []
+                    'statusCode': 200,
+                    'body': {
+                        'offset': 0,
+                        'count': 0,
+                        'total': 0,
+                        'results': []
                     }
                 });
         });
@@ -122,8 +122,8 @@ describe('Add Variant', function() {
 
             var msg = {
                 body: {
-                    sku: "anSKU",
-                    masterVariantSku: "aMasterVariantReference"
+                    sku: 'anSKU',
+                    masterVariantSku: 'aMasterVariantReference'
                 }
             };
 
@@ -151,20 +151,20 @@ describe('Add Variant', function() {
             nock('https://auth.sphere.io').post('/oauth/token').reply(200, authResponse);
 
             nock('https://api.sphere.io:443')
-                .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%22aMasterVariantReference%22)))')
+                .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%20%22aMasterVariantReference%22%20)))')
                 .reply(200, responseData.queryProductResponse);
 
 
             nock('https://api.sphere.io:443')
-                .post('/elasticio/products/anId', {"version":3,"actions":[{"action":"addVariant","sku":"anSKU","staged":false}]})
+                .post('/elasticio/products/anId', {'version':3,'actions':[{'action':'addVariant','sku':'anSKU','staged':false}]})
                 .reply(400, {});
         });
 
         it('should emit an error', function() {
             var msg = {
                 body: {
-                    sku: "anSKU",
-                    masterVariantSku: "aMasterVariantReference"
+                    sku: 'anSKU',
+                    masterVariantSku: 'aMasterVariantReference'
                 }
             };
 
@@ -193,20 +193,20 @@ describe('Add Variant', function() {
             nock('https://auth.sphere.io').post('/oauth/token').reply(200, authResponse);
 
             nock('https://api.sphere.io:443')
-                .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%22aMasterVariantReference%22)))')
+                .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%20%22aMasterVariantReference%22%20)))')
                 .reply(200, responseData.queryProductResponse);
 
 
             nock('https://api.sphere.io:443')
-                .post('/elasticio/products/anId', {"version":3,"actions":[{"action":"addVariant","sku":"anSKU","staged":false}]})
+                .post('/elasticio/products/anId', {'version':3,'actions':[{'action':'addVariant','sku':'anSKU','staged':false}]})
                 .reply(409, responseData.reboundResponse);
         });
 
         it('should emit rebound', function() {
             var msg = {
                 body: {
-                    sku: "anSKU",
-                    masterVariantSku: "aMasterVariantReference"
+                    sku: 'anSKU',
+                    masterVariantSku: 'aMasterVariantReference'
                 }
             };
 
@@ -235,12 +235,12 @@ describe('Add Variant', function() {
                 .reply(200, authResponse);
 
             nock('https://api.sphere.io:443')
-                .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%22aMasterVariantReference%22)))')
+                .get('/elasticio/products?where=masterData(current(masterVariant(sku%3D%20%22aMasterVariantReference%22%20)))')
                 .reply(200, responseData.queryProductResponse);
 
 
             nock('https://api.sphere.io:443')
-                .post('/elasticio/products/anId', {"version":3,"actions":[{"action":"addVariant","sku":"anSKU","staged":false,"attributes":[{"name":"attribute1","value":"Nenad"},{"name":"attribute2","value":"Nikolic"}]}]})
+                .post('/elasticio/products/anId', {'version':3,'actions':[{'action':'addVariant','sku':'anSKU','staged':false,'attributes':[{'name':'attribute1','value':'Nenad'},{'name':'attribute2','value':'Nikolic'}]}]})
                 .reply(200, responseData.addVariantResponse);
         });
 
@@ -248,11 +248,11 @@ describe('Add Variant', function() {
 
             var msg = {
                 body: {
-                    sku: "anSKU",
-                    masterVariantSku: "aMasterVariantReference",
+                    sku: 'anSKU',
+                    masterVariantSku: 'aMasterVariantReference',
                     attributes: {
-                        attribute1: "Nenad",
-                        attribute2: "Nikolic"
+                        attribute1: 'Nenad',
+                        attribute2: 'Nikolic'
                     }
                 }
             };
