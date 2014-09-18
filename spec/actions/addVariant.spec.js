@@ -240,7 +240,7 @@ describe('Add Variant', function() {
 
 
             nock('https://api.sphere.io:443')
-                .post('/elasticio/products/anId', {"version":3,"actions":[{"action":"addVariant","sku":"anSKU","staged":false,"attributes":{"attribute1":"Nenad","attribute2":"Nikolic"}}]})
+                .post('/elasticio/products/anId', {"version":3,"actions":[{"action":"addVariant","sku":"anSKU","staged":false,"attributes":[{"name":"attribute1","value":"Nenad"},{"name":"attribute2","value":"Nikolic"}]}]})
                 .reply(200, responseData.addVariantResponse);
         });
 
