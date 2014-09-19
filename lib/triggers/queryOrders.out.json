@@ -58,7 +58,6 @@
                         "version": {
                             "type": "number",
                             "title": "Customer Version",
-                            "required": true
                         },
                         "customerNumber": {
                             "title": "Customer number",
@@ -66,13 +65,11 @@
                         },
                         "createdAt": {
                             "title": "Customer Created at",
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "lastModifiedAt":{
                             "title": "Customer Last modified at",
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "firstName": {
                             "title": "Customer First Name",
@@ -84,8 +81,7 @@
                         },
                         "password": {
                             "title": "Customer Password",
-                            "type": "string",
-                            "required": true
+                            "type": "string"
                         },
                         "middleName": {
                             "title": "Customer Middle name",
@@ -97,8 +93,7 @@
                         },
                         "isEmailVerified": {
                             "title": "Customer email verified",
-                            "type": "boolean",
-                            "required": true
+                            "type": "boolean"
                         },
                         "externalId": {
                             "title": "Customer External ID",
