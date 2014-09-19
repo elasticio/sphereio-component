@@ -57,7 +57,7 @@
                     "properties": {
                         "version": {
                             "type": "number",
-                            "title": "Customer Version",
+                            "title": "Customer Version"
                         },
                         "customerNumber": {
                             "title": "Customer number",
