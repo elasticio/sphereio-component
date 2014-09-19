@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "firstName": {
+            "title": "Customer First Name",
+            "type": "string"
+        },
+        "lastName": {
+            "title": "Customer Last Name",
+            "type": "string"
+        },
+        "externalId": {
+            "title": "Customer External ID",
+            "type": "string"
+        }
+    }
+}
