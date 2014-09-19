@@ -43,7 +43,8 @@ describe('Sphere.io queryOrders.js', function () {
             cfg = {
                 client: 'test_client',
                 clientSecret: 'so_secret',
-                project: 'test_project'
+                project: 'test_project',
+                expandCustomers: true
             };
         });
 
@@ -174,7 +175,8 @@ describe('Sphere.io queryOrders.js', function () {
                 client: 'test_client',
                 clientSecret: 'so_secret',
                 project: 'test_project',
-                where : 'externalId is defined'
+                where : 'externalId is defined',
+                expandCustomers: true
             };
         });
 
@@ -215,7 +217,8 @@ describe('Sphere.io queryOrders.js', function () {
         var cfg = {
             client: 'test_client',
             clientSecret: 'so_secret',
-            project: 'test_project'
+            project: 'test_project',
+            expandCustomers: true
         };
 
         beforeEach(function(){
