@@ -52,7 +52,64 @@
                     "title": "Customer Email",
                     "type": "string"
                 },
-                "customer": "./queryOrdersCustomer.json",
+                "customer": {
+                    "type": "object",
+                    "properties": {
+                        "version": {
+                            "type": "number",
+                            "title": "Customer Version",
+                            "required": true
+                        },
+                        "customerNumber": {
+                            "title": "Customer number",
+                            "type": "string"
+                        },
+                        "createdAt": {
+                            "title": "Customer Created at",
+                            "type": "string",
+                            "required": true
+                        },
+                        "lastModifiedAt":{
+                            "title": "Customer Last modified at",
+                            "type": "string",
+                            "required": true
+                        },
+                        "firstName": {
+                            "title": "Customer First Name",
+                            "type": "string"
+                        },
+                        "lastName": {
+                            "title": "Customer Last Name",
+                            "type": "string"
+                        },
+                        "password": {
+                            "title": "Customer Password",
+                            "type": "string",
+                            "required": true
+                        },
+                        "middleName": {
+                            "title": "Customer Middle name",
+                            "type": "string"
+                        },
+                        "title": {
+                            "title": "Customer Title",
+                            "type": "string"
+                        },
+                        "isEmailVerified": {
+                            "title": "Customer email verified",
+                            "type": "boolean",
+                            "required": true
+                        },
+                        "externalId": {
+                            "title": "Customer External ID",
+                            "type": "string"
+                        },
+                        "customerGroup": {
+                            "title": "Customer group",
+                            "type": "string"
+                        }
+                    }
+                },
                 "lineItems": {
                     "type": "array",
                     "properties": {
