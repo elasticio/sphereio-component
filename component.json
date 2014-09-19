@@ -52,7 +52,7 @@
                     "viewClass": "TextFieldView"
                 },
                 "expandCustomers": {
-                    "label": "Expand customers",
+                    "label": "Expand customer external ID",
                     "viewClass": "CheckBoxView"
                 }
             }
