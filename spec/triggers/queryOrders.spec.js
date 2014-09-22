@@ -1,13 +1,14 @@
 describe('Sphere.io queryOrders.js', function () {
     var nock = require('nock');
     var allOrders = require('../data/all_orders.json.js');
+    var orderCustomers = require('../data/order_customers.json.js');
     var modifiedOrders = require('../data/modified_orders.json.js');
     var emptyResult = {'offset': 0, 'count': 0, 'total': 49, 'results': []};
 
     nock('https://auth.sphere.io')
         .filteringRequestBody(/.*/, '*')
         .post('/oauth/token', '*')
-        .times(4)
+        .times(5)
         .reply(200, {
             'access_token': 'i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA',
             'token_type': 'Bearer',
@@ -17,13 +18,16 @@ describe('Sphere.io queryOrders.js', function () {
 
     nock('https://api.sphere.io')
         .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
+        .times(2)
         .reply(200, allOrders)
         .get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(200, modifiedOrders)
         .get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(500, JSON.stringify({message :'Ouch'}))
         .get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
-        .reply(200, emptyResult);
+        .reply(200, emptyResult)
+        .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
+        .reply(200, orderCustomers);
 
     var next = jasmine.createSpy('next');
     var queryOrders = require('../../lib/triggers/queryOrders.js');
@@ -40,7 +44,8 @@ describe('Sphere.io queryOrders.js', function () {
             cfg = {
                 client: 'test_client',
                 clientSecret: 'so_secret',
-                project: 'test_project'
+                project: 'test_project',
+                expandCustomerExternalId: true
             };
         });
 
@@ -59,6 +64,41 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(calls[0].args[0]).toEqual('data');
                 var newMsg = self.emit.calls[0].args[1];
                 expect(newMsg.body.length).toEqual(allOrders.length);
+
+                // check 'customer' in orders
+                expect(newMsg.body.results[0].customer).toBeUndefined();
+                expect(newMsg.body.results[1].customer).not.toBeUndefined();
+                expect(newMsg.body.results[1].customer).toEqual(orderCustomers.results[0]);
+
+                expect(calls[1].args[0]).toEqual('snapshot');
+                expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
+
+                expect(calls[2].args[0]).toEqual('end');
+
+            });
+        });
+
+        it('should not expand customers if cfg.expandCustomerExternalId is not true', function () {
+
+            cfg.expandCustomerExternalId = false;
+
+            queryOrders.process.call(self, msg, cfg, next, {});
+
+            waitsFor(function () {
+                return self.emit.calls.length;
+            });
+
+            runs(function () {
+                var calls = self.emit.calls;
+                expect(calls.length).toEqual(3);
+
+                expect(calls[0].args[0]).toEqual('data');
+                var newMsg = self.emit.calls[0].args[1];
+                expect(newMsg.body.length).toEqual(allOrders.length);
+
+                // check 'customer' in orders
+                expect(newMsg.body.results[0].customer).toBeUndefined();
+                expect(newMsg.body.results[1].customer).toBeUndefined();
 
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
@@ -156,7 +196,9 @@ describe('Sphere.io queryOrders.js', function () {
 
             nock('https://api.sphere.io')
                 .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined&limit=20&sort=lastModifiedAt%20asc')
-                .reply(200, allOrders);
+                .reply(200, allOrders)
+                .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
+                .reply(200, orderCustomers);
 
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
@@ -164,7 +206,8 @@ describe('Sphere.io queryOrders.js', function () {
                 client: 'test_client',
                 clientSecret: 'so_secret',
                 project: 'test_project',
-                where : 'externalId is defined'
+                where : 'externalId is defined',
+                expandCustomerExternalId: true
             };
         });
 
@@ -184,6 +227,12 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(calls[0].args[0]).toEqual('data');
                 var newMsg = self.emit.calls[0].args[1];
                 expect(newMsg.body.length).toEqual(allOrders.length);
+                expect(newMsg.body.results.length).toEqual(allOrders.results.length);
+
+                // check 'customer' in orders
+                expect(newMsg.body.results[0].customer).toBeUndefined();
+                expect(newMsg.body.results[1].customer).not.toBeUndefined();
+                expect(newMsg.body.results[1].customer).toEqual(orderCustomers.results[0]);
 
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(Object.keys(calls[1].args[1]).length).toEqual(1);
@@ -199,7 +248,8 @@ describe('Sphere.io queryOrders.js', function () {
         var cfg = {
             client: 'test_client',
             clientSecret: 'so_secret',
-            project: 'test_project'
+            project: 'test_project',
+            expandCustomerExternalId: true
         };
 
         beforeEach(function(){

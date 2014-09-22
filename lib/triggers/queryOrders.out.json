@@ -44,9 +44,22 @@
                     "title": "Order Number",
                     "type": "string"
                 },
+                "customerId": {
+                    "title": "Customer ID",
+                    "type": "string"
+                },
                 "customerEmail": {
                     "title": "Customer Email",
                     "type": "string"
+                },
+                "customer": {
+                    "type": "object",
+                    "properties": {
+                        "externalId": {
+                            "title": "Customer External ID",
+                            "type": "string"
+                        }
+                    }
                 },
                 "lineItems": {
                     "type": "array",

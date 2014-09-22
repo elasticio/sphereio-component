@@ -50,6 +50,10 @@
                     "label": "Additional predicate to filter orders",
                     "required": false,
                     "viewClass": "TextFieldView"
+                },
+                "expandCustomerExternalId": {
+                    "label": "Expand customer's external ID",
+                    "viewClass": "CheckBoxView"
                 }
             }
         }
