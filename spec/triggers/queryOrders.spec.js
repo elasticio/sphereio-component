@@ -45,7 +45,7 @@ describe('Sphere.io queryOrders.js', function () {
                 client: 'test_client',
                 clientSecret: 'so_secret',
                 project: 'test_project',
-                expandCustomers: true
+                expandCustomerExternalId: true
             };
         });
 
@@ -78,9 +78,9 @@ describe('Sphere.io queryOrders.js', function () {
             });
         });
 
-        it('should not expand customers if cfg.expandCustomers is not true', function () {
+        it('should not expand customers if cfg.expandCustomerExternalId is not true', function () {
 
-            cfg.expandCustomers = false;
+            cfg.expandCustomerExternalId = false;
 
             queryOrders.process.call(self, msg, cfg, next, {});
 
@@ -207,7 +207,7 @@ describe('Sphere.io queryOrders.js', function () {
                 clientSecret: 'so_secret',
                 project: 'test_project',
                 where : 'externalId is defined',
-                expandCustomers: true
+                expandCustomerExternalId: true
             };
         });
 
@@ -249,7 +249,7 @@ describe('Sphere.io queryOrders.js', function () {
             client: 'test_client',
             clientSecret: 'so_secret',
             project: 'test_project',
-            expandCustomers: true
+            expandCustomerExternalId: true
         };
 
         beforeEach(function(){

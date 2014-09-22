@@ -51,8 +51,8 @@
                     "required": false,
                     "viewClass": "TextFieldView"
                 },
-                "expandCustomers": {
-                    "label": "Get customer's external ID",
+                "expandCustomerExternalId": {
+                    "label": "Expand customer's external ID",
                     "viewClass": "CheckBoxView"
                 }
             }
