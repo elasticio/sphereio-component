@@ -70,6 +70,10 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(newMsg.body.results[1].customer).not.toBeUndefined();
                 expect(newMsg.body.results[1].customer).toEqual(orderCustomers.results[0]);
 
+                // check shippingInfo.price.centAmount in orders
+                expect(newMsg.body.results[0].shippingInfo.price.centAmount).toEqual(13000); // 10000 + 0.3*10000
+                expect(newMsg.body.results[1].shippingInfo.price.centAmount).toEqual(0); // because shipping above 5000 is free
+
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
 
