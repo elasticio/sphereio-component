@@ -248,7 +248,7 @@ describe('Sphere.io queryOrders.js', function () {
             };
         });
 
-        xit('should emit new message if first query was successful', function() {
+        it('should emit new message if first query was successful', function() {
 
             queryOrders.process.call(self, msg, cfg, next, {});
 
@@ -302,7 +302,7 @@ describe('Sphere.io queryOrders.js', function () {
                 });
         });
 
-        xit('should convert lstring to array of 2 strings', function () {
+        it('should convert lstring to array of 2 strings', function () {
 
             nock('https://api.sphere.io')
                 .get('/test_project')
@@ -339,7 +339,7 @@ describe('Sphere.io queryOrders.js', function () {
             });
         });
 
-        xit('should convert lstring to array of 3 strings', function () {
+        it('should convert lstring to array of 3 strings', function () {
 
             nock('https://api.sphere.io')
                 .get('/test_project')
