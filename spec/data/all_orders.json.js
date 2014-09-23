@@ -95,7 +95,7 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "lastMessageSequenceNumber": 0,
         "shippingInfo": {
             "price": {
-                "centAmount": 10000
+                "centAmount": 1111
             },
             "shippingRate": {
                 "freeAbove": {
