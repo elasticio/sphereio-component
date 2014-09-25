@@ -797,6 +797,22 @@
                     "type": "string",
                     "required": false
                 },
+                "shippingPrice": {
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                        "centAmount": {
+                            "title": "Shipping Price (cents)",
+                            "type": "number",
+                            "required": true
+                        },
+                        "currencyCode": {
+                            "title": "Shipping Price (currency)",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
                 "shippingInfo": {
                     "title": "Shipping Info",
                     "type": "object",
@@ -812,14 +828,220 @@
                             "required": true,
                             "properties": {
                                 "centAmount": {
-                                    "title": "Shipping Price (cents)",
+                                    "title": "Shipping Price Base (cents)",
                                     "type": "number",
                                     "required": true
                                 },
                                 "currencyCode": {
-                                    "title": "Shipping Price (currency)",
+                                    "title": "Shipping Price Base (currency)",
                                     "type": "string",
                                     "required": true
+                                }
+                            }
+                        },
+                        "shippingRate": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "price": {
+                                    "type": "object",
+                                    "required": true,
+                                    "properties": {
+                                        "centAmount": {
+                                            "title": "Shipping Rate (cents)",
+                                            "type": "number",
+                                            "required": true
+                                        },
+                                        "currencyCode": {
+                                            "title": "Shipping Rate (currency)",
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                },
+                                "freeAbove": {
+                                    "type": "object",
+                                    "required": false,
+                                    "properties": {
+                                        "centAmount": {
+                                            "title": "Shipping Free Above (cents)",
+                                            "type": "number",
+                                            "required": true
+                                        },
+                                        "currencyCode": {
+                                            "title": "Shipping Free Above (currency)",
+                                            "type": "string",
+                                            "required": true
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "taxRate": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "id": {
+                                    "title": "Shipping Tax ID",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "name": {
+                                    "title": "Shipping Tax Name",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "amount": {
+                                    "title": "Shipping Tax Amount",
+                                    "type": "number",
+                                    "required": true
+                                },
+                                "includedInPrice": {
+                                    "title": "Shipping Tax Included",
+                                    "type": "boolean",
+                                    "required": true
+                                },
+                                "country": {
+                                    "title": "Shipping Tax Country Code",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "state": {
+                                    "title": "Shipping Tax State",
+                                    "type": "string",
+                                    "required": false
+                                }
+                            }
+                        },
+                        "taxCategory": {
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "id": {
+                                    "title": "Shipping Tax Category ID",
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "shippingMethod": {
+                            "type": "object",
+                            "required": false,
+                            "properties": {
+                                "id": {
+                                    "title": "Shipping Method ID",
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "deliveries": {
+                            "type": "array",
+                            "required": true,
+                            "properties": {
+                                "id": {
+                                    "title": "Delivery ID",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "createdAt": {
+                                    "title": "Delivery Created At",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "items": {
+                                    "title": "Delivery Items",
+                                    "type": "array",
+                                    "required": true,
+                                    "properties": {
+                                        "id": {
+                                            "title": "Delivery item ID",
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "quantity": {
+                                            "title": "Delivery item Quantity",
+                                            "type": "number",
+                                            "required": true
+                                        }
+                                    }
+                                },
+                                "parcels": {
+                                    "title": "Delivery Parcels",
+                                    "type": "array",
+                                    "required": true,
+                                    "properties": {
+                                        "id": {
+                                            "title": "Delivery Parcel ID",
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "createdAt": {
+                                            "title": "Delivery Parcel Created At",
+                                            "type": "string",
+                                            "required": true
+                                        },
+                                        "measurements": {
+                                            "title": "Delivery Parcel Measurements",
+                                            "type": "object",
+                                            "required": false,
+                                            "properties": {
+                                                "heightInMillimeter": {
+                                                    "title": "Delivery Parcel Height",
+                                                    "type": "number",
+                                                    "required": true
+                                                },
+                                                "lengthInMillimeter": {
+                                                    "title": "Delivery Parcel Length",
+                                                    "type": "number",
+                                                    "required": true
+                                                },
+                                                "widthInMillimeter": {
+                                                    "title": "Delivery Parcel Width",
+                                                    "type": "number",
+                                                    "required": true
+                                                },
+                                                "weightInGram": {
+                                                    "title": "Delivery Parcel Weight",
+                                                    "type": "number",
+                                                    "required": true
+                                                }
+                                            }
+                                        },
+                                        "trackingData": {
+                                            "title": "Delivery Tracking data",
+                                            "required": false,
+                                            "type": "object",
+                                            "properties": {
+                                                "trackingId": {
+                                                    "title": "Delivery Tracking Height",
+                                                    "type": "string",
+                                                    "required": false
+                                                },
+                                                "carrier": {
+                                                    "title": "Delivery Tracking Length",
+                                                    "type": "string",
+                                                    "required": false
+                                                },
+                                                "provider": {
+                                                    "title": "Delivery Tracking Width",
+                                                    "type": "string",
+                                                    "required": false
+                                                },
+                                                "providerTransaction": {
+                                                    "title": "Delivery Tracking Weight",
+                                                    "type": "string",
+                                                    "required": false
+                                                },
+                                                "isReturn": {
+                                                    "title": "Delivery Tracking Weight",
+                                                    "type": "boolean",
+                                                    "required": false
+                                                }
+                                            }
+                                        }
+
+                                    }
                                 }
                             }
                         }
