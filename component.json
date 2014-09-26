@@ -4,30 +4,30 @@
     "external": true,
     "credentials": {
         "fields": {
-            "project":      {
-                "label":     "Project Name",
-                "required":  true,
+            "project": {
+                "label": "Project Name",
+                "required": true,
                 "viewClass": "TextFieldView"
             },
-            "client":       {
-                "label":     "Client ID",
-                "required":  true,
+            "client": {
+                "label": "Client ID",
+                "required": true,
                 "viewClass": "TextFieldView"
             },
             "clientSecret": {
-                "label":     "Client Secret",
-                "required":  true,
+                "label": "Client Secret",
+                "required": true,
                 "viewClass": "TextFieldView"
             }
         }
     },
-    "triggers":{
-        "getCustomers":{
-            "main":"./lib/triggers/queryCustomers.js",
+    "triggers": {
+        "getCustomers": {
+            "main": "./lib/triggers/queryCustomers.js",
             "title": "Query Customers",
             "type": "polling",
             "metadata": {
-                "out" : "./lib/triggers/queryCustomers.out.json"
+                "out": "./lib/triggers/queryCustomers.out.json"
             },
             "fields": {
                 "where": {
@@ -37,19 +37,23 @@
                 }
             }
         },
-        "getOrders":{
-            "main":"./lib/triggers/queryOrders.js",
+        "getOrders": {
+            "main": "./lib/triggers/queryOrders.js",
             "title": "Query Orders",
             "dynamicMetadata": true,
             "type": "polling",
             "metadata": {
-                "out" : "./lib/triggers/queryOrders.out.json"
+                "out": "./lib/triggers/queryOrders.out.json"
             },
             "fields": {
                 "where": {
                     "label": "Additional predicate to filter orders",
                     "required": false,
                     "viewClass": "TextFieldView"
+                },
+                "expandCustomerExternalId": {
+                    "label": "Expand customer's external ID",
+                    "viewClass": "CheckBoxView"
                 }
             }
         }
@@ -124,13 +128,13 @@
         },
         "getProductVariant": {
             "main": "./lib/actions/queryProductVariant.js",
-            "title": "Query Product Variant ID",
+            "title": "Query Product Variant By SKU",
             "metadata": {
                 "in": {
                     "type": "object",
                     "properties": {
                         "id": {
-                            "title": "Variant external ID",
+                            "title": "Variant SKU",
                             "type": "string",
                             "required": true
                         },
@@ -206,7 +210,20 @@
                 },
                 "out": "./lib/actions/order.json"
             }
+        },
+        "addVariant": {
+            "main": "./lib/actions/addVariant.js",
+            "title": "Add Product Variant",
+             "fields": {
+                "productType": {
+                    "viewClass": "SelectView",
+                    "label": "Product type",
+                    "required": false,
+                    "model": "getProductTypeSelectModel",
+                    "prompt": "Please select a product type"
+                }
+            },
+            "dynamicMetadata":true
         }
     }
-
 }

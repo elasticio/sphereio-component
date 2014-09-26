@@ -100,6 +100,7 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "version": 7,
         "createdAt": "2013-06-04T14:09:41.042Z",
         "lastModifiedAt": "2014-08-20T09:22:36.569Z",
+        "customerId": "3927ef3d-b5a1-476c-a61c-d719752ae2dd",
         "orderState": "Open",
         "shipmentState": "Ready",
         "paymentState": "Pending",
