@@ -50,10 +50,10 @@
                                         "required": false,
                                         "title": "Master variant currency code"
                                     },
-                                    "centAmount": {
+                                    "amount": {
                                         "type": "number",
                                         "required": false,
-                                        "title": "Master variant amount in cents (the smallest indivisible unit of the currency)"
+                                        "title": "Master variant amount"
                                     }
                                 }
                             }
@@ -69,7 +69,7 @@
                     "sku": {
                         "type": "string",
                         "required": false,
-                        "title": "Variants sku"
+                        "title": "Variant sku"
                     },
                     "prices": {
                         "type": "array",
@@ -81,12 +81,12 @@
                                     "currencyCode": {
                                         "type": "string",
                                         "required": false,
-                                        "title": "Variants currency code"
+                                        "title": "Variant currency code"
                                     },
-                                    "centAmount": {
+                                    "amount": {
                                         "type": "number",
                                         "required": false,
-                                        "title": "Variants amount in cents (the smallest indivisible unit of the currency)"
+                                        "title": "Variant amount"
                                     }
                                 }
                             }
@@ -200,11 +200,6 @@
                                                         "type": "string",
                                                         "required": false,
                                                         "title": "Variant currency code"
-                                                    },
-                                                    "centAmount": {
-                                                        "type": "number",
-                                                        "required": false,
-                                                        "title": "Variant price in cents"
                                                     },
                                                     "amount": {
                                                         "type": "number",
