@@ -179,12 +179,12 @@
                                 "id": {
                                     "type": "string",
                                     "required": false,
-                                    "title": "Variants id"
+                                    "title": "Variant id"
                                 },
                                 "sku": {
                                     "type": "string",
                                     "required": false,
-                                    "title": "Variants sku"
+                                    "title": "Variant sku"
                                 },
                                 "prices": {
                                     "type": "array",
@@ -197,12 +197,17 @@
                                                 "currencyCode": {
                                                     "type": "string",
                                                     "required": false,
-                                                    "title": "Variants currency code"
+                                                    "title": "Variant currency code"
                                                 },
                                                 "centAmount": {
                                                     "type": "number",
                                                     "required": false,
-                                                    "title": "Variants the amount in cents (the smallest indivisible unit of the currency)"
+                                                    "title": "Variant price in cents"
+                                                },
+                                                "amount": {
+                                                    "type": "number",
+                                                    "required": false,
+                                                    "title": "Variant price"
                                                 }
                                             }
                                         }

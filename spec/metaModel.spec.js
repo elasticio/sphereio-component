@@ -65,7 +65,7 @@ describe('MetaModel#getMetaModel', function() {
         var callback = jasmine.createSpy('callback');
 
         runs(function() {
-            metaModel.getMetaModel(cfg, 'product.json', callback);
+            metaModel.getMetaModel(cfg, 'createProduct.json', callback);
         });
 
         waitsFor(function() {
@@ -82,7 +82,7 @@ describe('MetaModel#getMetaModel', function() {
         var callback = jasmine.createSpy('callback');
 
         runs(function() {
-            metaModel.getMetaModel(cfg, 'productVariant.json', callback);
+            metaModel.getMetaModel(cfg, 'addVariant.json', callback);
         });
 
         waitsFor(function() {
