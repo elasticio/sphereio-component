@@ -66,7 +66,7 @@ describe('Sphere.io queryOrders.js', function () {
                 var newMsg = self.emit.calls[0].args[1];
                 expect(newMsg.body.length).toEqual(allOrders.length);
 
-                // each 'centAmount' should have also "amount"
+                // each 'centAmount' should be converted to "amount"
                 expect(newMsg.body).toEqual(allOrdersResponse);
 
                 // check 'customer' in orders
