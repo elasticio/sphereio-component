@@ -8,18 +8,15 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "orderState": "Open",
         "totalPrice": {
             "currencyCode": "EUR",
-            "centAmount": 10200,
             "amount": 102
         },
         "taxedPrice": {
             "totalNet": {
                 "currencyCode": "EUR",
-                "centAmount": 8262,
                 "amount": 82.62
             },
             "totalGross": {
                 "currencyCode": "EUR",
-                "centAmount": 10200,
                 "amount": 102
             },
             "taxPortions": [
@@ -27,7 +24,6 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                     "rate": 0.19,
                     "amount": {
                         "currencyCode": "EUR",
-                        "centAmount": 1938,
                         "amount": 19.38
                     }
                 }
@@ -47,7 +43,6 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                         {
                             "value": {
                                 "currencyCode": "EUR",
-                                "centAmount": 3400,
                                 "amount": 34
                             }
                         }
@@ -66,7 +61,6 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                 "price": {
                     "value": {
                         "currencyCode": "EUR",
-                        "centAmount": 3400,
                         "amount": 34
                     }
                 },
@@ -112,18 +106,15 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "paymentState": "Pending",
         "totalPrice": {
             "currencyCode": "EUR",
-            "centAmount": 2800,
             "amount": 28
         },
         "taxedPrice": {
             "totalNet": {
                 "currencyCode": "EUR",
-                "centAmount": 2268,
                 "amount": 22.68
             },
             "totalGross": {
                 "currencyCode": "EUR",
-                "centAmount": 2800,
                 "amount": 28
             },
             "taxPortions": [
@@ -131,7 +122,6 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                     "rate": 0.19,
                     "amount": {
                         "currencyCode": "EUR",
-                        "centAmount": 532,
                         "amount": 5.32
                     }
                 }
@@ -151,7 +141,6 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                         {
                             "value": {
                                 "currencyCode": "EUR",
-                                "centAmount": 2800,
                                 "amount": 28
                             }
                         }
@@ -170,7 +159,6 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                 "price": {
                     "value": {
                         "currencyCode": "EUR",
-                        "centAmount": 2800,
                         "amount": 28
                     }
                 },

@@ -74,10 +74,10 @@
                                     "required": false,
                                     "title": "Master variant currency code"
                                 },
-                                "centAmount": {
+                                "amount": {
                                     "type": "number",
                                     "required": false,
-                                    "title": "Master variant amount in cents (the smallest indivisible unit of the currency)"
+                                    "title": "Master variant amount"
                                 }
                             }
                         }
@@ -109,7 +109,7 @@
                 "sku": {
                     "type": "string",
                     "required": false,
-                    "title": "Variants sku"
+                    "title": "Variant sku"
                 },
                 "prices": {
                     "type": "array",
@@ -121,12 +121,12 @@
                                 "currencyCode": {
                                     "type": "string",
                                     "required": false,
-                                    "title": "Variants currency code"
+                                    "title": "Variant currency code"
                                 },
-                                "centAmount": {
+                                "amount": {
                                     "type": "number",
                                     "required": false,
-                                    "title": "Variants amount in cents (the smallest indivisible unit of the currency)"
+                                    "title": "Variant amount"
                                 }
                             }
                         }
@@ -151,8 +151,7 @@
             }
         }
     }
-},
-"out": {
+}, "out": {
     "type": "object",
     "properties": {
         "id": {
@@ -205,29 +204,54 @@
                     "required": false,
                     "properties": {
                         "name": {
-                            "type": "lstring",
-                            "title": "Name",
-                            "required": false
+                            "type": "object",
+                            "properties": {
+                                "en": {
+                                    "title": "Name (en)",
+                                    "type": "string",
+                                    "required": false
+                                }
+                            }
                         },
                         "slug": {
-                            "type": "lstring",
-                            "title": "Slug",
-                            "required": false
+                            "type": "object",
+                            "properties": {
+                                "en": {
+                                    "title": "Slug (en)",
+                                    "type": "string",
+                                    "required": false
+                                }
+                            }
                         },
                         "description": {
-                            "type": "lstring",
-                            "title": "Description",
-                            "required": false
+                            "type": "object",
+                            "properties": {
+                                "en": {
+                                    "title": "Description (en)",
+                                    "type": "string",
+                                    "required": false
+                                }
+                            }
                         },
                         "metaTitle": {
-                            "type": "lstring",
-                            "title": "MetaTitle",
-                            "required": false
+                            "type": "object",
+                            "properties": {
+                                "en": {
+                                    "title": "MetaTitle (en)",
+                                    "type": "string",
+                                    "required": false
+                                }
+                            }
                         },
                         "metaDescription": {
-                            "type": "lstring",
-                            "title": "MetaDescription",
-                            "required": false
+                            "type": "object",
+                            "properties": {
+                                "en": {
+                                    "title": "MetaDescription (en)",
+                                    "type": "string",
+                                    "required": false
+                                }
+                            }
                         },
                         "variants": {
                             "type": "array",
@@ -256,11 +280,6 @@
                                                     "type": "string",
                                                     "required": false,
                                                     "title": "Variant currency code"
-                                                },
-                                                "centAmount": {
-                                                    "type": "number",
-                                                    "required": false,
-                                                    "title": "Variant price in cents"
                                                 },
                                                 "amount": {
                                                     "type": "number",
