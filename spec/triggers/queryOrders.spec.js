@@ -93,8 +93,8 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(newMsg.body.results[1].customer).toEqual(orderCustomers.results[0]);
 
                 // check shippingInfo.price.centAmount in orders
-                expect(newMsg.body.results[0].shippingPrice.centAmount).toEqual(1444); // 1111 + Round(0.3*1111) = 1111 + Round(333.3)
-                expect(newMsg.body.results[1].shippingPrice.centAmount).toEqual(0); // because shipping above 5000 is free
+                expect(newMsg.body.results[0].shippingPrice.amount).toEqual(14.44); // 1111 + Round(0.3*1111) = 1111 + Round(333.3)
+                expect(newMsg.body.results[1].shippingPrice.amount).toEqual(0); // because shipping above 5000 is free
 
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');

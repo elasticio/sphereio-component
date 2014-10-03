@@ -801,8 +801,8 @@
                     "type": "object",
                     "required": true,
                     "properties": {
-                        "centAmount": {
-                            "title": "Shipping Price (cents)",
+                        "amount": {
+                            "title": "Shipping Price",
                             "type": "number",
                             "required": true
                         },
