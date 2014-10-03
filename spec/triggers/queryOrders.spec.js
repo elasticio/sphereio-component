@@ -1,6 +1,7 @@
 describe('Sphere.io queryOrders.js', function () {
     var nock = require('nock');
     var allOrders = require('../data/all_orders.json.js');
+    var allOrdersResponse = require('../data/all_orders_response.json.js');
     var orderCustomers = require('../data/order_customers.json.js');
     var modifiedOrders = require('../data/modified_orders.json.js');
     var emptyResult = {'offset': 0, 'count': 0, 'total': 49, 'results': []};
@@ -64,6 +65,9 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(calls[0].args[0]).toEqual('data');
                 var newMsg = self.emit.calls[0].args[1];
                 expect(newMsg.body.length).toEqual(allOrders.length);
+
+                // each 'centAmount' should be converted to "amount"
+                expect(newMsg.body).toEqual(allOrdersResponse);
 
                 // check 'customer' in orders
                 expect(newMsg.body.results[0].customer).toBeUndefined();

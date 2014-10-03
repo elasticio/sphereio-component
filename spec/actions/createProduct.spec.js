@@ -1,5 +1,6 @@
 describe('Sphereio create product', function () {
     var createProduct = require('../../lib/actions/createProduct.js');
+    var attributeManager = require('../../lib/attributeManager.js');
     var nock = require('nock');
     var fs = require('fs');
 
@@ -38,23 +39,108 @@ describe('Sphereio create product', function () {
 
     describe('post product to service', function() {
         var callback = jasmine.createSpy('callback');
-        var product = {
-            slug: { en: 'brain'},
-            name: { en: 'brain'},
-            metaTitle: { en: 'human brain'},
-            metaDescription: { en: 'delicious forzombies'},
-            description: { en: 'delicious forzombies'},
-            productType: '5dfdc7a9-76a7-4e02-8c4e-6b5b9bd58ef8'
-        };
         var msg = {
-            body: product
+            body: {
+                slug: { en: 'brain'},
+                name: { en: 'brain'},
+                metaTitle: { en: 'human brain'},
+                metaDescription: { en: 'delicious forzombies'},
+                description: { en: 'delicious forzombies'},
+                productType: '5dfdc7a9-76a7-4e02-8c4e-6b5b9bd58ef8',
+                masterVariant: {
+                    sku: 'master-variant-sku',
+                    prices: [
+                        {currencyCode: 'EUR', amount: 12},
+                        {currencyCode: 'USD', amount: 33}
+                    ]
+                },
+                variants: [
+                    {
+                        sku: 'variant-sku',
+                        prices: [
+                            {currencyCode: 'EUR', amount: 5},
+                            {currencyCode: 'USD', amount: 8}
+                        ]
+                    }
+                ]
+            }
         };
+
+        // in request, all 'amount' should become 'centAmount'
+        var convertedMsg = {
+            body: {
+                slug: { en: 'brain'},
+                name: { en: 'brain'},
+                metaTitle: { en: 'human brain'},
+                metaDescription: { en: 'delicious forzombies'},
+                description: { en: 'delicious forzombies'},
+                productType: '5dfdc7a9-76a7-4e02-8c4e-6b5b9bd58ef8',
+                masterVariant: {
+                    sku: 'master-variant-sku',
+                    prices: [
+                        {currencyCode: 'EUR', centAmount: 1200},
+                        {currencyCode: 'USD', centAmount: 3300}
+                    ]
+                },
+                variants: [
+                    {
+                        sku: 'variant-sku',
+                        prices: [
+                            {currencyCode: 'EUR', centAmount: 500},
+                            {currencyCode: 'USD', centAmount: 800}
+                        ]
+                    }
+                ]
+            }
+        };
+
+        var sphereResponse = {
+            id: 'c5d24489-22e6-4c86-a441-f6733be10ac1',
+            version: 1,
+            masterData: {
+                current: {
+                    variants: [
+                        {
+                            sku: 'variant-sku',
+                            prices: [
+                                {currencyCode: 'EUR', centAmount: 500},
+                                {currencyCode: 'USD', centAmount: 800}
+                            ]
+                        }
+                    ]
+                }
+            }
+        };
+
+        // in response, all 'centAmount' should become 'amount'
+        var componentResponse = {
+            id: 'c5d24489-22e6-4c86-a441-f6733be10ac1',
+            version: 1,
+            masterData: {
+                current: {
+                    variants: [
+                        {
+                            sku: 'variant-sku',
+                            prices: [
+                                {currencyCode: 'EUR', amount: 5},
+                                {currencyCode: 'USD', amount: 8}
+                            ]
+                        }
+                    ]
+                }
+            }
+        };
+
         var self;
 
         beforeEach(function() {
             self = jasmine.createSpyObj('self', ['emit']);
-            nock('https://api.sphere.io').post('/elasticio/products')
-                .reply(201, {id: 'c5d24489-22e6-4c86-a441-f6733be10ac1', version: 1});
+
+            spyOn(attributeManager, 'readProduct').andCallThrough();
+
+            nock('https://api.sphere.io')
+                .post('/elasticio/products')
+                .reply(201, sphereResponse);
 
             runs(function() {
                 createProduct.process.call(self, msg, cfg, callback);
@@ -65,9 +151,13 @@ describe('Sphereio create product', function () {
             }, 'Timed out', 1000);
         });
 
+        it('function readProduct should receive centAmounts instead of amounts', function() {
+            expect(attributeManager.readProduct.calls[0].args[1]).toEqual(convertedMsg);
+        });
+
         it('should call callback with right params', function() {
             var data = self.emit.calls[0].args[1].body;
-            expect(data).toEqual({ version: 1, id: 'c5d24489-22e6-4c86-a441-f6733be10ac1'});
+            expect(data).toEqual(componentResponse);
         });
 
         it('should call end event', function() {
@@ -81,10 +171,7 @@ describe('Sphereio create product', function () {
 
     describe('post product to service with some error', function() {
         var callback = jasmine.createSpy('callback');
-        var product = { };
-        var msg = {
-            body: product
-        };
+        var msg = {body: {}};
         var self;
 
         beforeEach(function() {
