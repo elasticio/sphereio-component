@@ -797,6 +797,22 @@
                     "type": "string",
                     "required": false
                 },
+                "shippingPrice": {
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                        "centAmount": {
+                            "title": "Shipping Price (cents)",
+                            "type": "number",
+                            "required": true
+                        },
+                        "currencyCode": {
+                            "title": "Shipping Price (currency)",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
                 "shippingInfo": {
                     "title": "Shipping Info",
                     "type": "object",

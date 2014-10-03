@@ -92,7 +92,21 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "transactionFee": false,
         "syncInfo": [],
         "returnInfo": [],
-        "lastMessageSequenceNumber": 0
+        "lastMessageSequenceNumber": 0,
+        "shippingInfo": {
+            "price": {
+                "centAmount": 1111
+            },
+            "shippingRate": {
+                "freeAbove": {
+                    "centAmount": 15000
+                }
+            },
+            "taxRate": {
+                "amount": 0.3,
+                "includedInPrice": false
+            }
+        }
     },
     {
         "type": "Order",
@@ -190,6 +204,20 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "transactionFee": false,
         "syncInfo": [],
         "returnInfo": [],
-        "lastMessageSequenceNumber": 0
+        "lastMessageSequenceNumber": 0,
+        "shippingInfo": {
+            "price": {
+                "centAmount": 10000
+            },
+            "shippingRate": {
+                "freeAbove": {
+                    "centAmount": 5000
+                }
+            },
+            "taxRate": {
+                "amount": 0.3,
+                "includedInPrice": false
+            }
+        }
     }
 ]};
