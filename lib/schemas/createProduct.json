@@ -1,0 +1,237 @@
+{
+    "in": {
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "lstring",
+                "title": "Name",
+                "required": true
+            },
+            "slug": {
+                "type": "lstring",
+                "title": "Slug",
+                "required": true
+            },
+            "description": {
+                "type": "lstring",
+                "title": "Description",
+                "required": false
+            },
+            "metaTitle": {
+                "type": "lstring",
+                "title": "MetaTitle",
+                "required": false
+            },
+            "metaDescription": {
+                "type": "lstring",
+                "title": "MetaDescription",
+                "required": false
+            },
+            "masterVariant": {
+                "type": "object",
+                "title": "MasterVariant",
+                "required": false,
+                "properties": {
+                    "sku": {
+                        "type": "string",
+                        "required": false,
+                        "title": "Master variant sku"
+                    },
+                    "prices": {
+                        "type": "array",
+                        "required": false,
+                        "properties": {
+                            "value": {
+                                "type": "object",
+                                "required": false,
+                                "properties": {
+                                    "currencyCode": {
+                                        "type": "string",
+                                        "required": false,
+                                        "title": "Master variant currency code"
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "required": false,
+                                        "title": "Master variant amount"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "variants": {
+                "type": "array",
+                "title": "Variants",
+                "required": false,
+                "properties": {
+                    "sku": {
+                        "type": "string",
+                        "required": false,
+                        "title": "Variant sku"
+                    },
+                    "prices": {
+                        "type": "array",
+                        "required": false,
+                        "properties": {
+                            "value": {
+                                "type": "object",
+                                "properties": {
+                                    "currencyCode": {
+                                        "type": "string",
+                                        "required": false,
+                                        "title": "Variant currency code"
+                                    },
+                                    "amount": {
+                                        "type": "number",
+                                        "required": false,
+                                        "title": "Variant amount"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "out": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "string",
+                "title": "Id",
+                "required": true
+            },
+            "version": {
+                "type": "number",
+                "required": true,
+                "title": "Version"
+            },
+            "createdAt": {
+                "type": "datetime",
+                "required": true,
+                "title": "Created at"
+            },
+            "lastModifiedAt": {
+                "type": "datetime",
+                "required": true,
+                "title": "Last modified at"
+            },
+            "productType": {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "typeId": {
+                        "type": "string",
+                        "required": true,
+                        "title": "Product type reference type"
+                    },
+                    "id": {
+                        "type": "string",
+                        "required": true,
+                        "title": "Product type id"
+                    }
+                }
+            },
+            "masterData": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                    "published": {
+                        "type": "boolean",
+                        "required": false,
+                        "title": "Master data published"
+                    },
+                    "current": {
+                        "type": "object",
+                        "required": false,
+                        "properties": {
+                            "name": {
+                                "type": "lstring",
+                                "title": "Name",
+                                "required": false
+                            },
+                            "slug": {
+                                "type": "lstring",
+                                "title": "Slug",
+                                "required": false
+                            },
+                            "description": {
+                                "type": "lstring",
+                                "title": "Description",
+                                "required": false
+                            },
+                            "metaTitle": {
+                                "type": "lstring",
+                                "title": "MetaTitle",
+                                "required": false
+                            },
+                            "metaDescription": {
+                                "type": "lstring",
+                                "title": "MetaDescription",
+                                "required": false
+                            },
+                            "variants": {
+                                "type": "array",
+                                "title": "Variants",
+                                "required": false,
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "required": false,
+                                        "title": "Variant id"
+                                    },
+                                    "sku": {
+                                        "type": "string",
+                                        "required": false,
+                                        "title": "Variant sku"
+                                    },
+                                    "prices": {
+                                        "type": "array",
+                                        "required": false,
+                                        "properties": {
+                                            "value": {
+                                                "type": "object",
+                                                "required": false,
+                                                "properties": {
+                                                    "currencyCode": {
+                                                        "type": "string",
+                                                        "required": false,
+                                                        "title": "Variant currency code"
+                                                    },
+                                                    "amount": {
+                                                        "type": "number",
+                                                        "required": false,
+                                                        "title": "Variant price"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "taxCategory": {
+                "type": "object",
+                "required": true,
+                "properties": {
+                    "typeId": {
+                        "type": "string",
+                        "required": true,
+                        "title": "Tax category type reference type"
+                    },
+                    "id": {
+                        "type": "string",
+                        "required": true,
+                        "title": "Tax categoryid"
+                    }
+                }
+            }
+        }
+    }
+}
