@@ -93,64 +93,64 @@ describe('Sphere.io helpers', function () {
     });
 
 
-    describe('Sphere.io helpers: centAmountFromAmount', function () {
+    describe('Sphere.io helpers: amountToCentAmount', function () {
 
         it('Should convert to centAmount strings with .', function () {
-            var result = helpers.centAmountFromAmount('12.35');
+            var result = helpers.amountToCentAmount('12.35');
             expect(result).toEqual(1235);
         });
 
         it('Should convert to centAmount numbers', function () {
-            var result = helpers.centAmountFromAmount(12.35);
+            var result = helpers.amountToCentAmount(12.35);
             expect(result).toEqual(1235);
         });
 
         it('Should raise exception if string is empty', function () {
             expect(function(){
-                helpers.centAmountFromAmount('');
+                helpers.amountToCentAmount('');
             }).toThrow('"" is not valid amount value');
         });
 
         it('Should raise exception if string is a number with ,', function () {
             expect(function(){
-                helpers.centAmountFromAmount('12,35');
+                helpers.amountToCentAmount('12,35');
             }).toThrow('"12,35" is not valid amount value');
         });
 
         it('Should raise exception if string is a number with , and .', function () {
             expect(function(){
-                helpers.centAmountFromAmount('12,352.66');
+                helpers.amountToCentAmount('12,352.66');
             }).toThrow('"12,352.66" is not valid amount value');
         });
     });
 
-    describe('Sphere.io helpers: amountFromCentAmount', function () {
+    describe('Sphere.io helpers: centAmountToAmount', function () {
 
         it('Should convert number in a correct way', function () {
-            var result = helpers.amountFromCentAmount(1200);
+            var result = helpers.centAmountToAmount(1200);
             expect(result).toEqual(12.00);
         });
 
         it('Should convert string in a correct way', function () {
-            var result = helpers.amountFromCentAmount('1234');
+            var result = helpers.centAmountToAmount('1234');
             expect(result).toEqual(12.34);
         });
 
         it('Should raise exception if centAmount is floating point number', function () {
             expect(function(){
-                helpers.amountFromCentAmount(12.35);
+                helpers.centAmountToAmount(12.35);
             }).toThrow('"12.35" is not valid centAmount value');
         });
 
         it('Should raise exception if centAmount is a string with ,', function () {
             expect(function(){
-                helpers.amountFromCentAmount('12,35');
+                helpers.centAmountToAmount('12,35');
             }).toThrow('"12,35" is not valid centAmount value');
         });
 
         it('Should raise exception if centAmount is a string with .', function () {
             expect(function(){
-                helpers.amountFromCentAmount('12.35');
+                helpers.centAmountToAmount('12.35');
             }).toThrow('"12.35" is not valid centAmount value');
         });
     });
