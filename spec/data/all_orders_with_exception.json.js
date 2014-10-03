@@ -8,23 +8,23 @@ module.exports = {"offset": 0, "count": 1, "total": 1, "results": [
         "orderState": "Open",
         "totalPrice": {
             "currencyCode": "EUR",
-            "amount": 102
+            "centAmount": 10200
         },
         "taxedPrice": {
             "totalNet": {
                 "currencyCode": "EUR",
-                "amount": 82.62
+                "centAmount": 8262
             },
             "totalGross": {
                 "currencyCode": "EUR",
-                "amount": 102
+                "centAmount": 10200
             },
             "taxPortions": [
                 {
                     "rate": 0.19,
                     "amount": {
                         "currencyCode": "EUR",
-                        "amount": 19.38
+                        "centAmount": 1938
                     }
                 }
             ]
@@ -43,7 +43,7 @@ module.exports = {"offset": 0, "count": 1, "total": 1, "results": [
                         {
                             "value": {
                                 "currencyCode": "EUR",
-                                "amount": 34
+                                "centAmount": 3400
                             }
                         }
                     ],
@@ -61,7 +61,7 @@ module.exports = {"offset": 0, "count": 1, "total": 1, "results": [
                 "price": {
                     "value": {
                         "currencyCode": "EUR",
-                        "amount": 34
+                        "centAmount": 3400
                     }
                 },
                 "quantity": 3,
@@ -96,12 +96,12 @@ module.exports = {"offset": 0, "count": 1, "total": 1, "results": [
         "shippingInfo": {
             "price": {
                 "currencyCode": "EUR",
-                "amount": 11.11
+                "centAmount": 1111
             },
             "shippingRate": {
                 "freeAbove": {
                     "currencyCode": "USD",
-                    "amount": 150
+                    "centAmount": 15000
                 }
             },
             "taxRate": {

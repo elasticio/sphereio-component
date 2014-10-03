@@ -7,30 +7,6 @@ describe('Sphere.io queryOrders.js', function () {
     var modifiedOrders = require('../data/modified_orders.json.js');
     var emptyResult = {'offset': 0, 'count': 0, 'total': 49, 'results': []};
 
-    nock('https://auth.sphere.io')
-        .filteringRequestBody(/.*/, '*')
-        .post('/oauth/token', '*')
-        .times(5)
-        .reply(200, {
-            'access_token': 'i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA',
-            'token_type': 'Bearer',
-            'expires_in': 172800,
-            'scope': 'manage_project:test_project'
-        });
-
-    nock('https://api.sphere.io')
-        .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
-        .times(2)
-        .reply(200, allOrders)
-        .get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
-        .reply(200, modifiedOrders)
-        .get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
-        .reply(500, JSON.stringify({message :'Ouch'}))
-        .get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
-        .reply(200, emptyResult)
-        .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
-        .reply(200, orderCustomers);
-
     var next = jasmine.createSpy('next');
     var queryOrders = require('../../lib/triggers/queryOrders.js');
     var helpers = require('../../lib/helpers.js');
