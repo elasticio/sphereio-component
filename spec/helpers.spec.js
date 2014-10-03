@@ -96,7 +96,7 @@ describe('Sphere.io helpers', function () {
     describe('Sphere.io helpers: centAmountFromAmount', function () {
 
         it('Should convert to centAmount strings with .', function () {
-            var result = helpers.centAmountFromAmount("12.35");
+            var result = helpers.centAmountFromAmount('12.35');
             expect(result).toEqual(1235);
         });
 
@@ -107,19 +107,19 @@ describe('Sphere.io helpers', function () {
 
         it('Should raise exception if string is empty', function () {
             expect(function(){
-                helpers.centAmountFromAmount("");
+                helpers.centAmountFromAmount('');
             }).toThrow('"" is not valid amount value');
         });
 
         it('Should raise exception if string is a number with ,', function () {
             expect(function(){
-                helpers.centAmountFromAmount("12,35");
+                helpers.centAmountFromAmount('12,35');
             }).toThrow('"12,35" is not valid amount value');
         });
 
         it('Should raise exception if string is a number with , and .', function () {
             expect(function(){
-                helpers.centAmountFromAmount("12,352.66");
+                helpers.centAmountFromAmount('12,352.66');
             }).toThrow('"12,352.66" is not valid amount value');
         });
     });
@@ -144,13 +144,13 @@ describe('Sphere.io helpers', function () {
 
         it('Should raise exception if centAmount is a string with ,', function () {
             expect(function(){
-                helpers.amountFromCentAmount("12,35");
+                helpers.amountFromCentAmount('12,35');
             }).toThrow('"12,35" is not valid centAmount value');
         });
 
         it('Should raise exception if centAmount is a string with .', function () {
             expect(function(){
-                helpers.amountFromCentAmount("12.35");
+                helpers.amountFromCentAmount('12.35');
             }).toThrow('"12.35" is not valid centAmount value');
         });
     });
