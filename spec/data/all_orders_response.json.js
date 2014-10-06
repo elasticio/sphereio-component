@@ -92,7 +92,24 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "transactionFee": false,
         "syncInfo": [],
         "returnInfo": [],
-        "lastMessageSequenceNumber": 0
+        "lastMessageSequenceNumber": 0,
+        "shippingInfo": {
+            "price": {
+                "amount": 11.11
+            },
+            "shippingRate": {
+                "freeAbove": {
+                    "amount": 150
+                }
+            },
+            "taxRate": {
+                "amount": 0.3,
+                "includedInPrice": false
+            }
+        },
+        "shippingPrice": {
+            "amount": 14.44
+        }
     },
     {
         "type": "Order",
@@ -191,6 +208,20 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "syncInfo": [],
         "returnInfo": [],
         "lastMessageSequenceNumber": 0,
+        "shippingInfo": {
+            "price": {
+                "amount": 100
+            },
+            "shippingRate": {
+                "freeAbove": {
+                    "amount": 50
+                }
+            },
+            "taxRate": {
+                "amount": 0.3,
+                "includedInPrice": false
+            }
+        },
         "customer": {
             "type": "Customer",
             "id": "3927ef3d-b5a1-476c-a61c-d719752ae2dd",
@@ -204,6 +235,9 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
             "externalId": "10001330",
             "createdAt": "1970-01-01T00:00:00.001Z",
             "lastModifiedAt": "2014-08-22T12:54:08.825Z"
+        },
+        "shippingPrice": {
+            "amount": 0
         }
     }
 ]};
