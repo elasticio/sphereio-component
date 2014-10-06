@@ -72,190 +72,100 @@
                     "title": "Title",
                     "type": "string"
                 },
-                "shippingAddress": {
-                    "title": "Shipping address",
-                    "type": "object",
+                "addresses": {
+                    "title": "Addresses",
+                    "type": "array",
                     "properties": {
                         "id": {
-                            "title": "Shipping address ID",
+                            "title": "Address ID",
                             "type": "string"
                         },
                         "title": {
-                            "title": "Shipping address title",
+                            "title": "Address title",
                             "type": "string"
                         },
                         "salutation": {
-                            "title": "Shipping address salutation",
+                            "title": "Address salutation",
                             "type": "string"
                         },
                         "firstName": {
-                            "title": "Shipping address first name",
+                            "title": "Address first name",
                             "type": "string"
                         },
                         "lastName": {
-                            "title": "Shipping address last name",
+                            "title": "Address last name",
                             "type": "string"
                         },
                         "streetName": {
-                            "title": "Shipping address street name",
+                            "title": "Address street name",
                             "type": "string"
                         },
                         "streetNumber": {
-                            "title": "Shipping address street number",
+                            "title": "Address street number",
                             "type": "string"
                         },
                         "additionalStreetInfo": {
-                            "title": "Shipping address additional street info",
+                            "title": "Address additional street info",
                             "type": "string"
                         },
                         "postalCode": {
-                            "title": "Shipping address postal code",
+                            "title": "Address postal code",
                             "type": "string"
                         },
                         "city": {
-                            "title": "Shipping address city",
+                            "title": "Address city",
                             "type": "string"
                         },
                         "region": {
-                            "title": "Shipping address region",
+                            "title": "Address region",
                             "type": "string"
                         },
                         "state": {
-                            "title": "Shipping address state",
+                            "title": "Address state",
                             "type": "string"
                         },
                         "country": {
-                            "title": "Shipping address country",
+                            "title": "Address country",
                             "type": "string"
                         },
                         "company": {
-                            "title": "Shipping address company",
+                            "title": "Address company",
                             "type": "string"
                         },
                         "department": {
-                            "title": "Shipping address department",
+                            "title": "Address department",
                             "type": "string"
                         },
                         "building": {
-                            "title": "Shipping address building",
+                            "title": "Address building",
                             "type": "string"
                         },
                         "apartment": {
-                            "title": "Shipping address apartment",
+                            "title": "Address apartment",
                             "type": "string"
                         },
                         "pOBox": {
-                            "title": "Shipping address pOBox",
+                            "title": "Address pOBox",
                             "type": "string"
                         },
                         "phone": {
-                            "title": "Shipping address Phone",
+                            "title": "Address Phone",
                             "type": "string"
                         },
                         "mobile": {
-                            "title": "Shipping address mobile",
+                            "title": "Address mobile",
                             "type": "string"
                         },
                         "email": {
-                            "title": "Shipping address email",
+                            "title": "Address email",
                             "type": "string"
                         },
                         "additionalAddressInfo": {
-                            "title": "Shipping address additional address info",
-                            "type": "string"
-                        }
-                    }
-                },
-                "billingAddress": {
-                    "title": "Default billing address ID",
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "title": "Billing address ID",
+                            "title": "Address additional info",
                             "type": "string"
                         },
-                        "title": {
-                            "title": "Billing address title",
-                            "type": "string"
-                        },
-                        "salutation": {
-                            "title": "Billing address salutation",
-                            "type": "string"
-                        },
-                        "firstName": {
-                            "title": "Billing address first name",
-                            "type": "string"
-                        },
-                        "lastName": {
-                            "title": "Billing address last name",
-                            "type": "string"
-                        },
-                        "streetName": {
-                            "title": "Billing address street name",
-                            "type": "string"
-                        },
-                        "streetNumber": {
-                            "title": "Billing address street number",
-                            "type": "string"
-                        },
-                        "additionalStreetInfo": {
-                            "title": "Billing address additional street info",
-                            "type": "string"
-                        },
-                        "postalCode": {
-                            "title": "Billing address postal code",
-                            "type": "string"
-                        },
-                        "city": {
-                            "title": "Billing address city",
-                            "type": "string"
-                        },
-                        "region": {
-                            "title": "Billing address region",
-                            "type": "string"
-                        },
-                        "state": {
-                            "title": "Billing address state",
-                            "type": "string"
-                        },
-                        "country": {
-                            "title": "Billing address country",
-                            "type": "string"
-                        },
-                        "company": {
-                            "title": "Billing address  company",
-                            "type": "string"
-                        },
-                        "department": {
-                            "title": "Billing address department",
-                            "type": "string"
-                        },
-                        "building": {
-                            "title": "Billing address building",
-                            "type": "string"
-                        },
-                        "apartment": {
-                            "title": "Billing address apartment",
-                            "type": "string"
-                        },
-                        "pOBox": {
-                            "title": "Billing address pOBox",
-                            "type": "string"
-                        },
-                        "phone": {
-                            "title": "Billing address phone",
-                            "type": "string"
-                        },
-                        "mobile": {
-                            "title": "Billing address mobile",
-                            "type": "string"
-                        },
-                        "email": {
-                            "title": "Billing address email",
-                            "type": "string"
-                        },
-                        "additionalAddressInfo": {
-                            "title": "Billing address additional address info",
+                        "_type": {
+                            "title": "Address type",
                             "type": "string"
                         }
                     }

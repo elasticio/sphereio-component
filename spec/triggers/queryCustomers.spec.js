@@ -231,38 +231,50 @@ describe('Sphere.io queryCustomers.js', function () {
             });
         });
 
-        it('should set shipping and billing addresses and clear unneccessary properties', function() {
+        it('should set shipping and billing addresses types', function() {
             var result = self.emit.calls[0].args[1].body.results;
             var idWidthAddreses = '3927ef3d-b5a1-476c-a61c-d719752ae2dd';
             var customer = result.filter(function(r) { return r.id === idWidthAddreses; }).pop();
-            expect(customer.shippingAddress).toEqual(
+
+            expect(customer.addresses).toEqual([
                 {
-                    id : 'CdKj2Gn7',
-                    salutation : 'mr',
-                    firstName : 'sdgf',
-                    lastName : 'dgfsgsdfgsdg',
-                    country : 'BH'
-                });
-            expect(customer.billingAddress).toEqual(
+                    "id": 'vc4aX5Cd',
+                    "title": 'te',
+                    "salutation": 'mr',
+                    "firstName": 'sfdg',
+                    "lastName": 'sdfg',
+                    "streetName": 'dsfg',
+                    "streetNumber": '345',
+                    "postalCode": '53453',
+                    "country": 'BH',
+                    "company": 'sdfg',
+                    "department": 'sdfg',
+                    "building": '345',
+                    "pOBox": '5345',
+                    "email": 'sfg@rtrewt.lol',
+                    _type : 'billing'
+                },
                 {
-                    id : 'vc4aX5Cd',
-                    title : 'te',
-                    salutation : 'mr',
-                    firstName : 'sfdg',
-                    lastName : 'sdfg',
-                    streetName : 'dsfg',
-                    streetNumber : '345',
-                    postalCode : '53453',
-                    country : 'BH',
-                    company : 'sdfg',
-                    department : 'sdfg',
-                    building : '345',
-                    pOBox : '5345',
-                    email : 'sfg@rtrewt.lol'
-                });
-            expect(customer.addresses).toEqual(undefined);
-            expect(customer.defaultBillingAddressId).toEqual(undefined);
-            expect(customer.defaultShippingAddressId).toEqual(undefined);
+                    "id": 'CdKj2Gn7',
+                    "salutation": 'mr',
+                    "firstName": 'sdgf',
+                    "lastName": 'dgfsgsdfgsdg',
+                    "country": 'BH',
+                    _type : 'shipping'
+                },
+                {
+                    "id": "hbd76FCC",
+                    "firstName": "Homer",
+                    "lastName": "Simpson",
+                    "streetName": "some street",
+                    "streetNumber": "-6",
+                    "postalCode": "99999",
+                    "city": "NY",
+                    "country": "US"
+                }
+            ]);
+            expect(customer.defaultBillingAddressId).toEqual('vc4aX5Cd');
+            expect(customer.defaultShippingAddressId).toEqual('CdKj2Gn7');
         });
     });
 });
