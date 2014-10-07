@@ -101,7 +101,7 @@
                                             "type": "object",
                                             "required": true,
                                             "properties": {
-                                                "centAmount": {
+                                                "amount": {
                                                     "title": "Item Variant Prices, Amount",
                                                     "type": "number",
                                                     "required": true
@@ -148,7 +148,7 @@
                                                     "type": "object",
                                                     "required": true,
                                                     "properties": {
-                                                        "centAmount": {
+                                                        "amount": {
                                                             "title": "Item Variant Price Discount, Amount",
                                                             "type": "number",
                                                             "required": true
@@ -249,7 +249,7 @@
                                     "type": "object",
                                     "required": true,
                                     "properties": {
-                                        "centAmount": {
+                                        "amount": {
                                             "title": "Item Price",
                                             "type": "number",
                                             "required": true
@@ -296,8 +296,8 @@
                                             "type": "object",
                                             "required": true,
                                             "properties": {
-                                                "centAmount": {
-                                                    "title": "Item Price Discount, Amount",
+                                                "amount": {
+                                                    "title": "Item Price Discount",
                                                     "type": "number",
                                                     "required": true
                                                 },
@@ -417,13 +417,13 @@
                             "type": "object",
                             "required": true,
                             "properties": {
-                                "centAmount": {
-                                    "title": "Total Price (cents)",
+                                "amount": {
+                                    "title": "Custom Item Total Price",
                                     "type": "number",
                                     "required": true
                                 },
                                 "currencyCode": {
-                                    "title": "Currency Code",
+                                    "title": "Custom Item Total Price (Currency Code)",
                                     "type": "string",
                                     "required": true
                                 }
@@ -514,8 +514,8 @@
                     "type": "object",
                     "required": true,
                     "properties": {
-                        "centAmount": {
-                            "title": "Total Price (cents)",
+                        "amount": {
+                            "title": "Total Price",
                             "type": "number",
                             "required": true
                         },
@@ -534,8 +534,8 @@
                             "type": "object",
                             "required": true,
                             "properties": {
-                                "centAmount": {
-                                    "title": "Item Taxed Price Net (cents)",
+                                "amount": {
+                                    "title": "Item Taxed Price Net",
                                     "type": "number",
                                     "required": true
                                 },
@@ -550,8 +550,8 @@
                             "type": "object",
                             "required": true,
                             "properties": {
-                                "centAmount": {
-                                    "title": "Item Taxed Price Gross (cents)",
+                                "amount": {
+                                    "title": "Item Taxed Price Gross",
                                     "type": "number",
                                     "required": true
                                 },
@@ -575,8 +575,8 @@
                                     "type": "object",
                                     "required": true,
                                     "properties": {
-                                        "centAmount": {
-                                            "title": "Item Taxed Price (cents)",
+                                        "amount": {
+                                            "title": "Item Taxed Price",
                                             "type": "number",
                                             "required": true
                                         },
@@ -797,6 +797,22 @@
                     "type": "string",
                     "required": false
                 },
+                "shippingPrice": {
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                        "amount": {
+                            "title": "Shipping Price",
+                            "type": "number",
+                            "required": true
+                        },
+                        "currencyCode": {
+                            "title": "Shipping Price (currency)",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
                 "shippingInfo": {
                     "title": "Shipping Info",
                     "type": "object",
@@ -811,8 +827,8 @@
                             "type": "object",
                             "required": true,
                             "properties": {
-                                "centAmount": {
-                                    "title": "Shipping Price (cents)",
+                                "amount": {
+                                    "title": "Shipping Price Amount",
                                     "type": "number",
                                     "required": true
                                 },
@@ -831,8 +847,8 @@
                                     "type": "object",
                                     "required": true,
                                     "properties": {
-                                        "centAmount": {
-                                            "title": "Shipping Rate (cents)",
+                                        "amount": {
+                                            "title": "Shipping Rate Amount",
                                             "type": "number",
                                             "required": true
                                         },
@@ -847,8 +863,8 @@
                                     "type": "object",
                                     "required": false,
                                     "properties": {
-                                        "centAmount": {
-                                            "title": "Shipping Free Above (cents)",
+                                        "amount": {
+                                            "title": "Shipping Free Above (amount)",
                                             "type": "number",
                                             "required": true
                                         },

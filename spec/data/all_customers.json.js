@@ -22,13 +22,25 @@ module.exports = {"offset": 0, "count": 20, "total": 49, "results": [
                 "department": 'sdfg',
                 "building": '345',
                 "pOBox": '5345',
-                "email": 'sfg@rtrewt.lol' },
+                "email": 'sfg@rtrewt.lol'
+            },
              { 
                 "id": 'CdKj2Gn7',
                 "salutation": 'mr',
                 "firstName": 'sdgf',
                 "lastName": 'dgfsgsdfgsdg',
-                "country": 'BH' } 
+                "country": 'BH'
+             },
+             {
+                "id": "hbd76FCC",
+                "firstName": "Homer",
+                "lastName": "Simpson",
+                "streetName": "some street",
+                "streetNumber": "-6",
+                "postalCode": "99999",
+                "city": "NY",
+                "country": "US"
+             }
         ],
         "defaultShippingAddressId": 'CdKj2Gn7',
         "defaultBillingAddressId": 'vc4aX5Cd',

@@ -27,7 +27,7 @@
             "title": "Query Customers",
             "type": "polling",
             "metadata": {
-                "out": "./lib/triggers/queryCustomers.out.json"
+                "out": "./lib/schemas/queryCustomers.out.json"
             },
             "fields": {
                 "where": {
@@ -43,7 +43,7 @@
             "dynamicMetadata": true,
             "type": "polling",
             "metadata": {
-                "out": "./lib/triggers/queryOrders.out.json"
+                "out": "./lib/schemas/queryOrders.out.json"
             },
             "fields": {
                 "where": {
@@ -78,7 +78,7 @@
                         }
                     }
                 },
-                "out": "./lib/actions/updateCustomer.out.json"
+                "out": "./lib/schemas/updateCustomer.out.json"
             }
         },
         "createProduct": {
@@ -191,7 +191,7 @@
                         }
                     }
                 },
-                "out": "./lib/actions/updateCustomer.out.json"
+                "out": "./lib/schemas/updateCustomer.out.json"
             }
         },
         "getOrderByID": {
@@ -208,7 +208,7 @@
                         }
                     }
                 },
-                "out": "./lib/actions/order.json"
+                "out": "./lib/schemas/getOrderByID.out.json"
             }
         },
         "addVariant": {

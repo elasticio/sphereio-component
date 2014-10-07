@@ -1,6 +1,6 @@
 exports.testSuite = testSuite;
 
-function testSuite(service, fileName) {
+function testSuite(service, fileName, responseData, expectedData) {
     var action = require('../../lib/actions/'+fileName);
     var nock = require('nock');
 
@@ -23,6 +23,8 @@ function testSuite(service, fileName) {
         var callback = jasmine.createSpy('callback');
         var self;
 
+        var replyWithData = responseData ? responseData : {"version":12, id: 42};
+
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
             var msg = {
@@ -34,7 +36,8 @@ function testSuite(service, fileName) {
             var path = '/elasticio/' +service + '/42';
 
             var scope = nock('https://api.sphere.io');
-            scope.get(path).reply(200, {"version":12, id: 42});
+
+            scope.get(path).reply(200, replyWithData);
 
             runs(function() {
                 action.process.call(self, msg, cfg, callback);
@@ -47,7 +50,10 @@ function testSuite(service, fileName) {
 
         it('should call callback with right params', function() {
             var data = self.emit.calls[0].args[1].body;
-            expect(data).toEqual({ version: 12, id: 42 });
+
+            var expected = expectedData ? expectedData : replyWithData;
+
+            expect(data).toEqual(expected);
         });
 
         it('should call end event', function() {

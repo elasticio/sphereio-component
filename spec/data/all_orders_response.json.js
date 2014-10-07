@@ -8,23 +8,23 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "orderState": "Open",
         "totalPrice": {
             "currencyCode": "EUR",
-            "centAmount": 10200
+            "amount": 102
         },
         "taxedPrice": {
             "totalNet": {
                 "currencyCode": "EUR",
-                "centAmount": 8262
+                "amount": 82.62
             },
             "totalGross": {
                 "currencyCode": "EUR",
-                "centAmount": 10200
+                "amount": 102
             },
             "taxPortions": [
                 {
                     "rate": 0.19,
                     "amount": {
                         "currencyCode": "EUR",
-                        "centAmount": 1938
+                        "amount": 19.38
                     }
                 }
             ]
@@ -43,7 +43,7 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                         {
                             "value": {
                                 "currencyCode": "EUR",
-                                "centAmount": 3400
+                                "amount": 34
                             }
                         }
                     ],
@@ -61,7 +61,7 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                 "price": {
                     "value": {
                         "currencyCode": "EUR",
-                        "centAmount": 3400
+                        "amount": 34
                     }
                 },
                 "quantity": 3,
@@ -95,17 +95,20 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "lastMessageSequenceNumber": 0,
         "shippingInfo": {
             "price": {
-                "centAmount": 1111
+                "amount": 11.11
             },
             "shippingRate": {
                 "freeAbove": {
-                    "centAmount": 15000
+                    "amount": 150
                 }
             },
             "taxRate": {
                 "amount": 0.3,
                 "includedInPrice": false
             }
+        },
+        "shippingPrice": {
+            "amount": 14.44
         }
     },
     {
@@ -120,23 +123,23 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "paymentState": "Pending",
         "totalPrice": {
             "currencyCode": "EUR",
-            "centAmount": 2800
+            "amount": 28
         },
         "taxedPrice": {
             "totalNet": {
                 "currencyCode": "EUR",
-                "centAmount": 2268
+                "amount": 22.68
             },
             "totalGross": {
                 "currencyCode": "EUR",
-                "centAmount": 2800
+                "amount": 28
             },
             "taxPortions": [
                 {
                     "rate": 0.19,
                     "amount": {
                         "currencyCode": "EUR",
-                        "centAmount": 532
+                        "amount": 5.32
                     }
                 }
             ]
@@ -155,7 +158,7 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                         {
                             "value": {
                                 "currencyCode": "EUR",
-                                "centAmount": 2800
+                                "amount": 28
                             }
                         }
                     ],
@@ -173,7 +176,7 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                 "price": {
                     "value": {
                         "currencyCode": "EUR",
-                        "centAmount": 2800
+                        "amount": 28
                     }
                 },
                 "quantity": 1,
@@ -207,17 +210,34 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "lastMessageSequenceNumber": 0,
         "shippingInfo": {
             "price": {
-                "centAmount": 10000
+                "amount": 100
             },
             "shippingRate": {
                 "freeAbove": {
-                    "centAmount": 5000
+                    "amount": 50
                 }
             },
             "taxRate": {
                 "amount": 0.3,
                 "includedInPrice": false
             }
+        },
+        "customer": {
+            "type": "Customer",
+            "id": "3927ef3d-b5a1-476c-a61c-d719752ae2dd",
+            "version": 9,
+            "email": "bart15@simpsons.com",
+            "firstName": "Bart",
+            "lastName": "Simpson",
+            "password": "2VD7TvB8GmFEYKwqYg9FhLAFQL/4TpvZj3dLgsmfHTQ=$XLEltjxvMrmWCppbPOmN3i+3E7QeoYNvoHyyocVOmAA=",
+            "addresses": [],
+            "isEmailVerified": false,
+            "externalId": "10001330",
+            "createdAt": "1970-01-01T00:00:00.001Z",
+            "lastModifiedAt": "2014-08-22T12:54:08.825Z"
+        },
+        "shippingPrice": {
+            "amount": 0
         }
     }
 ]};
