@@ -149,7 +149,7 @@ describe('Sphereio update customers external id', function () {
 
             var scope = nock('https://api.sphere.io');
             scope.get('/elasticio/customers/3927ef3d-b5a1-476c-a61c-d719752ae2dd').reply(200, oneCustomer);
-            scope.post('/elasticio/customers/3927ef3d-b5a1-476c-a61c-d719752ae2dd').reply(200, oneModifiedCustomer);
+            scope.post('/elasticio/customers/3927ef3d-b5a1-476c-a61c-d719752ae2dd').reply(200, oneCustomer);
 
             runs(function() {
                 updateCustomer.process.call(self, msg, cfg, callback);
