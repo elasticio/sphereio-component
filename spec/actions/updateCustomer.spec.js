@@ -1,5 +1,7 @@
 describe('Sphereio update customers external id', function () {
-    var updateCustomers = require('../../lib/actions/updateCustomer.js');
+    var updateCustomer = require('../../lib/actions/updateCustomer.js');
+    var oneCustomer = require('../data/one_customer.json.js');
+    var oneModifiedCustomer = require('../data/one_modified_customer.json.js');
     var nock = require('nock');
 
     var cfg = {
@@ -35,7 +37,7 @@ describe('Sphereio update customers external id', function () {
             scope.post('/elasticio/customers/42').reply(200, {"version":12, id: 42});
 
             runs(function() {
-                updateCustomers.process.call(self, msg, cfg, callback);
+                updateCustomer.process.call(self, msg, cfg, callback);
             });
 
             waitsFor(function() {
@@ -74,7 +76,7 @@ describe('Sphereio update customers external id', function () {
             scope.post('/elasticio/customers/42').reply(409, {statusCode: 409});
 
             runs(function() {
-                updateCustomers.process.call(self, msg, cfg, callback);
+                updateCustomer.process.call(self, msg, cfg, callback);
             });
 
             waitsFor(function() {
@@ -111,7 +113,7 @@ describe('Sphereio update customers external id', function () {
             scope.get('/elasticio/customers/54').reply(404, {statusCode: 404});
             
             runs(function() {
-                updateCustomers.process.call(self, msg, cfg, callback);
+                updateCustomer.process.call(self, msg, cfg, callback);
             });
 
             waitsFor(function() {
@@ -130,5 +132,41 @@ describe('Sphereio update customers external id', function () {
         it('should not emit more then two events', function() {
             expect(self.emit.calls.length).toEqual(2);
         });
+    });
+
+    describe('when updated customer has addresses', function() {
+        var self;
+        var callback = jasmine.createSpy('callback');
+
+        beforeEach(function () {
+            self = jasmine.createSpyObj('self', ['emit']);
+            var msg = {
+                body: {
+                    id: '3927ef3d-b5a1-476c-a61c-d719752ae2dd',
+                    external_id: '4200'
+                }
+            };
+
+            var scope = nock('https://api.sphere.io');
+            scope.get('/elasticio/customers/3927ef3d-b5a1-476c-a61c-d719752ae2dd').reply(200, oneCustomer);
+            scope.post('/elasticio/customers/3927ef3d-b5a1-476c-a61c-d719752ae2dd').reply(200, oneModifiedCustomer);
+
+            runs(function() {
+                updateCustomer.process.call(self, msg, cfg, callback);
+            });
+
+            waitsFor(function() {
+                return self.emit.calls.length;
+            }, "Timed out", 1000);
+        });
+
+        it('should set shipping and billing addresses types', function() {
+            var customer = self.emit.calls[0].args[1].body;
+
+            expect(customer.addresses).toEqual(oneModifiedCustomer.addresses);
+            expect(customer.defaultBillingAddressId).toEqual('vc4aX5Cd');
+            expect(customer.defaultShippingAddressId).toEqual('CdKj2Gn7');
+        });
+
     });
 });

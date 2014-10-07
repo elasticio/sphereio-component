@@ -190,7 +190,7 @@ describe('Sphere.io queryCustomers.js', function () {
         });
     });
 
-    describe('when some customer has addreses', function() {
+    describe('when some customer has addresses', function() {
         var msg;
         var self;
         var cfg;
@@ -233,8 +233,8 @@ describe('Sphere.io queryCustomers.js', function () {
 
         it('should set shipping and billing addresses types', function() {
             var result = self.emit.calls[0].args[1].body.results;
-            var idWidthAddreses = '3927ef3d-b5a1-476c-a61c-d719752ae2dd';
-            var customer = result.filter(function(r) { return r.id === idWidthAddreses; }).pop();
+            var idWidthAddresses = '3927ef3d-b5a1-476c-a61c-d719752ae2dd';
+            var customer = result.filter(function(r) { return r.id === idWidthAddresses; }).pop();
 
             expect(customer.addresses).toEqual([
                 {
