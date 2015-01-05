@@ -170,7 +170,7 @@ describe('Sphere.io queryOrders.js', function () {
         it('should emit error if request to sphere.io was failed', function () {
 
             nock('https://api.sphere.io').get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
-                .reply(500, JSON.stringify({message :'Ouch'}));
+                .reply(500, JSON.stringify({message :'Internal Server Error'}));
 
             var snapshot = {
                 'lastModifiedAt': '2014-09-21T00:00:00.000Z'
@@ -186,7 +186,7 @@ describe('Sphere.io queryOrders.js', function () {
                 var calls = self.emit.calls;
                 expect(calls.length).toEqual(2);
                 expect(calls[0].args[0]).toEqual('error');
-                expect(calls[0].args[1].message).toEqual('Ouch');
+                expect(calls[0].args[1].message).toEqual('Internal Server Error');
 
                 expect(calls[1].args[0]).toEqual('end');
             });

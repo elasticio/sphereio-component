@@ -93,11 +93,13 @@ function testSuite(service, fileName, responseData, expectedData) {
 
         it('should emit right error', function() {
             expect(self.emit).toHaveBeenCalledWith('error', {
-                statusCode : 404,
-                message : 'Endpoint \'' + path+ '\' not found.',
-                originalRequest : {
-                    endpoint : '/' +service + '/54'
-                }
+                body: {
+                    statusCode: 404,
+                    message: 'Endpoint \'' + path + '\' not found.',
+                    originalRequest: {
+                        endpoint: '/' + service + '/54'
+                    }
+                }, code: 404
             });
         });
 
