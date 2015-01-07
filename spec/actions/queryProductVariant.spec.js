@@ -182,7 +182,7 @@ describe('Query Product Variant', function () {
             
             nock('https://api.sphere.io')
                 .get('/test_project/products?where=masterData(current(variants(sku%20%3D%20%22timex-wr30m-error%22)%20or%20masterVariant(sku%20%3D%20%22timex-wr30m-error%22)))')
-                .reply(500, {message: "Wow! Such error, very problem"});
+                .reply(500, {message: "Internal Server Error"});
             
             runs(function () {
                 queryProductVariant.process.call(self, msg, cfg, next, snapshot);
@@ -203,7 +203,7 @@ describe('Query Product Variant', function () {
             var data = self.emit.calls[0].args[1];
             expect(event).toEqual('error');
 
-            expect(data.message).toEqual('Wow! Such error, very problem');
+            expect(data.message).toEqual('Internal Server Error');
 
         });
         

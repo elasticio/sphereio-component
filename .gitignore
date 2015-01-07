@@ -10,3 +10,5 @@ coverage
 reports
 /*.png
 .DS_Store
+npm-debug.log
+sphere-elastic-debug.log

@@ -117,6 +117,8 @@ module.exports = function (grunt) {
     // Default task(s).
     grunt.registerTask('default', ['clean', 'jshint', 'jasmine_node:spec']);
 
+    grunt.registerTask('test', 'jasmine_node:spec');
+
     grunt.registerTask('coverage', ['clean', 'jscs', 'env:coverage',
         'instrument', 'copy:specDepedencies', 'jasmine_node:instrumented', 'storeCoverage', 'makeReport', 'coveralls:test']);
 };
