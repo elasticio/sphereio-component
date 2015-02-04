@@ -1,4 +1,6 @@
 node_modules
+./node_modules/*
+./node_modules
 idea
 coverage
 sphere-node-client-debug.log
@@ -10,3 +12,5 @@ coverage
 reports
 /*.png
 .DS_Store
+npm-debug.log
+sphere-elastic-debug.log
