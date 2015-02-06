@@ -55,7 +55,101 @@
         },
         "addresses": {
             "title": "Addresses",
-            "type": "array"
+            "type": "array",
+            "properties": {
+                "id": {
+                    "title": "Address ID",
+                    "type": "string"
+                },
+                "title": {
+                    "title": "Address title",
+                    "type": "string"
+                },
+                "salutation": {
+                    "title": "Address salutation",
+                    "type": "string"
+                },
+                "firstName": {
+                    "title": "Address first name",
+                    "type": "string"
+                },
+                "lastName": {
+                    "title": "Address last name",
+                    "type": "string"
+                },
+                "streetName": {
+                    "title": "Address street name",
+                    "type": "string"
+                },
+                "streetNumber": {
+                    "title": "Address street number",
+                    "type": "string"
+                },
+                "additionalStreetInfo": {
+                    "title": "Address additional street info",
+                    "type": "string"
+                },
+                "postalCode": {
+                    "title": "Address postal code",
+                    "type": "string"
+                },
+                "city": {
+                    "title": "Address city",
+                    "type": "string"
+                },
+                "region": {
+                    "title": "Address region",
+                    "type": "string"
+                },
+                "state": {
+                    "title": "Address state",
+                    "type": "string"
+                },
+                "country": {
+                    "title": "Address country",
+                    "type": "string"
+                },
+                "company": {
+                    "title": "Address company",
+                    "type": "string"
+                },
+                "department": {
+                    "title": "Address department",
+                    "type": "string"
+                },
+                "building": {
+                    "title": "Address building",
+                    "type": "string"
+                },
+                "apartment": {
+                    "title": "Address apartment",
+                    "type": "string"
+                },
+                "pOBox": {
+                    "title": "Address pOBox",
+                    "type": "string"
+                },
+                "phone": {
+                    "title": "Address Phone",
+                    "type": "string"
+                },
+                "mobile": {
+                    "title": "Address mobile",
+                    "type": "string"
+                },
+                "email": {
+                    "title": "Address email",
+                    "type": "string"
+                },
+                "additionalAddressInfo": {
+                    "title": "Address additional info",
+                    "type": "string"
+                },
+                "_type": {
+                    "title": "Address type",
+                    "type": "string"
+                }
+            }
         },
         "defaultShippingAddressId": {
             "title": "Default shipping address ID",
