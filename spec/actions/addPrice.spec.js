@@ -141,14 +141,14 @@ describe('Add Price', function () {
                 .get('/test_project/products/f499d66d-5bb7-48b0-b2ee-891317abfd69')
                 .reply(200, masterProduct.results[0])
                 .post('/test_project/products/f499d66d-5bb7-48b0-b2ee-891317abfd69', {
-                    "version": 12,
-                    "actions": [{
-                        "action": "changePrice",
-                        "variantId": 2,
-                        "price": {
-                            "value": {
-                                "currencyCode": "EUR",
-                                "centAmount": 10000
+                    'version': 12,
+                    'actions': [{
+                        'action': 'changePrice',
+                        'variantId': 2,
+                        'price': {
+                            'value': {
+                                'currencyCode': 'EUR',
+                                'centAmount': 10000
                             }
                         }
                     }]
