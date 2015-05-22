@@ -9,7 +9,7 @@ describe('Add Price', function () {
     };
 
 
-    beforeEach(function () {
+    beforeEach(function() {
         nock('https://auth.sphere.io').post('/oauth/token')
             .reply(200, {
                 access_token: '70kNDuiU_UstkLgWro3UYlhLbpXO5ywU',
@@ -48,7 +48,7 @@ describe('Add Price', function () {
                 addPrice.process.call(self, msg, cfg);
             });
 
-            waitsFor(function () {
+            waitsFor(function() {
                 return self.emit.calls.length;
             });
         });
@@ -90,16 +90,13 @@ describe('Add Price', function () {
                 .get('/test_project/products/f499d66d-5bb7-48b0-b2ee-891317abfd69')
                 .reply(200, masterProduct.results[0])
                 .post('/test_project/products/f499d66d-5bb7-48b0-b2ee-891317abfd69')
-                .reply(409, {
-                    message: 'Version mismatch. Concurrent modification.',
-                    statusCode: 409
-                });
+                .reply(409, {message: 'Version mismatch. Concurrent modification.', statusCode: 409});
 
             runs(function () {
                 addPrice.process.call(self, msg, cfg);
             });
 
-            waitsFor(function () {
+            waitsFor(function() {
                 return self.emit.calls.length;
             });
         });
@@ -183,6 +180,7 @@ describe('Add Price', function () {
         });
 
     });
+
     describe('Price in scope exists in masterVariant should execute changePrice', function () {
         var msg;
         var self;
@@ -245,6 +243,7 @@ describe('Add Price', function () {
         });
 
     });
+
     describe('general error', function () {
         var msg;
         var self;
@@ -265,16 +264,13 @@ describe('Add Price', function () {
                 .get('/test_project/products/f499d66d-5bb7-48b0-b2ee-891317abfd69')
                 .reply(200, masterProduct.results[0])
                 .post('/test_project/products/f499d66d-5bb7-48b0-b2ee-891317abfd69')
-                .reply(400, {
-                    message: 'Hey, lucky!',
-                    statusCode: 400
-                });
+                .reply(400, {message: 'Hey, lucky!', statusCode: 400});
 
             runs(function () {
                 addPrice.process.call(self, msg, cfg);
             });
 
-            waitsFor(function () {
+            waitsFor(function() {
                 return self.emit.calls.length;
             });
         });
