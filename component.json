@@ -97,7 +97,7 @@
         },
         "addPriceToVariant": {
             "main": "./lib/actions/addPrice.js",
-            "title": "Add Price to Variant",
+            "title": "Add/Update Price to Variant",
             "metadata": {
                 "in": {
                     "type": "object",
