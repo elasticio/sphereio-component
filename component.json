@@ -240,7 +240,7 @@
                         "orderNumber": {
                             "title": "Order number",
                             "type": "string",
-                            "required": true
+                            "required": false
                         }
                     }
                 }
