@@ -1,5 +1,6 @@
 describe('Set Order Number', function () {
     var nock = require('nock');
+    var root = 'https://api.sphere.io';
     var masterProduct = require('../data/order_master.json.js');
     var setOrderNumber = require('../../lib/actions/setOrderNumber.js');
     var cfg = {
@@ -22,7 +23,7 @@ describe('Set Order Number', function () {
         var msg;
         var self;
 
-        beforeEach(function () {
+        it('should emit two calls, proper data message and end message', function () {
             msg = {
                 body: {
                     orderId: '8fd9f83c-3453-418c-9f3b-5a218bfc842a',
@@ -32,7 +33,7 @@ describe('Set Order Number', function () {
 
             self = jasmine.createSpyObj('self', ['emit']);
 
-            nock('https://api.sphere.io')
+            nock(root)
                 .get('/test_project/orders/8fd9f83c-3453-418c-9f3b-5a218bfc842a')
                 .reply(200, masterProduct.results[0])
                 .post('/test_project/orders/8fd9f83c-3453-418c-9f3b-5a218bfc842a')
@@ -47,22 +48,14 @@ describe('Set Order Number', function () {
             waitsFor(function() {
                 return self.emit.calls.length;
             });
-        });
 
-        it('should call emit only 2 times', function () {
-            expect(self.emit.calls.length).toEqual(2);
-        });
-
-        it('should emit proper data message', function () {
-            var event = self.emit.calls[0].args[0];
-            var data = self.emit.calls[0].args[1].body;
-            expect(event).toEqual('data');
-            expect(data.version).toEqual(13);
-        });
-
-        it('should emit end message', function () {
-            var args = self.emit.calls[1].args;
-            expect(args[0]).toEqual('end');
+            runs(function () {
+                expect(self.emit.calls.length).toEqual(2);
+                var event = self.emit.calls[0].args[0];
+                expect(event).toEqual('data');
+                expect(event.body.version).toEqual(13);
+                expect(self.emit.calls[1].args[0]).toEqual('end');
+            });
         });
     });
 
@@ -70,7 +63,7 @@ describe('Set Order Number', function () {
         var msg;
         var self;
 
-        beforeEach(function () {
+        it('should emit two calls, error message and end message', function () {
             msg = {
                 body: {
                     orderId: '8fd9f83c-3453-418c-9f3b-5a218bfc842a',
@@ -80,7 +73,7 @@ describe('Set Order Number', function () {
 
             self = jasmine.createSpyObj('self', ['emit']);
 
-            nock('https://api.sphere.io')
+            nock(root)
                 .get('/test_project/orders/8fd9f83c-3453-418c-9f3b-5a218bfc842a')
                 .reply(200, masterProduct.results[0])
                 .post('/test_project/orders/8fd9f83c-3453-418c-9f3b-5a218bfc842a')
@@ -93,21 +86,12 @@ describe('Set Order Number', function () {
             waitsFor(function() {
                 return self.emit.calls.length;
             });
-        });
 
-        it('should call emit only 2 times', function () {
-            expect(self.emit.calls.length).toEqual(2);
-        });
-
-        it('should emit error message', function () {
-            var event = self.emit.calls[0].args[0];
-            var data = self.emit.calls[0].args[1].body;
-            expect(event).toEqual('error');
-        });
-
-        it('should emit end message', function () {
-            var args = self.emit.calls[1].args;
-            expect(args[0]).toEqual('end');
+            runs(function () {
+                expect(self.emit.calls.length).toEqual(2);
+                expect(self.emit.calls[0].args[0]).toEqual('error');
+                expect(self.emit.calls[1].args[0]).toEqual('end');
+            });
         });
     });
 
