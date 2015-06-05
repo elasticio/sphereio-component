@@ -214,7 +214,7 @@
         "addVariant": {
             "main": "./lib/actions/addVariant.js",
             "title": "Add Product Variant",
-             "fields": {
+            "fields": {
                 "productType": {
                     "viewClass": "SelectView",
                     "label": "Product type",
@@ -224,6 +224,27 @@
                 }
             },
             "dynamicMetadata":true
+        },
+        "setOrderNumber": {
+            "main": "./lib/actions/setOrderNumber.js",
+            "title": "Set Order Number",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "orderNumber": {
+                            "title": "Order number",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
         }
     }
 }

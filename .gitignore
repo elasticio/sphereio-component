@@ -6,7 +6,6 @@ sphere-node-client-debug.log
 .idea
 lib-cov
 coverage.html
-coverage
 reports
 /*.png
 .DS_Store
