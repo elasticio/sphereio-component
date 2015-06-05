@@ -7,7 +7,7 @@ module.exports = {
           "type":"Order",
           "id":"8fd9f83c-3453-418c-9f3b-5a218bfc842a",
           "version":12,
-          "orderNumber":"Victor test version",
+          "orderNumber":null,
           "createdAt":"2013-06-04T14:05:13.564Z",
           "lastModifiedAt":"2015-06-03T14:37:43.191Z",
           "orderState":"Open",
