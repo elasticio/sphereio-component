@@ -52,8 +52,9 @@ describe('Set Order Number', function () {
             runs(function () {
                 expect(self.emit.calls.length).toEqual(2);
                 var event = self.emit.calls[0].args[0];
+                var data = self.emit.calls[0].args[1].body;
                 expect(event).toEqual('data');
-                expect(event.body.version).toEqual(13);
+                expect(data.version).toEqual(13);
                 expect(self.emit.calls[1].args[0]).toEqual('end');
             });
         });
