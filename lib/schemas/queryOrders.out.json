@@ -1047,6 +1047,27 @@
                         }
                     }
                 },
+                "syncInfo": {
+                    "channel": {
+                        "title": "Channel reference",
+                        "type": "object",
+                        "required": true,
+                        "properties": {
+                            "typeId": "channel",
+                            "id": "string"
+                        }
+                    },
+                    "externalId": {
+                        "title": "External ID",
+                        "type": "string",
+                        "required": true
+                    },
+                    "syncedAt": {
+                        "title": "Synced at",
+                        "type": "string",
+                        "required": true
+                    }
+                },
                 "lastMessageSequenceNumber": {
                     "title": "Last message sequence number",
                     "type": "number",
