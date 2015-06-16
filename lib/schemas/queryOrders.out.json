@@ -1052,11 +1052,6 @@
                     "type": "number",
                     "required": true
                 },
-                "vatId": {
-                    "title": "VAT ID",
-                    "type": "string",
-                    "required": false
-                }
             }
         }
     }
