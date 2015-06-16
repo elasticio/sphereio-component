@@ -182,6 +182,11 @@
                 "customerGroup": {
                     "title": "Customer group",
                     "type": "string"
+                },
+                "vatId": {
+                    "title": "VAT ID",
+                    "type": "string",
+                    "required": false
                 }
             }
         }
