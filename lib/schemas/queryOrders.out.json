@@ -1051,7 +1051,7 @@
                     "title": "Last message sequence number",
                     "type": "number",
                     "required": true
-                },
+                }
             }
         }
     }
