@@ -247,7 +247,7 @@
             }
         },
         "addDelivery": {
-            "main": "./lib/actions/setOrderNumber.js",
+            "main": "./lib/actions/addDelivery.js",
             "title": "Add a Delivery",
             "metadata": {
                 "in": {
