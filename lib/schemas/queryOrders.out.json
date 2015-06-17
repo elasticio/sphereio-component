@@ -1048,24 +1048,37 @@
                     }
                 },
                 "syncInfo": {
-                    "channel": {
-                        "title": "Channel reference",
-                        "type": "object",
-                        "required": true,
-                        "properties": {
-                            "typeId": "channel",
-                            "id": "string"
+                    "title": "Synchronization Info",
+                    "type": "object",
+                    "required": true,
+                    "properties": {
+                        "channel": {
+                            "title": "Channel reference",
+                            "type": "object",
+                            "required": true,
+                            "properties": {
+                                "typeId": {
+                                    "title": "Type of reference ID",
+                                    "type": "string",
+                                    "required": true
+                                },
+                                "id": {
+                                    "title": "Reference ID",
+                                    "type": "string",
+                                    "required": true
+                                }
+                            }
+                        },
+                        "externalId": {
+                            "title": "External ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "syncedAt": {
+                            "title": "Synced at",
+                            "type": "string",
+                            "required": true
                         }
-                    },
-                    "externalId": {
-                        "title": "External ID",
-                        "type": "string",
-                        "required": true
-                    },
-                    "syncedAt": {
-                        "title": "Synced at",
-                        "type": "string",
-                        "required": true
                     }
                 },
                 "lastMessageSequenceNumber": {
