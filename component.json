@@ -245,6 +245,52 @@
                     }
                 }
             }
+        },
+        "addDelivery": {
+            "main": "./lib/actions/addDelivery.js",
+            "title": "Add a Delivery",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "lineItemId": {
+                            "title": "ID of the line item being delivered",
+                            "type": "string",
+                            "required": true
+                        },
+                        "quantity": {
+                            "title": "Order ID",
+                            "type": "number",
+                            "required": true
+                        },
+                        "parcelId": {
+                            "title": "Unique parcel ID",
+                            "type": "string",
+                            "required": false
+                        },
+                        "trackingId": {
+                            "title": "Tracking ID to track the delivery",
+                            "type": "string",
+                            "required": false
+                        }
+                    }
+                },
+                "out": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
         }
     }
 }
