@@ -68,7 +68,8 @@ describe('Add A Delivery', function () {
                 var event = self.emit.calls[0].args[0];
                 var data = self.emit.calls[0].args[1].body;
                 expect(event).toEqual('data');
-                expect(data.delivery.createdAt).toEqual("today");
+                expect(data.delivery.createdAt).toEqual('today');
+                expect(data.orderId).toEqual('8fd9f83c-3453-418c-9f3b-5a218bfc842a');
                 expect(self.emit.calls[1].args[0]).toEqual('end');
             });
         });

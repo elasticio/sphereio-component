@@ -279,6 +279,16 @@
                             "required": false
                         }
                     }
+                },
+                "out": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
                 }
             }
         }
