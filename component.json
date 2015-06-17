@@ -247,7 +247,7 @@
             }
         },
         "addDelivery": {
-            "main": "./lib/actions/setOrderNumber.js",
+            "main": "./lib/actions/addDelivery.js",
             "title": "Add a Delivery",
             "metadata": {
                 "in": {
@@ -277,6 +277,48 @@
                             "title": "Tracking ID to track the delivery",
                             "type": "string",
                             "required": false
+                        }
+                    }
+                },
+                "out": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
+        },
+        "changeShipmentState": {
+            "main": "./lib/actions/changeShipmentState.js",
+            "title": "Changes shipment state",
+            "type": "polling",
+            "fields": {
+                "shipmentState": {
+                    "label": "Shipment state",
+                    "viewClass": "SelectView",
+                    "required": true,
+                    "model": {
+                        "Shipped":"Shipped",
+                        "Ready":"Ready",
+                        "Pending":"Pending",
+                        "Partial":"Partial",
+                        "Backorder":"Backorder"
+                    },
+                    "prompt": "Please select"
+                }
+            },
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
                         }
                     }
                 },
