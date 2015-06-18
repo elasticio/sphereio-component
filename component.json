@@ -291,6 +291,48 @@
                     }
                 }
             }
+        },
+        "changeShipmentState": {
+            "main": "./lib/actions/changeShipmentState.js",
+            "title": "Changes shipment state",
+            "type": "polling",
+            "fields": {
+                "shipmentState": {
+                    "label": "Shipment state",
+                    "viewClass": "SelectView",
+                    "required": true,
+                    "model": {
+                        "shipped":"Shipped",
+                        "ready":"Ready",
+                        "pending":"Pending",
+                        "partial":"Partial",
+                        "backorder":"Backorder"
+                    },
+                    "prompt": "Please select"
+                }
+            },
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                "out": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
         }
     }
 }
