@@ -7,7 +7,6 @@ sphere-node-client-debug.log
 lib-cov
 coverage.html
 reports
-/*.png
 .DS_Store
 npm-debug.log
 sphere-elastic-debug.log
