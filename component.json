@@ -97,7 +97,7 @@
         },
         "addPriceToVariant": {
             "main": "./lib/actions/addPrice.js",
-            "title": "Add Price to Variant",
+            "title": "Add/Update Price to Variant",
             "metadata": {
                 "in": {
                     "type": "object",
@@ -214,7 +214,7 @@
         "addVariant": {
             "main": "./lib/actions/addVariant.js",
             "title": "Add Product Variant",
-             "fields": {
+            "fields": {
                 "productType": {
                     "viewClass": "SelectView",
                     "label": "Product type",
@@ -224,6 +224,115 @@
                 }
             },
             "dynamicMetadata":true
+        },
+        "setOrderNumber": {
+            "main": "./lib/actions/setOrderNumber.js",
+            "title": "Set Order Number",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "orderNumber": {
+                            "title": "Order number",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
+        },
+        "addDelivery": {
+            "main": "./lib/actions/addDelivery.js",
+            "title": "Add a Delivery",
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        },
+                        "lineItemId": {
+                            "title": "ID of the line item being delivered",
+                            "type": "string",
+                            "required": true
+                        },
+                        "quantity": {
+                            "title": "Order ID",
+                            "type": "number",
+                            "required": true
+                        },
+                        "parcelId": {
+                            "title": "Unique parcel ID",
+                            "type": "string",
+                            "required": false
+                        },
+                        "trackingId": {
+                            "title": "Tracking ID to track the delivery",
+                            "type": "string",
+                            "required": false
+                        }
+                    }
+                },
+                "out": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
+        },
+        "changeShipmentState": {
+            "main": "./lib/actions/changeShipmentState.js",
+            "title": "Changes shipment state",
+            "type": "polling",
+            "fields": {
+                "shipmentState": {
+                    "label": "Shipment state",
+                    "viewClass": "SelectView",
+                    "required": true,
+                    "model": {
+                        "shipped":"Shipped",
+                        "ready":"Ready",
+                        "pending":"Pending",
+                        "partial":"Partial",
+                        "backorder":"Backorder"
+                    },
+                    "prompt": "Please select"
+                }
+            },
+            "metadata": {
+                "in": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                },
+                "out": {
+                    "type": "object",
+                    "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        }
+                    }
+                }
+            }
         }
     }
 }

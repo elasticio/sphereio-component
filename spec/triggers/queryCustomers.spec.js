@@ -21,7 +21,7 @@ describe('Sphere.io queryCustomers.js', function () {
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(200, modifiedCustomers)
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
-        .reply(500, {message:'Ouch'})
+        .reply(500, {message:'Internal Server Error'})
         .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
         .reply(200, emptyResult);
 
@@ -107,7 +107,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 expect(self.emit.calls.length).toEqual(2);
                 var calls = self.emit.calls;
                 expect(calls[0].args[0]).toEqual('error');
-                expect(calls[0].args[1].message).toEqual('Ouch');
+                expect(calls[0].args[1].message).toEqual('Internal Server Error');
                 expect(calls[1].args[0]).toEqual('end');
             });
         });
@@ -190,7 +190,7 @@ describe('Sphere.io queryCustomers.js', function () {
         });
     });
 
-    describe('when some customer has addreses', function() {
+    describe('when some customer has addresses', function() {
         var msg;
         var self;
         var cfg;
@@ -213,7 +213,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
                 .reply(200, modifiedCustomers)
                 .get('/test_project/customers?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
-                .reply(500, 'Ouch');
+                .reply(500, 'Internal Server Error');
 
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
@@ -233,8 +233,8 @@ describe('Sphere.io queryCustomers.js', function () {
 
         it('should set shipping and billing addresses types', function() {
             var result = self.emit.calls[0].args[1].body.results;
-            var idWidthAddreses = '3927ef3d-b5a1-476c-a61c-d719752ae2dd';
-            var customer = result.filter(function(r) { return r.id === idWidthAddreses; }).pop();
+            var idWidthAddresses = '3927ef3d-b5a1-476c-a61c-d719752ae2dd';
+            var customer = result.filter(function(r) { return r.id === idWidthAddresses; }).pop();
 
             expect(customer.addresses).toEqual([
                 {
