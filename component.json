@@ -253,18 +253,13 @@
                 "in": {
                     "type": "object",
                     "properties": {
-                        "orderId": {
-                            "title": "Order ID",
-                            "type": "string",
-                            "required": true
-                        },
                         "lineItemId": {
                             "title": "ID of the line item being delivered",
                             "type": "string",
                             "required": true
                         },
                         "quantity": {
-                            "title": "Order ID",
+                            "title": "Quantity",
                             "type": "number",
                             "required": true
                         },
@@ -294,7 +289,7 @@
         },
         "changeShipmentState": {
             "main": "./lib/actions/changeShipmentState.js",
-            "title": "Changes shipment state",
+            "title": "Change shipment state",
             "type": "polling",
             "fields": {
                 "shipmentState": {
