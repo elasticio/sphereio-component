@@ -253,6 +253,11 @@
                 "in": {
                     "type": "object",
                     "properties": {
+                        "orderId": {
+                            "title": "Order ID",
+                            "type": "string",
+                            "required": true
+                        },
                         "lineItemId": {
                             "title": "ID of the line item being delivered",
                             "type": "string",
