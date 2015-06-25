@@ -18,14 +18,14 @@ describe('Change Shipment State', function () {
         self = jasmine.createSpyObj('self', ['emit']);
         msg = {
             body: {
-                orderId: '8fd9f83c-3453-418c-9f3b-5a218bfc842a',
-                shipmentState: 'pending'
+                orderId: '8fd9f83c-3453-418c-9f3b-5a218bfc842a'
             }
         };
         cfg = {
             client: 'test_client',
             clientSecret: 'so_secret',
-            project: 'test_project'
+            project: 'test_project',
+            shipmentState: 'pending'
         };
     });
 
