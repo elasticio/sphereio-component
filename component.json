@@ -253,8 +253,8 @@
                 "in": {
                     "type": "object",
                     "properties": {
-                        "orderId": {
-                            "title": "Order ID",
+                        "orderNumber": {
+                            "title": "Order Number",
                             "type": "string",
                             "required": true
                         },
