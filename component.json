@@ -302,11 +302,11 @@
                     "viewClass": "SelectView",
                     "required": true,
                     "model": {
-                        "shipped":"Shipped",
-                        "ready":"Ready",
-                        "pending":"Pending",
-                        "partial":"Partial",
-                        "backorder":"Backorder"
+                        "Shipped":"Shipped",
+                        "Ready":"Ready",
+                        "Pending":"Pending",
+                        "Partial":"Partial",
+                        "Backorder":"Backorder"
                     },
                     "prompt": "Please select"
                 }
