@@ -11,6 +11,17 @@ describe('Sphere.io queryOrders.js', function () {
     var queryOrders = require('../../lib/triggers/queryOrders.js');
     var helpers = require('../../lib/helpers.js');
 
+    var SL = '/';
+    var AND = '&';
+    var REQ = '?';
+    var ORDERS = 'orders';
+    var LIMIT = 'limit=20';
+    var EXPAND = 'expand=syncInfo%5B*%5D.channel';
+    var SORT = 'sort=lastModifiedAt%20asc';
+    var GET_ALL_ENDPOINT = SL + 'test_project' + SL + ORDERS;
+
+    var GET_ALL_DEFAULT = GET_ALL_ENDPOINT + REQ + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22' + AND + LIMIT + AND + SORT + AND + EXPAND;
+
     describe('process', function () {
         var msg;
         var self;
@@ -41,7 +52,7 @@ describe('Sphere.io queryOrders.js', function () {
         it('should emit new message if first query was successful', function () {
 
             nock('https://api.sphere.io')
-                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
+                .get(GET_ALL_DEFAULT)
                 .reply(200, allOrders)
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomers);
@@ -83,7 +94,7 @@ describe('Sphere.io queryOrders.js', function () {
         it('should emit error if shippingRate.freeAbove.currencyCode is not equal to shippingInfo.price.currencyCode', function () {
 
             nock('https://api.sphere.io')
-                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
+                .get(GET_ALL_DEFAULT)
                 .reply(200, allOrdersWithException);
 
             queryOrders.process.call(self, msg, cfg, next, {});
@@ -106,7 +117,7 @@ describe('Sphere.io queryOrders.js', function () {
         it('should not expand customers if cfg.expandCustomerExternalId is not true', function () {
 
             nock('https://api.sphere.io')
-                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
+                .get(GET_ALL_DEFAULT)
                 .reply(200, allOrders);
 
             cfg.expandCustomerExternalId = false;
@@ -137,9 +148,10 @@ describe('Sphere.io queryOrders.js', function () {
             });
         });
 
-        it('should emit new message if second query was successful (with snapshop `lastModifiedAt` param)', function () {
+        it('should emit new message if second query was successful (with snapshot `lastModifiedAt` param)', function () {
 
-            nock('https://api.sphere.io').get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
+            nock('https://api.sphere.io')
+                .get(GET_ALL_ENDPOINT + REQ + 'where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22' + AND + LIMIT + AND + SORT + AND + EXPAND)
                 .reply(200, modifiedOrders);
 
             var date = '2014-08-21T00:00:00.000Z';
@@ -169,7 +181,8 @@ describe('Sphere.io queryOrders.js', function () {
 
         it('should emit error if request to sphere.io was failed', function () {
 
-            nock('https://api.sphere.io').get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
+            nock('https://api.sphere.io')
+                .get(GET_ALL_ENDPOINT + REQ + 'where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22' + AND + LIMIT + AND + SORT + AND + EXPAND)
                 .reply(500, JSON.stringify({message :'Internal Server Error'}));
 
             var snapshot = {
@@ -194,7 +207,8 @@ describe('Sphere.io queryOrders.js', function () {
 
         it('should emit new message only if orders count more than 0', function () {
 
-            nock('https://api.sphere.io').get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc')
+            nock('https://api.sphere.io')
+                .get(GET_ALL_ENDPOINT + REQ + 'where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22' + AND + LIMIT + AND + SORT + AND + EXPAND)
                 .reply(200, emptyResult);
 
             var date = '2014-08-25T00:00:00.000Z';
@@ -236,7 +250,7 @@ describe('Sphere.io queryOrders.js', function () {
                 });
 
             nock('https://api.sphere.io')
-                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined&limit=20&sort=lastModifiedAt%20asc')
+                .get(GET_ALL_ENDPOINT + REQ + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined' + AND + LIMIT + AND + SORT + AND + EXPAND)
                 .reply(200, allOrders)
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomers);
