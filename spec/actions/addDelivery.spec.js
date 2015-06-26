@@ -18,7 +18,7 @@ describe('Add A Delivery', function () {
         self = jasmine.createSpyObj('self', ['emit']);
         msg = {
             body: {
-                orderId: '8fd9f83c-3453-418c-9f3b-5a218bfc842a',
+                orderNumber: '335',
                 lineItemId: "lineItemId",
                 quantity: "quantity",
                 parcelId: "parcelId",
@@ -35,8 +35,8 @@ describe('Add A Delivery', function () {
     describe('Successful add Delivery', function () {
         it('should emit two calls, proper data message and end message', function () {
             nock(root)
-                .get('/test_project/orders/8fd9f83c-3453-418c-9f3b-5a218bfc842a')
-                .reply(200, masterProduct.results[0])
+                .get('/test_project/orders?where=orderNumber%3D%22335%22')
+                .reply(200, masterProduct)
                 .post('/test_project/orders/8fd9f83c-3453-418c-9f3b-5a218bfc842a')
                 .reply(200, {
                     type: "DeliveryAdded",
@@ -78,8 +78,8 @@ describe('Add A Delivery', function () {
     describe('general error', function () {
         it('should emit two calls, error message and end message', function () {
             nock(root)
-                .get('/test_project/orders/8fd9f83c-3453-418c-9f3b-5a218bfc842a')
-                .reply(200, masterProduct.results[0])
+                .get('/test_project/orders?where=orderNumber%3D%22335%22')
+                .reply(200, masterProduct)
                 .post('/test_project/orders/8fd9f83c-3453-418c-9f3b-5a218bfc842a')
                 .reply(400, {message: 'Hey, lucky!', statusCode: 400});
 

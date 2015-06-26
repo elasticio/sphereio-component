@@ -253,8 +253,8 @@
                 "in": {
                     "type": "object",
                     "properties": {
-                        "orderId": {
-                            "title": "Order ID",
+                        "orderNumber": {
+                            "title": "Order Number",
                             "type": "string",
                             "required": true
                         },
@@ -264,7 +264,7 @@
                             "required": true
                         },
                         "quantity": {
-                            "title": "Order ID",
+                            "title": "Quantity",
                             "type": "number",
                             "required": true
                         },
@@ -294,7 +294,7 @@
         },
         "changeShipmentState": {
             "main": "./lib/actions/changeShipmentState.js",
-            "title": "Changes shipment state",
+            "title": "Change shipment state",
             "type": "polling",
             "fields": {
                 "shipmentState": {
@@ -302,11 +302,11 @@
                     "viewClass": "SelectView",
                     "required": true,
                     "model": {
-                        "shipped":"Shipped",
-                        "ready":"Ready",
-                        "pending":"Pending",
-                        "partial":"Partial",
-                        "backorder":"Backorder"
+                        "Shipped":"Shipped",
+                        "Ready":"Ready",
+                        "Pending":"Pending",
+                        "Partial":"Partial",
+                        "Backorder":"Backorder"
                     },
                     "prompt": "Please select"
                 }
