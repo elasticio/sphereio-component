@@ -1063,7 +1063,7 @@
                                     "required": true
                                 },
                                 "id": {
-                                    "title": "Reference ID",
+                                    "title": "Channel reference ID",
                                     "type": "string",
                                     "required": true
                                 },
