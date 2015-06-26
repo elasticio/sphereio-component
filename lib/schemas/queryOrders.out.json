@@ -1066,6 +1066,57 @@
                                     "title": "Reference ID",
                                     "type": "string",
                                     "required": true
+                                },
+                                "obj": {
+                                    "id":{
+                                        "title": "Channel object ID",
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "key":{
+                                        "title": "Channel object key",
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "version":{
+                                        "title": "Channel object version",
+                                        "type": "number",
+                                        "required": true
+                                    },
+                                    "roles":{
+                                        "title": "Channel object roles",
+                                        "type": "array",
+                                        "required": true,
+                                        "properties": {
+                                            "role": {
+                                                "title": "Channel object role",
+                                                "type": "string",
+                                                "required": true
+                                            }
+                                        }
+                                    },
+                                    "name":{
+                                        "title": "Channel object name",
+                                        "type": "object",
+                                        "required": true,
+                                        "properties": {
+                                            "en": {
+                                                "title": "Channel name",
+                                                "type": "string",
+                                                "required": true
+                                            }
+                                        }
+                                    },
+                                    "createdAt":{
+                                        "title": "Channel object created at",
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "lastModifiedAt":{
+                                        "title": "Channel object last modified at",
+                                        "type": "string",
+                                        "required": true
+                                    }
                                 }
                             }
                         },
