@@ -22,6 +22,10 @@ describe('Sphere.io queryOrders.js', function () {
     var LIMIT_SORT_EXPAND = AND + LIMIT + AND + SORT + AND + EXPAND;
     var GET_ALL_DEFAULT = GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22' + LIMIT_SORT_EXPAND;
 
+    function getType(obj) {
+        return Object.prototype.toString.call(obj);
+    }
+
     describe('process', function () {
         var msg;
         var self;
@@ -82,6 +86,10 @@ describe('Sphere.io queryOrders.js', function () {
                 // check shippingInfo.price.centAmount in orders
                 expect(newMsg.body.results[0].shippingPrice.amount).toEqual(14.44); // 1111 + Round(0.3*1111) = 1111 + Round(333.3)
                 expect(newMsg.body.results[1].shippingPrice.amount).toEqual(0); // because shipping above 5000 is free
+
+                // check if syncInfo was converted into object
+                expect(getType(newMsg.body.results[0].syncInfo)).toBe('[object Object]');
+                expect(getType(newMsg.body.results[1].syncInfo)).toBe('[object Undefined]');
 
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');

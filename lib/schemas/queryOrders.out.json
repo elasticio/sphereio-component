@@ -1049,7 +1049,7 @@
                 },
                 "syncInfo": {
                     "title": "Synchronization Info",
-                    "type": "array",
+                    "type": "object",
                     "required": true,
                     "properties": {
                         "channel": {
