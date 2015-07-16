@@ -89,7 +89,7 @@ describe('Sphere.io queryOrders.js', function () {
 
                 // check if syncInfo was converted into object
                 expect(getType(newMsg.body.results[0].syncInfo)).toBe('[object Object]');
-                expect(getType(newMsg.body.results[1].syncInfo)).toBe('[object Undefined]');
+                expect(getType(newMsg.body.results[1].syncInfo)).toBe('[object Object]');
 
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');

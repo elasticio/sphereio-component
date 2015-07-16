@@ -204,7 +204,7 @@ module.exports = {
         },
         customLineItems: [],
         transactionFee: false,
-        syncInfo: undefined,
+        syncInfo: {},
         returnInfo: [],
         lastMessageSequenceNumber: 0,
         shippingInfo: {
