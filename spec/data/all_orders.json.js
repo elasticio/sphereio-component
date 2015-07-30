@@ -90,7 +90,23 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         },
         "customLineItems": [],
         "transactionFee": false,
-        "syncInfo": [],
+        "syncInfo": [{
+            "channel": {
+                "typeId": "channel",
+                "Id": "007",
+                "obj": {
+                    "id": "r",
+                    "key": "r",
+                    "version": "r",
+                    "roles": "r",
+                    "name": "Channel",
+                    "createdAt": "Channel object created at",
+                    "lastModifiedAt": "Channel object last modified at"
+                }
+            },
+            "externalId": "blabal",
+            "syncedAt": "2131:33"
+        }],
         "returnInfo": [],
         "lastMessageSequenceNumber": 0,
         "shippingInfo": {
