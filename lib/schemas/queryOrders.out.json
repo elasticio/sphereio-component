@@ -241,6 +241,26 @@
                                 }
                             }
                         },
+                        "discountedPrice": {
+                            "type" : "object",
+                            "properties" : {
+                                "value": {
+                                    "type": "object",
+                                    "properties":{
+                                        "currencyCode":{
+                                            "type":"string",
+                                            "title": "Discounted Price Amount Currency Code",
+                                            "required":false
+                                        },
+                                        "centAmount":{
+                                            "type":"number",
+                                            "title": "Discounted Price Amount",
+                                            "required":false
+                                        }
+                                    }
+                                }
+                            }
+                        },
                         "price": {
                             "type": "object",
                             "required": true,
