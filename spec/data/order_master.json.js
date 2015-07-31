@@ -233,4 +233,4 @@ module.exports = {
             "lastMessageSequenceNumber": 0
         }
     ]
-}
+};

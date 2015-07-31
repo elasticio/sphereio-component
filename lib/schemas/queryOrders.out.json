@@ -250,12 +250,12 @@
                                         "currencyCode":{
                                             "type":"string",
                                             "title": "Discounted Price Amount Currency Code",
-                                            "required":false
+                                            "required":true
                                         },
-                                        "centAmount":{
+                                        "amount":{
                                             "type":"number",
                                             "title": "Discounted Price Amount",
-                                            "required":false
+                                            "required":true
                                         }
                                     }
                                 }
