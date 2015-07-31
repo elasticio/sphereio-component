@@ -64,6 +64,12 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                         "amount": 34
                     }
                 },
+                "discountedPrice": {
+                    "value": {
+                        "currencyCode": "EUR",
+                        "amount": 34
+                    }
+                },
                 "quantity": 3,
                 "taxRate": {
                     "name": "19% MwSt",
@@ -174,6 +180,12 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                     "attributes": []
                 },
                 "price": {
+                    "value": {
+                        "currencyCode": "EUR",
+                        "amount": 28
+                    }
+                },
+                "discountedPrice": {
                     "value": {
                         "currencyCode": "EUR",
                         "amount": 28

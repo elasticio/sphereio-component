@@ -252,7 +252,7 @@
                                             "title": "Discounted Price Amount Currency Code",
                                             "required":true
                                         },
-                                        "centAmount":{
+                                        "amount":{
                                             "type":"number",
                                             "title": "Discounted Price Amount",
                                             "required":true
