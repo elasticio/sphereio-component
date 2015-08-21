@@ -54,6 +54,10 @@
                 "expandCustomerExternalId": {
                     "label": "Expand customer's external ID",
                     "viewClass": "CheckBoxView"
+                },
+                "syncedCustomersOnly": {
+                    "label": "Only customers with external ID",
+                    "viewClass": "CheckBoxView"
                 }
             }
         }

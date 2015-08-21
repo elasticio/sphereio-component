@@ -4,6 +4,7 @@ describe('Sphere.io queryOrders.js', function () {
     var allOrdersWithException = require('../data/all_orders_with_exception.json.js');
     var allOrdersResponse = require('../data/all_orders_response.json.js');
     var orderCustomers = require('../data/order_customers.json.js');
+    var orderCustomersNotSynced = require('../data/order_customers_notsynced.json.js');
     var modifiedOrders = require('../data/modified_orders.json.js');
     var emptyResult = {'offset': 0, 'count': 0, 'total': 49, 'results': []};
 
@@ -290,8 +291,188 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(newMsg.body.results[1].customer).toEqual(orderCustomers.results[0]);
 
                 expect(calls[1].args[0]).toEqual('snapshot');
-                expect(Object.keys(calls[1].args[1]).length).toEqual(1);
+                expect(Object.keys(calls[1].args[1]).length).toEqual(2);
                 expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
+                expect(calls[1].args[1].reboundedOrders).toEqual({});
+
+                expect(calls[2].args[0]).toEqual('end');
+            });
+        });
+    });
+
+    describe('test behaviour of syncedCustomersOnly=true', function() {
+        var msg;
+        var self;
+        var cfg;
+
+        beforeEach(function() {
+
+            nock('https://auth.sphere.io')
+                .filteringRequestBody(/.*/, '*')
+                .post('/oauth/token', '*')
+                .reply(200, {
+                    'access_token': 'i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA',
+                    'token_type': 'Bearer',
+                    'expires_in': 172800,
+                    'scope': 'manage_project:test_project'
+                });
+
+            msg = {};
+            self = jasmine.createSpyObj('self', ['emit']);
+        });
+
+        it('should add order to snapshot.reboundedOrders if customer has no externalId', function() {
+
+            var snapshot = {};
+
+            var cfg = {
+                client: 'test_client',
+                clientSecret: 'so_secret',
+                project: 'test_project',
+                where : 'externalId is defined',
+                expandCustomerExternalId: true,
+                syncedCustomersOnly: true
+            };
+
+            nock('https://api.sphere.io')
+                .get(GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined' + LIMIT_SORT_EXPAND)
+                .reply(200, allOrders)
+                .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
+                .reply(200, orderCustomersNotSynced);
+
+            queryOrders.process.call(self, msg, cfg, next, snapshot);
+
+            waitsFor(function () {
+                return self.emit.calls.length;
+            });
+
+            runs(function () {
+
+                var calls = self.emit.calls;
+                expect(calls.length).toEqual(3);
+
+                expect(calls[0].args[0]).toEqual('data');
+                var newMsg = self.emit.calls[0].args[1];
+                expect(newMsg.body.results.length).toEqual(1);
+                expect(newMsg.body.results[0].id).toEqual('8fd9f83c-3453-418c-9f3b-5a218bfc842a');
+                expect(newMsg.body.results[0].customer).toBeUndefined();
+
+                expect(calls[1].args[0]).toEqual('snapshot');
+                expect(Object.keys(calls[1].args[1]).length).toEqual(2);
+                expect(calls[1].args[1].lastModifiedAt).toEqual('2013-06-04T14:05:13.564Z');
+                expect(calls[1].args[1].reboundedOrders).toEqual({'ad921e37-0ea1-4aba-a57e-8caadfc093eb': true});
+
+                expect(calls[2].args[0]).toEqual('end');
+            });
+        });
+
+        it('should emit order & delete it from snapshot.reboundedOrders if customer has externalId', function() {
+
+            var snapshot = {
+                reboundedOrders: {
+                    'ad921e37-0ea1-4aba-a57e-8caadfc093eb': true,
+                    '12345678-0ea1-4aba-a57e-8caadfc093eb': true
+                }
+            };
+
+            var cfg = {
+                client: 'test_client',
+                clientSecret: 'so_secret',
+                project: 'test_project',
+                where : 'externalId is defined',
+                expandCustomerExternalId: true,
+                syncedCustomersOnly: true
+            };
+
+            // should query rebounded orders also
+            nock('https://api.sphere.io')
+                .get(GET_ALL_ENDPOINT + 'where=(lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20' +
+                        'OR%20id%20in%20(%22ad921e37-0ea1-4aba-a57e-8caadfc093eb%22%2C%2212345678-0ea1-4aba-a57e-8caadfc093eb%22))%20' +
+                        'and%20externalId%20is%20defined' + LIMIT_SORT_EXPAND)
+                .reply(200, allOrders)
+                .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
+                .reply(200, orderCustomers);
+
+            queryOrders.process.call(self, msg, cfg, next, snapshot);
+
+            waitsFor(function () {
+                return self.emit.calls.length;
+            });
+
+            runs(function () {
+
+                var calls = self.emit.calls;
+                expect(calls.length).toEqual(3);
+
+                expect(calls[0].args[0]).toEqual('data');
+                var newMsg = self.emit.calls[0].args[1];
+                expect(newMsg.body.results.length).toEqual(2);
+                expect(newMsg.body.results[0].id).toEqual('8fd9f83c-3453-418c-9f3b-5a218bfc842a');
+                expect(newMsg.body.results[0].customer).toBeUndefined();
+
+                expect(calls[1].args[0]).toEqual('snapshot');
+                expect(Object.keys(calls[1].args[1]).length).toEqual(2);
+                expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
+                expect(calls[1].args[1].reboundedOrders).toEqual({
+                    // this order was not emitted
+                    '12345678-0ea1-4aba-a57e-8caadfc093eb': true
+                });
+
+                expect(calls[2].args[0]).toEqual('end');
+            });
+        });
+
+        it('should cleanup reboundedOrders even if syncedCustomersOnly is not set', function() {
+
+            var snapshot = {
+                reboundedOrders: {
+                    '8fd9f83c-3453-418c-9f3b-5a218bfc842a': true,
+                    'ad921e37-0ea1-4aba-a57e-8caadfc093eb': true,
+                    '12345678-0ea1-4aba-a57e-8caadfc093eb': true
+                }
+            };
+
+            var cfg = {
+                client: 'test_client',
+                clientSecret: 'so_secret',
+                project: 'test_project',
+                where : 'externalId is defined',
+                expandCustomerExternalId: true
+            };
+
+            // should query rebounded orders also
+            nock('https://api.sphere.io')
+                .get(GET_ALL_ENDPOINT + 'where=(lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20' +
+                'OR%20id%20in%20(%228fd9f83c-3453-418c-9f3b-5a218bfc842a%22%2C%22ad921e37-0ea1-4aba-a57e-8caadfc093eb%22%2C%2212345678-0ea1-4aba-a57e-8caadfc093eb%22))%20' +
+                'and%20externalId%20is%20defined' + LIMIT_SORT_EXPAND)
+                .reply(200, allOrders)
+                .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
+                .reply(200, orderCustomers);
+
+            queryOrders.process.call(self, msg, cfg, next, snapshot);
+
+            waitsFor(function () {
+                return self.emit.calls.length;
+            });
+
+            runs(function () {
+
+                var calls = self.emit.calls;
+                expect(calls.length).toEqual(3);
+
+                expect(calls[0].args[0]).toEqual('data');
+                var newMsg = self.emit.calls[0].args[1];
+                expect(newMsg.body.results.length).toEqual(2);
+                expect(newMsg.body.results[0].id).toEqual('8fd9f83c-3453-418c-9f3b-5a218bfc842a');
+                expect(newMsg.body.results[0].customer).toBeUndefined();
+
+                expect(calls[1].args[0]).toEqual('snapshot');
+                expect(Object.keys(calls[1].args[1]).length).toEqual(2);
+                expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
+                expect(calls[1].args[1].reboundedOrders).toEqual({
+                    // this order was not emitted
+                    '12345678-0ea1-4aba-a57e-8caadfc093eb': true
+                });
 
                 expect(calls[2].args[0]).toEqual('end');
             });
