@@ -56,7 +56,7 @@
                     "viewClass": "CheckBoxView"
                 },
                 "syncedCustomersOnly": {
-                    "label": "Only customers with external ID",
+                    "label": "Retry if customers has no external ID",
                     "viewClass": "CheckBoxView"
                 }
             }
