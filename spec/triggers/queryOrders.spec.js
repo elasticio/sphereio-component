@@ -292,9 +292,9 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(newMsg.body.results[1].customer).toEqual(orderCustomers.results[0]);
 
                 expect(calls[1].args[0]).toEqual('snapshot');
-                expect(Object.keys(calls[1].args[1]).length).toEqual(2);
+                expect(Object.keys(calls[1].args[1]).length).toEqual(1);
                 expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
-                expect(calls[1].args[1].unsyncedOrders).toEqual({});
+                expect(calls[1].args[1].unsyncedOrders).toBeUndefined();
 
                 expect(calls[2].args[0]).toEqual('end');
             });
