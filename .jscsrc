@@ -3,6 +3,7 @@
     "disallowMixedSpacesAndTabs": true,
     "disallowTrailingWhitespace": true,
     "disallowTrailingComma": true,
+    "disallowAnonymousFunctions": true,
     "requireSpaceAfterKeywords": [
         "if",
         "else",
@@ -19,5 +20,28 @@
     "safeContextKeyword": "self",
     "validateLineBreaks": "LF",
     "validateQuoteMarks": "'",
+    "validateIndentation": 4,
+    "requireCurlyBraces": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "try",
+        "catch",
+        "switch"
+    ],
+    "requireSpaceAfterBinaryOperators": [
+        "=",
+        ",",
+        "+",
+        "-",
+        "/",
+        "*",
+        "==",
+        "===",
+        "!=",
+        "!=="
+    ],
     "validateIndentation": 4
 }
