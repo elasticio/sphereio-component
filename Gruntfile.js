@@ -13,15 +13,8 @@ module.exports = function (grunt) {
         jshint: {
             files: ['Gruntfile.js', 'spec/**/*.js']
         },
+
         // start - code coverage settings
-
-        env: {
-            coverage: {
-                APP_DIR_FOR_CODE_COVERAGE: '../coverage/instrument/lib/'
-            }
-        },
-
-
         clean: {
             coverage: {
                 src: ['coverage/']
@@ -30,7 +23,7 @@ module.exports = function (grunt) {
 
 
         instrument: {
-            files: ['lib/**/*.js', 'spec/**/*.js'],
+            files: ['lib/**/*.js'],
             options: {
                 lazy: true,
                 basePath: 'coverage/instrument/'
@@ -55,10 +48,16 @@ module.exports = function (grunt) {
         },
 
         copy: {
-            specDepedencies: {
+            specs: {
                 files: [
                     // includes files within path
-                    {expand: true, src: ['spec/**/*.json', 'lib/**/*.json'], dest: './coverage/instrument/'}
+                    {expand: true, src: ['spec/**'], dest: './coverage/instrument/'}
+                ]
+            },
+            schemas: {
+                files: [
+                    // includes files within path
+                    {expand: true, src: ['lib/schemas/**'], dest: './coverage/instrument/'}
                 ]
             }
         },
@@ -119,6 +118,6 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', 'jasmine_node:spec');
 
-    grunt.registerTask('coverage', ['clean', 'jscs', 'env:coverage',
-        'instrument', 'copy:specDepedencies', 'jasmine_node:instrumented', 'storeCoverage', 'makeReport', 'coveralls:test']);
+    grunt.registerTask('coverage', ['clean', 'jscs', 'instrument',
+        'copy:specs', 'copy:schemas', 'jasmine_node:instrumented', 'storeCoverage', 'makeReport', 'coveralls:test']);
 };
