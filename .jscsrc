@@ -3,7 +3,6 @@
     "disallowMixedSpacesAndTabs": true,
     "disallowTrailingWhitespace": true,
     "disallowTrailingComma": true,
-    "disallowAnonymousFunctions": true,
     "requireSpaceAfterKeywords": [
         "if",
         "else",
