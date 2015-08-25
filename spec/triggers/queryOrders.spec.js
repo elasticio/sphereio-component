@@ -301,7 +301,7 @@ describe('Sphere.io queryOrders.js', function () {
         });
     });
 
-    describe('test behaviour of syncedCustomersOnly=true', function() {
+    describe('test behaviour of withSyncedCustomersOnly=true', function() {
         var msg;
         var self;
         var cfg;
@@ -332,7 +332,7 @@ describe('Sphere.io queryOrders.js', function () {
                 project: 'test_project',
                 where : 'externalId is defined',
                 expandCustomerExternalId: true,
-                syncedCustomersOnly: true
+                withSyncedCustomersOnly: true
             };
 
             nock('https://api.sphere.io')
@@ -382,7 +382,7 @@ describe('Sphere.io queryOrders.js', function () {
                 project: 'test_project',
                 where : 'externalId is defined',
                 expandCustomerExternalId: true,
-                syncedCustomersOnly: true
+                withSyncedCustomersOnly: true
             };
 
             // should query non-synced orders also
@@ -428,7 +428,7 @@ describe('Sphere.io queryOrders.js', function () {
             });
         });
 
-        it('should cleanup unsyncedOrders even if syncedCustomersOnly is not set', function() {
+        it('should cleanup unsyncedOrders even if withSyncedCustomersOnly is not set', function() {
 
             var snapshot = {
                 unsyncedOrders: {
