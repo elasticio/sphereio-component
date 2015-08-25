@@ -190,6 +190,8 @@ describe('Sphereio create product', function () {
 
         it('should emit an error', function() {
             expect(self.emit).toHaveBeenCalledWith('error', {
+                message: 'Request body does not contain valid JSON.',
+                name : 'BadRequest',
                 body: {
                     message: 'Request body does not contain valid JSON.',
                     statusCode: 400,

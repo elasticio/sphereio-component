@@ -497,32 +497,32 @@
                             "required": false,
                             "properties": {
                                 "id": {
-                                    "title": "Item Tax ID",
+                                    "title": "Custom Item Tax ID",
                                     "type": "string",
                                     "required": true
                                 },
                                 "name": {
-                                    "title": "Item Tax Name",
+                                    "title": "Custom Item Tax Name",
                                     "type": "string",
                                     "required": true
                                 },
                                 "amount": {
-                                    "title": "Item Tax Amount",
+                                    "title": "Custom Item Tax Amount",
                                     "type": "number",
                                     "required": true
                                 },
                                 "includedInPrice": {
-                                    "title": "Item Tax Included",
+                                    "title": "Custom Item Tax Included",
                                     "type": "boolean",
                                     "required": true
                                 },
                                 "country": {
-                                    "title": "Item Tax Country Code",
+                                    "title": "Custom Item Tax Country Code",
                                     "type": "string",
                                     "required": true
                                 },
                                 "state": {
-                                    "title": "Item Tax State",
+                                    "title": "Custom Item Tax State",
                                     "type": "string",
                                     "required": false
                                 }
