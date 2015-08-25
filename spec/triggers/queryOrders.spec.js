@@ -294,7 +294,7 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(Object.keys(calls[1].args[1]).length).toEqual(2);
                 expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
-                expect(calls[1].args[1].nonSyncedOrders).toEqual({});
+                expect(calls[1].args[1].unsyncedOrders).toEqual({});
 
                 expect(calls[2].args[0]).toEqual('end');
             });
@@ -322,7 +322,7 @@ describe('Sphere.io queryOrders.js', function () {
             self = jasmine.createSpyObj('self', ['emit']);
         });
 
-        it('should add order to snapshot.nonSyncedOrders if customer has no externalId', function() {
+        it('should add order to snapshot.unsyncedOrders if customer has no externalId', function() {
 
             var snapshot = {};
 
@@ -361,16 +361,16 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(Object.keys(calls[1].args[1]).length).toEqual(2);
                 expect(calls[1].args[1].lastModifiedAt).toEqual('2013-06-04T14:05:13.564Z');
-                expect(calls[1].args[1].nonSyncedOrders).toEqual({'ad921e37-0ea1-4aba-a57e-8caadfc093e1': true});
+                expect(calls[1].args[1].unsyncedOrders).toEqual({'ad921e37-0ea1-4aba-a57e-8caadfc093e1': true});
 
                 expect(calls[2].args[0]).toEqual('end');
             });
         });
 
-        it('should emit order & delete it from snapshot.nonSyncedOrders if customer has externalId', function() {
+        it('should emit order & delete it from snapshot.unsyncedOrders if customer has externalId', function() {
 
             var snapshot = {
-                nonSyncedOrders: {
+                unsyncedOrders: {
                     'ad921e37-0ea1-4aba-a57e-8caadfc093e1': true,
                     '12345678-0ea1-4aba-a57e-8caadfc093e1': true
                 }
@@ -419,7 +419,7 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(Object.keys(calls[1].args[1]).length).toEqual(2);
                 expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
-                expect(calls[1].args[1].nonSyncedOrders).toEqual({
+                expect(calls[1].args[1].unsyncedOrders).toEqual({
                     // this order was not emitted
                     '12345678-0ea1-4aba-a57e-8caadfc093e1': true
                 });
@@ -428,10 +428,10 @@ describe('Sphere.io queryOrders.js', function () {
             });
         });
 
-        it('should cleanup nonSyncedOrders even if syncedCustomersOnly is not set', function() {
+        it('should cleanup unsyncedOrders even if syncedCustomersOnly is not set', function() {
 
             var snapshot = {
-                nonSyncedOrders: {
+                unsyncedOrders: {
                     '8fd9f83c-3453-418c-9f3b-5a218bfc8421': true,
                     'ad921e37-0ea1-4aba-a57e-8caadfc093e1': true,
                     '12345678-0ea1-4aba-a57e-8caadfc093e1': true
@@ -446,13 +446,13 @@ describe('Sphere.io queryOrders.js', function () {
                 expandCustomerExternalId: true
             };
 
-            // should query nonSyncedOrders also
+            // should query unsyncedOrders also
             nock('https://api.sphere.io')
                 // get up to 20 updated orders
                 .get(GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20' +
                 'and%20externalId%20is%20defined' + LIMIT_SORT_EXPAND)
                 .reply(200, allOrders)
-                // add up to 20 nonSyncedOrders
+                // add up to 20 unsyncedOrders
                 .get(GET_ALL_ENDPOINT + 'where=id%20in%20(%228fd9f83c-3453-418c-9f3b-5a218bfc8421%22%2C%22ad921e37-0ea1-4aba-a57e-8caadfc093e1%22%2C%2212345678-0ea1-4aba-a57e-8caadfc093e1%22)' + LIMIT_SORT_EXPAND)
                 .reply(200, reboundedOrders)
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
@@ -480,7 +480,7 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(Object.keys(calls[1].args[1]).length).toEqual(2);
                 expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
-                expect(calls[1].args[1].nonSyncedOrders).toEqual({
+                expect(calls[1].args[1].unsyncedOrders).toEqual({
                     // this order was not emitted
                     '12345678-0ea1-4aba-a57e-8caadfc093e1': true
                 });
