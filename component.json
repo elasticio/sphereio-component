@@ -55,7 +55,7 @@
                     "label": "Expand customers",
                     "viewClass": "CheckBoxView"
                 },
-                "syncedCustomersOnly": {
+                "withSyncedCustomersOnly": {
                     "label": "Only orders of customers with External ID set",
                     "viewClass": "CheckBoxView"
                 }
