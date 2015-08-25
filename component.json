@@ -52,11 +52,11 @@
                     "viewClass": "TextFieldView"
                 },
                 "expandCustomerExternalId": {
-                    "label": "Expand customer's external ID",
+                    "label": "Expand customers",
                     "viewClass": "CheckBoxView"
                 },
                 "syncedCustomersOnly": {
-                    "label": "Retry if customers has no external ID",
+                    "label": "Only orders of customers with External ID set",
                     "viewClass": "CheckBoxView"
                 }
             }
