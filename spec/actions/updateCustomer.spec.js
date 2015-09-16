@@ -122,7 +122,10 @@ describe('Sphereio update customers external id', function () {
         });
 
         it('should emit right error', function() {
-            expect(self.emit).toHaveBeenCalledWith('error', {
+            var errorCallArgs = self.emit.calls[0].args;
+
+            expect(errorCallArgs[0]).toEqual('error');
+            expect(errorCallArgs[1]).toEqual({
                 message: 'Endpoint \'/elasticio/customers/54\' not found.',
                 name: 'NotFound',
                 body: {
@@ -131,12 +134,16 @@ describe('Sphereio update customers external id', function () {
                     originalRequest: {
                         endpoint: '/customers/54'
                     }
-                }, code: 404
+                },
+                statusCode: 404,
+                code: 404
             });
         });
 
         it('should emmit end', function() {
-            expect(self.emit).toHaveBeenCalledWith('end');
+            var errorCallArgs = self.emit.calls[1].args;
+
+            expect(errorCallArgs[0]).toEqual('end');
         });
 
         it('should not emit more then two events', function() {

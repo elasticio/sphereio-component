@@ -184,24 +184,31 @@ describe('Sphereio create product', function () {
             });
 
             waitsFor(function() {
-                return self.emit.calls.length;
+                return self.emit.calls.length > 1;
             }, 'Timed out', 1000);
         });
 
         it('should emit an error', function() {
-            expect(self.emit).toHaveBeenCalledWith('error', {
+            var errorCallArgs = self.emit.calls[0].args;
+
+            expect(errorCallArgs[0]).toEqual('error');
+            expect(errorCallArgs[1]).toEqual({
                 message: 'Request body does not contain valid JSON.',
-                name : 'BadRequest',
                 body: {
                     message: 'Request body does not contain valid JSON.',
                     statusCode: 400,
                     originalRequest: {endpoint: '/products', payload: {productType: {typeId: 'product-type', id: '3'}}}
-                }, code: 400
+                },
+                name : 'BadRequest',
+                statusCode : 400,
+                code: 400
             });
         });
 
         it('should emit end event', function() {
-            expect(self.emit).toHaveBeenCalledWith('end');
+            var errorCallArgs = self.emit.calls[1].args;
+
+            expect(errorCallArgs[0]).toEqual('end');
         });
 
         it('should not emit more then two events', function() {
