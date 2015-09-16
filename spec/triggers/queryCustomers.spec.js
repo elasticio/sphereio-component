@@ -47,7 +47,7 @@ describe('Sphere.io queryCustomers.js', function () {
         it('should emit new message if first query was successful', function () {
             spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
 
-            queryCustomers.process.call(self, msg, cfg, next, {});
+            queryCustomers.process.call(self, msg, cfg, {});
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -71,7 +71,7 @@ describe('Sphere.io queryCustomers.js', function () {
             var snapshot = {
                 "lastModifiedAt": date
             };
-            queryCustomers.process.call(self, msg, cfg, next, snapshot);
+            queryCustomers.process.call(self, msg, cfg, snapshot);
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -97,7 +97,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 "lastModifiedAt": "2014-09-21T00:00:00.000Z"
             };
             
-            queryCustomers.process.call(self, msg, cfg, next, snapshot);
+            queryCustomers.process.call(self, msg, cfg, snapshot);
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -118,7 +118,7 @@ describe('Sphere.io queryCustomers.js', function () {
             var snapshot = {
                 lastModifiedAt: date
             };
-            queryCustomers.process.call(self, msg, cfg, next, snapshot);
+            queryCustomers.process.call(self, msg, cfg, snapshot);
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -171,7 +171,7 @@ describe('Sphere.io queryCustomers.js', function () {
 
         it('should emit new message if first query was successful', function() {
 
-            queryCustomers.process.call(self, msg, cfg, next, {});
+            queryCustomers.process.call(self, msg, cfg, {});
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -224,7 +224,7 @@ describe('Sphere.io queryCustomers.js', function () {
             };
             spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
             runs(function() {
-                queryCustomers.process.call(self, msg, cfg, next, {});
+                queryCustomers.process.call(self, msg, cfg, {});
             });
             waitsFor(function () {
                 return self.emit.calls.length;

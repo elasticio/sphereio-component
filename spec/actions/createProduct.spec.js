@@ -143,7 +143,7 @@ describe('Sphereio create product', function () {
                 .reply(201, sphereResponse);
 
             runs(function() {
-                createProduct.process.call(self, msg, cfg, callback);
+                createProduct.process.call(self, msg, cfg);
             });
 
             waitsFor(function() {
@@ -180,7 +180,7 @@ describe('Sphereio create product', function () {
                 .reply(400, {message: 'Request body does not contain valid JSON.'});
 
             runs(function() {
-                createProduct.process.call(self, msg, cfg, callback);
+                createProduct.process.call(self, msg, cfg);
             });
 
             waitsFor(function() {
@@ -224,7 +224,7 @@ describe('Sphereio create product', function () {
         beforeEach(function() {
             self = jasmine.createSpyObj('self', ['emit']);
             runs(function() {
-                createProduct.process.call(self, msg, cfg, callback);
+                createProduct.process.call(self, msg, cfg);
             });
 
             waitsFor(function() {

@@ -59,7 +59,7 @@ describe('Sphere.io queryOrders.js', function () {
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomers);
 
-            queryOrders.process.call(self, msg, cfg, next, {});
+            queryOrders.process.call(self, msg, cfg, {});
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -99,7 +99,7 @@ describe('Sphere.io queryOrders.js', function () {
                 .get(GET_ALL_DEFAULT)
                 .reply(200, allOrdersWithException);
 
-            queryOrders.process.call(self, msg, cfg, next, {});
+            queryOrders.process.call(self, msg, cfg, {});
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -124,7 +124,7 @@ describe('Sphere.io queryOrders.js', function () {
 
             cfg.expandCustomerExternalId = false;
 
-            queryOrders.process.call(self, msg, cfg, next, {});
+            queryOrders.process.call(self, msg, cfg, {});
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -160,7 +160,7 @@ describe('Sphere.io queryOrders.js', function () {
             var snapshot = {
                 'lastModifiedAt': date
             };
-            queryOrders.process.call(self, msg, cfg, next, snapshot);
+            queryOrders.process.call(self, msg, cfg, snapshot);
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -191,7 +191,7 @@ describe('Sphere.io queryOrders.js', function () {
                 'lastModifiedAt': '2014-09-21T00:00:00.000Z'
             };
 
-            queryOrders.process.call(self, msg, cfg, next, snapshot);
+            queryOrders.process.call(self, msg, cfg, snapshot);
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -216,7 +216,7 @@ describe('Sphere.io queryOrders.js', function () {
             var date = '2014-08-25T00:00:00.000Z';
             var snapshot = {lastModifiedAt: date};
 
-            queryOrders.process.call(self, msg, cfg, next, snapshot);
+            queryOrders.process.call(self, msg, cfg, snapshot);
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -270,7 +270,7 @@ describe('Sphere.io queryOrders.js', function () {
 
         it('should emit new message if first query was successful', function() {
 
-            queryOrders.process.call(self, msg, cfg, next, {});
+            queryOrders.process.call(self, msg, cfg, {});
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -341,7 +341,7 @@ describe('Sphere.io queryOrders.js', function () {
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomersNotSynced);
 
-            queryOrders.process.call(self, msg, cfg, next, snapshot);
+            queryOrders.process.call(self, msg, cfg, snapshot);
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -396,7 +396,7 @@ describe('Sphere.io queryOrders.js', function () {
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomers);
 
-            queryOrders.process.call(self, msg, cfg, next, snapshot);
+            queryOrders.process.call(self, msg, cfg, snapshot);
 
             waitsFor(function () {
                 return self.emit.calls.length;
@@ -458,7 +458,7 @@ describe('Sphere.io queryOrders.js', function () {
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomers);
 
-            queryOrders.process.call(self, msg, cfg, next, snapshot);
+            queryOrders.process.call(self, msg, cfg, snapshot);
 
             waitsFor(function () {
                 return self.emit.calls.length;
