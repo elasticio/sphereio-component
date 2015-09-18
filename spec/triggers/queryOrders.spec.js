@@ -14,17 +14,6 @@ describe('Sphere.io queryOrders.js', function () {
     var queryOrders = require('../../lib/triggers/queryOrders.js');
     var helpers = require('../../lib/helpers.js');
 
-    var SL = '/';
-    var AND = '&';
-    var REQ = '?';
-    var ORDERS = 'orders';
-    var LIMIT = 'limit=20';
-    var EXPAND = 'expand=syncInfo%5B*%5D.channel';
-    var SORT = 'sort=lastModifiedAt%20asc';
-    var GET_ALL_ENDPOINT = SL + 'test_project' + SL + ORDERS + REQ;
-    var LIMIT_SORT_EXPAND = AND + LIMIT + AND + SORT + AND + EXPAND;
-    var GET_ALL_DEFAULT = GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22' + LIMIT_SORT_EXPAND;
-
     describe('process', function () {
         var msg;
         var self;
@@ -53,9 +42,10 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit new message if first query was successful', function () {
+            console.log('should emit new message if first query was successful 1');
 
             nock('https://api.sphere.io')
-                .get(GET_ALL_DEFAULT)
+                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(200, allOrders)
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomers);
@@ -95,9 +85,10 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit error if shippingRate.freeAbove.currencyCode is not equal to shippingInfo.price.currencyCode', function () {
+            console.log('should emit error if shippingRate.freeAbove.currencyCode is not equal to shippingInfo.price.currencyCode');
 
             nock('https://api.sphere.io')
-                .get(GET_ALL_DEFAULT)
+                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(200, allOrdersWithException);
 
             queryOrders.process.call(self, msg, cfg, next, {});
@@ -118,9 +109,10 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should not expand customers if cfg.expandCustomerExternalId is not true', function () {
+            console.log('should not expand customers if cfg.expandCustomerExternalId is not true');
 
             nock('https://api.sphere.io')
-                .get(GET_ALL_DEFAULT)
+                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(200, allOrders);
 
             cfg.expandCustomerExternalId = false;
@@ -152,9 +144,10 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit new message if second query was successful (with snapshot `lastModifiedAt` param)', function () {
+            console.log('should emit new message if second query was successful (with snapshot `lastModifiedAt` param)');
 
             nock('https://api.sphere.io')
-                .get(GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22' + LIMIT_SORT_EXPAND)
+                .get('/test_project/orders?' + 'where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22' + '&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(200, modifiedOrders);
 
             var date = '2014-08-21T00:00:00.000Z';
@@ -183,9 +176,11 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit error if request to sphere.io was failed', function () {
+            console.log('should emit error if request to sphere.io was failed');
+
 
             nock('https://api.sphere.io')
-                .get(GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22' + LIMIT_SORT_EXPAND)
+                .get('/test_project/orders?' + 'where=lastModifiedAt%20%3E%20%222014-09-21T00%3A00%3A00.000Z%22' + '&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(500, JSON.stringify({message :'Internal Server Error'}));
 
             var snapshot = {
@@ -209,9 +204,10 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit new message only if orders count more than 0', function () {
+            console.log('should emit new message only if orders count more than 0');
 
             nock('https://api.sphere.io')
-                .get(GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22' + LIMIT_SORT_EXPAND)
+                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(200, emptyResult);
 
             var date = '2014-08-25T00:00:00.000Z';
@@ -251,13 +247,13 @@ describe('Sphere.io queryOrders.js', function () {
                     'expires_in': 172800,
                     'scope': 'manage_project:test_project'
                 });
-
+            //nock.recorder.rec();
             nock('https://api.sphere.io')
-                .get(GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined' + LIMIT_SORT_EXPAND)
+                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(200, allOrders)
-                .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22,%223927ef3d-b5a1-476c-a61c-d719752ae2de%22)')
+                .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomers)
-                .get('/test_project/payments?where=id%20in%20(%227a788f93-8eef-4ca4-ab45-ca937ad040a%22,%227a788f93-8eef-4ca4-ab45-ca937ad040b%22)')
+                .get('/test_project/payments?where=id%20in%20(%227a788f93-8eef-4ca4-ab45-ca937ad040a%22%2C%227a788f93-8eef-4ca4-ab45-ca937ad040b%22)')
                 .reply(200, orderPayments);
 
             msg = {};
@@ -267,12 +263,12 @@ describe('Sphere.io queryOrders.js', function () {
                 clientSecret: 'so_secret',
                 project: 'test_project',
                 where : 'externalId is defined',
-                expandCustomerExternalId: true,
-                expandPaymentInfo: true
+                expandCustomerExternalId: true
             };
         });
 
         it('should emit new message if first query was successful', function() {
+            console.log('should emit new message if first query was successful 2');
 
             queryOrders.process.call(self, msg, cfg, next, {});
 
@@ -294,6 +290,83 @@ describe('Sphere.io queryOrders.js', function () {
                 expect(newMsg.body.results[0].customer).toBeUndefined();
                 expect(newMsg.body.results[1].customer).not.toBeUndefined();
                 expect(newMsg.body.results[1].customer).toEqual(orderCustomers.results[0]);
+
+                expect(calls[1].args[0]).toEqual('snapshot');
+                expect(Object.keys(calls[1].args[1]).length).toEqual(1);
+                expect(calls[1].args[1].lastModifiedAt).toEqual('2014-08-20T09:22:36.569Z');
+                expect(calls[1].args[1].unsyncedOrders).toBeUndefined();
+
+                expect(calls[2].args[0]).toEqual('end');
+            });
+        });
+    });
+
+    describe('when where field is provided', function() {
+        var msg;
+        var self;
+        var cfg;
+
+        beforeEach(function() {
+
+            nock('https://auth.sphere.io')
+                .filteringRequestBody(/.*/, '*')
+                .post('/oauth/token', '*')
+                .reply(200, {
+                    'access_token': 'i0NC8wC8Z49uwBJKTS6MkFQN9_HhsSSA',
+                    'token_type': 'Bearer',
+                    'expires_in': 172800,
+                    'scope': 'manage_project:test_project'
+                });
+            nock.recorder.rec();
+            nock('https://api.sphere.io')
+                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
+                .reply(200, allOrders)
+                .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
+                .reply(200, orderCustomers)
+                .get('/test_project/payments?where=id%20in%20(%227a788f93-8eef-4ca4-ab45-ca937ad040a%22%2C%227a788f93-8eef-4ca4-ab45-ca937ad040b%22)')
+                .reply(200, orderPayments);
+
+            msg = {};
+            self = jasmine.createSpyObj('self', ['emit']);
+            cfg = {
+                client: 'test_client',
+                clientSecret: 'so_secret',
+                project: 'test_project',
+                where : 'externalId is defined',
+                expandCustomerExternalId: true,
+                expandPaymentInfo: true
+            };
+        });
+
+        it('should emit new message if first query was successful', function() {
+            console.log('should emit new message if first query was successful 2');
+
+            queryOrders.process.call(self, msg, cfg, next, {});
+
+            waitsFor(function () {
+                return self.emit.calls.length;
+            });
+
+            runs(function () {
+
+                var calls = self.emit.calls;
+                expect(calls.length).toEqual(3);
+
+                expect(calls[0].args[0]).toEqual('data');
+                var newMsg = self.emit.calls[0].args[1];
+                expect(newMsg.body.length).toEqual(allOrders.length);
+                expect(newMsg.body.results.length).toEqual(allOrders.results.length);
+
+                // check 'customer' in orders
+                expect(newMsg.body.results[0].customer).toBeUndefined();
+                expect(newMsg.body.results[1].customer).not.toBeUndefined();
+                expect(newMsg.body.results[1].customer).toEqual(orderCustomers.results[0]);
+
+                // check 'payments' in orders
+                expect(newMsg.body.results[0].payment).not.toBeUndefined();
+                expect(newMsg.body.results[0].payment).toEqual(orderPayments.results[0]);
+                expect(newMsg.body.results[1].payment).not.toBeUndefined();
+                expect(newMsg.body.results[1].payment).toEqual(orderPayments.results[1]);
 
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(Object.keys(calls[1].args[1]).length).toEqual(1);
@@ -327,6 +400,7 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should add order to snapshot.unsyncedOrders if customer has no externalId', function() {
+            console.log('should add order to snapshot.unsyncedOrders if customer has no externalId');
 
             var snapshot = {};
 
@@ -340,7 +414,7 @@ describe('Sphere.io queryOrders.js', function () {
             };
 
             nock('https://api.sphere.io')
-                .get(GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined' + LIMIT_SORT_EXPAND)
+                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(200, reboundedOrders)
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomersNotSynced);
@@ -372,6 +446,7 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit order & delete it from snapshot.unsyncedOrders if customer has externalId', function() {
+            console.log('should emit order & delete it from snapshot.unsyncedOrders if customer has externalId');
 
             var snapshot = {
                 unsyncedOrders: {
@@ -392,10 +467,11 @@ describe('Sphere.io queryOrders.js', function () {
             // should query non-synced orders also
             nock('https://api.sphere.io')
                 // get up to 20 updated orders
-                .get(GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined' + LIMIT_SORT_EXPAND)
+                .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20' +
+                'externalId%20is%20defined&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(200, allOrders)
                 // and add up to 20 non-synced orders
-                .get(GET_ALL_ENDPOINT + 'where=id%20in%20(%22ad921e37-0ea1-4aba-a57e-8caadfc093e1%22%2C%2212345678-0ea1-4aba-a57e-8caadfc093e1%22)' + LIMIT_SORT_EXPAND)
+                .get('/test_project/orders?where=id%20in%20(%22ad921e37-0ea1-4aba-a57e-8caadfc093e1%22%2C%2212345678-0ea1-4aba-a57e-8caadfc093e1%22)&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(200, reboundedOrders)
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomers);
@@ -433,6 +509,8 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should cleanup unsyncedOrders even if withSyncedCustomersOnly is not set', function() {
+            console.log('should cleanup unsyncedOrders even if withSyncedCustomersOnly is not set');
+
 
             var snapshot = {
                 unsyncedOrders: {
@@ -453,11 +531,11 @@ describe('Sphere.io queryOrders.js', function () {
             // should query unsyncedOrders also
             nock('https://api.sphere.io')
                 // get up to 20 updated orders
-                .get(GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20' +
-                'and%20externalId%20is%20defined' + LIMIT_SORT_EXPAND)
+                .get('/test_project/orders?' + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20' +
+                'and%20externalId%20is%20defined' + '&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(200, allOrders)
                 // add up to 20 unsyncedOrders
-                .get(GET_ALL_ENDPOINT + 'where=id%20in%20(%228fd9f83c-3453-418c-9f3b-5a218bfc8421%22%2C%22ad921e37-0ea1-4aba-a57e-8caadfc093e1%22%2C%2212345678-0ea1-4aba-a57e-8caadfc093e1%22)' + LIMIT_SORT_EXPAND)
+                .get('/test_project/orders?' + 'where=id%20in%20(%228fd9f83c-3453-418c-9f3b-5a218bfc8421%22%2C%22ad921e37-0ea1-4aba-a57e-8caadfc093e1%22%2C%2212345678-0ea1-4aba-a57e-8caadfc093e1%22)&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
                 .reply(200, reboundedOrders)
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomers);

@@ -1,4 +1,4 @@
-module.exports = {
+module.exports =  {
     offset: 0,
     count: 2,
     total: 2,
@@ -7,7 +7,6 @@ module.exports = {
         id: '8fd9f83c-3453-418c-9f3b-5a218bfc842a',
         version: 11,
         createdAt: '2013-06-04T14:05:13.564Z',
-        customerId: '3927ef3d-b5a1-476c-a61c-d719752ae2de',
         lastModifiedAt: '2013-06-04T14:05:13.564Z',
         orderState: 'Open',
         totalPrice: {
