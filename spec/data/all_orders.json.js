@@ -106,6 +106,16 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                 "amount": 0.3,
                 "includedInPrice": false
             }
+        },
+        "paymentInfo": {
+            "payments": [
+                {
+                    "id": "7a788f93-8eef-4ca4-ab45-ca937ad040a"
+                },
+                {
+                    "id": "some_id2"
+                }
+            ]
         }
     },
     {
@@ -218,6 +228,16 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
                 "amount": 0.3,
                 "includedInPrice": false
             }
+        },
+        "paymentInfo": {
+            "payments": [
+                {
+                    "id": "some_id"
+                },
+                {
+                    "id": "some_id2"
+                }
+            ]
         }
     }
 ]};

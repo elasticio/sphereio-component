@@ -5,6 +5,7 @@ describe('Sphere.io queryOrders.js', function () {
     var allOrdersWithException = require('../data/all_orders_with_exception.json.js');
     var allOrdersResponse = require('../data/all_orders_response.json.js');
     var orderCustomers = require('../data/order_customers.json.js');
+    var orderPayments = require('../data/order_payments.json.js');
     var orderCustomersNotSynced = require('../data/order_customers_notsynced.json.js');
     var modifiedOrders = require('../data/modified_orders.json.js');
     var emptyResult = {'offset': 0, 'count': 0, 'total': 49, 'results': []};
@@ -255,7 +256,9 @@ describe('Sphere.io queryOrders.js', function () {
                 .get(GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined' + LIMIT_SORT_EXPAND)
                 .reply(200, allOrders)
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
-                .reply(200, orderCustomers);
+                .reply(200, orderCustomers)
+                .get('/test_project/payments?where=id%20in%20(%227a788f93-8eef-4ca4-ab45-ca937ad040a%22)')
+                .reply(200, orderPayments);
 
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
@@ -264,7 +267,8 @@ describe('Sphere.io queryOrders.js', function () {
                 clientSecret: 'so_secret',
                 project: 'test_project',
                 where : 'externalId is defined',
-                expandCustomerExternalId: true
+                expandCustomerExternalId: true,
+                expandPaymentInfo: true
             };
         });
 
