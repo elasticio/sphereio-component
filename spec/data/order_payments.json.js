@@ -9,7 +9,7 @@ module.exports = {
             "interfaceId": "PAY-4VB96499MV287743WKX3EVNI",
             "amountPlanned": {
                 "currencyCode": "EUR",
-                "amount": 217.01
+                "centAmount": 21700
             },
             "paymentMethodInfo": {
                 "method": "PAYPAL",
@@ -31,7 +31,7 @@ module.exports = {
             "interfaceId": "PAY-4VB96499MV287743WKX3EVNI",
             "amountPlanned": {
                 "currencyCode": "EUR",
-                "amount": 217.02
+                "centAmount": 21700
             },
             "paymentMethodInfo": {
                 "method": "PAYPAL",
