@@ -42,7 +42,6 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit new message if first query was successful', function () {
-            console.log('should emit new message if first query was successful 1');
 
             nock('https://api.sphere.io')
                 .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
@@ -85,7 +84,6 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit error if shippingRate.freeAbove.currencyCode is not equal to shippingInfo.price.currencyCode', function () {
-            console.log('should emit error if shippingRate.freeAbove.currencyCode is not equal to shippingInfo.price.currencyCode');
 
             nock('https://api.sphere.io')
                 .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
@@ -109,7 +107,6 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should not expand customers if cfg.expandCustomerExternalId is not true', function () {
-            console.log('should not expand customers if cfg.expandCustomerExternalId is not true');
 
             nock('https://api.sphere.io')
                 .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
@@ -144,7 +141,6 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit new message if second query was successful (with snapshot `lastModifiedAt` param)', function () {
-            console.log('should emit new message if second query was successful (with snapshot `lastModifiedAt` param)');
 
             nock('https://api.sphere.io')
                 .get('/test_project/orders?' + 'where=lastModifiedAt%20%3E%20%222014-08-21T00%3A00%3A00.000Z%22' + '&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
@@ -176,7 +172,6 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit error if request to sphere.io was failed', function () {
-            console.log('should emit error if request to sphere.io was failed');
 
 
             nock('https://api.sphere.io')
@@ -204,7 +199,6 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit new message only if orders count more than 0', function () {
-            console.log('should emit new message only if orders count more than 0');
 
             nock('https://api.sphere.io')
                 .get('/test_project/orders?where=lastModifiedAt%20%3E%20%222014-08-25T00%3A00%3A00.000Z%22&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
@@ -266,7 +260,6 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit new message if first query was successful', function() {
-            console.log('should emit new message if first query was successful 2');
 
             queryOrders.process.call(self, msg, cfg, next, {});
 
@@ -337,7 +330,6 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit new message if first query was successful', function() {
-            console.log('should emit new message if first query was successful 2');
 
             queryOrders.process.call(self, msg, cfg, next, {});
 
@@ -398,7 +390,6 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should add order to snapshot.unsyncedOrders if customer has no externalId', function() {
-            console.log('should add order to snapshot.unsyncedOrders if customer has no externalId');
 
             var snapshot = {};
 
@@ -444,7 +435,6 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should emit order & delete it from snapshot.unsyncedOrders if customer has externalId', function() {
-            console.log('should emit order & delete it from snapshot.unsyncedOrders if customer has externalId');
 
             var snapshot = {
                 unsyncedOrders: {
@@ -507,7 +497,6 @@ describe('Sphere.io queryOrders.js', function () {
         });
 
         it('should cleanup unsyncedOrders even if withSyncedCustomersOnly is not set', function() {
-            console.log('should cleanup unsyncedOrders even if withSyncedCustomersOnly is not set');
 
 
             var snapshot = {
