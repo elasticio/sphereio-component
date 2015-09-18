@@ -255,9 +255,9 @@ describe('Sphere.io queryOrders.js', function () {
             nock('https://api.sphere.io')
                 .get(GET_ALL_ENDPOINT + 'where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined' + LIMIT_SORT_EXPAND)
                 .reply(200, allOrders)
-                .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
+                .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22,%223927ef3d-b5a1-476c-a61c-d719752ae2de%22)')
                 .reply(200, orderCustomers)
-                .get('/test_project/payments?where=id%20in%20(%227a788f93-8eef-4ca4-ab45-ca937ad040a%22)')
+                .get('/test_project/payments?where=id%20in%20(%227a788f93-8eef-4ca4-ab45-ca937ad040a%22,%227a788f93-8eef-4ca4-ab45-ca937ad040b%22)')
                 .reply(200, orderPayments);
 
             msg = {};

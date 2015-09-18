@@ -61,15 +61,6 @@
                         }
                     }
                 },
-                "paymentInfo": {
-                    "type": "object",
-                    "properties": {
-                        "id": {
-                            "title": "Payment Internal ID",
-                            "type": "string"
-                        }
-                    }
-                },
                 "payment": {
                     "type": "object",
                     "properties": {

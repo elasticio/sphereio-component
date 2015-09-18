@@ -5,6 +5,7 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "version": 11,
         "createdAt": "2013-06-04T14:05:13.564Z",
         "lastModifiedAt": "2013-06-04T14:05:13.564Z",
+        "customerId": "3927ef3d-b5a1-476c-a61c-d719752ae2de",
         "orderState": "Open",
         "totalPrice": {
             "currencyCode": "EUR",
@@ -232,7 +233,7 @@ module.exports = {"offset": 0, "count": 2, "total": 2, "results": [
         "paymentInfo": {
             "payments": [
                 {
-                    "id": "some_id"
+                    "id": "7a788f93-8eef-4ca4-ab45-ca937ad040b"
                 },
                 {
                     "id": "some_id2"
