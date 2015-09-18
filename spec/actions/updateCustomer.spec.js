@@ -131,7 +131,7 @@ describe('Sphereio update customers external id', function () {
                     originalRequest: {
                         endpoint: '/customers/54'
                     }
-                }, code: 404
+                }, statusCode: 404, code: 404
             });
         });
 

@@ -101,7 +101,7 @@ function testSuite(service, fileName, responseData, expectedData) {
                     originalRequest: {
                         endpoint: '/' + service + '/54'
                     }
-                }, code: 404
+                }, statusCode: 404, code: 404
             });
         });
 
