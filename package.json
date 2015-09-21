@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "node-uuid": "^1.4.1",
-    "sphere-node-sdk": "^1.2.0",
+    "sphere-node-sdk": "^1.6.0",
     "moment": "2.0.0",
     "underscore": "^1.8.0"
   },
