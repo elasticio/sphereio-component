@@ -9,7 +9,7 @@ describe('Sphere.io queryOrders.js', function () {
     var orderCustomersNotSynced = require('../data/order_customers_notsynced.json.js');
     var modifiedOrders = require('../data/modified_orders.json.js');
     var emptyResult = {'offset': 0, 'count': 0, 'total': 49, 'results': []};
-
+    var _ = require('underscore');
     var next = jasmine.createSpy('next');
     var queryOrders = require('../../lib/triggers/queryOrders.js');
     var helpers = require('../../lib/helpers.js');
@@ -309,14 +309,15 @@ describe('Sphere.io queryOrders.js', function () {
                     'scope': 'manage_project:test_project'
                 });
             //nock.recorder.rec();
+            var malformedOrders = _.clone(allOrders);
+            malformedOrders.results[1].paymentInfo.payments = [];
             nock('https://api.sphere.io')
                 .get('/test_project/orders?where=lastModifiedAt%20%3E%20%221970-01-01T00%3A00%3A00.000Z%22%20and%20externalId%20is%20defined&limit=20&sort=lastModifiedAt%20asc&expand=syncInfo%5B*%5D.channel')
-                .reply(200, allOrders)
+                .reply(200, malformedOrders)
                 .get('/test_project/customers?where=id%20in%20(%223927ef3d-b5a1-476c-a61c-d719752ae2dd%22)')
                 .reply(200, orderCustomers)
-                .get('/test_project/payments?where=id%20in%20(%227a788f93-8eef-4ca4-ab45-ca937ad040a%22%2C%227a788f93-8eef-4ca4-ab45-ca937ad040b%22)')
+                .get('/test_project/payments?where=id%20in%20(%227a788f93-8eef-4ca4-ab45-ca937ad040a%22)')
                 .reply(200, orderPayments);
-
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
             cfg = {
@@ -329,7 +330,7 @@ describe('Sphere.io queryOrders.js', function () {
             };
         });
 
-        it('should emit new message if first query was successful', function() {
+        it('should emit new message and add payments data where possible if the first query was successful', function() {
 
             queryOrders.process.call(self, msg, cfg, next, {});
 
@@ -355,8 +356,7 @@ describe('Sphere.io queryOrders.js', function () {
                 // check 'payments' in orders
                 expect(newMsg.body.results[0].payment).not.toBeUndefined();
                 expect(newMsg.body.results[0].payment).toEqual(orderPayments.results[0]);
-                expect(newMsg.body.results[1].payment).not.toBeUndefined();
-                expect(newMsg.body.results[1].payment).toEqual(orderPayments.results[1]);
+                expect(newMsg.body.results[1].payment).toBeUndefined();
 
                 expect(calls[1].args[0]).toEqual('snapshot');
                 expect(Object.keys(calls[1].args[1]).length).toEqual(1);
