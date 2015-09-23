@@ -55,6 +55,10 @@
                     "label": "Expand customers",
                     "viewClass": "CheckBoxView"
                 },
+                "expandPaymentInfo": {
+                    "label": "Expand payment information",
+                    "viewClass": "CheckBoxView"
+                },
                 "withSyncedCustomersOnly": {
                     "label": "Only orders of customers with External ID set",
                     "viewClass": "CheckBoxView"

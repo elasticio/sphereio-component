@@ -196,7 +196,7 @@ describe('Sphereio create product', function () {
                     message: 'Request body does not contain valid JSON.',
                     statusCode: 400,
                     originalRequest: {endpoint: '/products', payload: {productType: {typeId: 'product-type', id: '3'}}}
-                }, code: 400
+                }, statusCode: 400, code: 400
             });
         });
 
