@@ -408,7 +408,7 @@ describe('Sphere.io queryOrders.js', function () {
 
         it('should emit new message and add payments data where possible if the first query was successful', function() {
 
-            queryOrders.process.call(self, msg, cfg, next, {});
+            queryOrders.process.call(self, msg, cfg, {});
 
             waitsFor(function () {
                 return self.emit.calls.length;
