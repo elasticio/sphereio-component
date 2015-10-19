@@ -9,7 +9,7 @@ describe('Sphereio update customers external id', function () {
         clientSecret: 1,
         project: 'elasticio'
     };
-     
+
     beforeEach(function() {
         nock('https://auth.sphere.io').post('/oauth/token')
             .reply(200, {
@@ -111,7 +111,7 @@ describe('Sphereio update customers external id', function () {
 
             var scope = nock('https://api.sphere.io');
             scope.get('/elasticio/customers/54').reply(404, {statusCode: 404});
-            
+
             runs(function() {
                 updateCustomer.process.call(self, msg, cfg, callback);
             });
@@ -122,10 +122,7 @@ describe('Sphereio update customers external id', function () {
         });
 
         it('should emit right error', function() {
-            var errorCallArgs = self.emit.calls[0].args;
-
-            expect(errorCallArgs[0]).toEqual('error');
-            expect(errorCallArgs[1]).toEqual({
+            expect(self.emit).toHaveBeenCalledWith('error', {
                 message: 'Endpoint \'/elasticio/customers/54\' not found.',
                 name: 'NotFound',
                 body: {
@@ -134,9 +131,7 @@ describe('Sphereio update customers external id', function () {
                     originalRequest: {
                         endpoint: '/customers/54'
                     }
-                },
-                statusCode: 404,
-                code: 404
+                }, statusCode: 404, code: 404
             });
         });
 

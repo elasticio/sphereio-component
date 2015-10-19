@@ -92,10 +92,7 @@ function testSuite(service, fileName, responseData, expectedData) {
         });
 
         it('should emit right error', function() {
-            var errorCallArgs = self.emit.calls[0].args;
-
-            expect(errorCallArgs[0]).toEqual('error');
-            expect(errorCallArgs[1]).toEqual({
+            expect(self.emit).toHaveBeenCalledWith('error', {
                 message: 'Endpoint \'' + path + '\' not found.',
                 name: 'NotFound',
                 body: {
@@ -104,9 +101,7 @@ function testSuite(service, fileName, responseData, expectedData) {
                     originalRequest: {
                         endpoint: '/' + service + '/54'
                     }
-                },
-                statusCode: 404,
-                code: 404
+                }, statusCode: 404, code: 404
             });
         });
 

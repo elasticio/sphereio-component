@@ -189,19 +189,14 @@ describe('Sphereio create product', function () {
         });
 
         it('should emit an error', function() {
-            var errorCallArgs = self.emit.calls[0].args;
-
-            expect(errorCallArgs[0]).toEqual('error');
-            expect(errorCallArgs[1]).toEqual({
+            expect(self.emit).toHaveBeenCalledWith('error', {
                 message: 'Request body does not contain valid JSON.',
+                name : 'BadRequest',
                 body: {
                     message: 'Request body does not contain valid JSON.',
                     statusCode: 400,
                     originalRequest: {endpoint: '/products', payload: {productType: {typeId: 'product-type', id: '3'}}}
-                },
-                name : 'BadRequest',
-                statusCode : 400,
-                code: 400
+                }, statusCode: 400, code: 400
             });
         });
 
