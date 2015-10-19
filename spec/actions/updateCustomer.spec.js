@@ -5,8 +5,8 @@ describe('Sphereio update customers external id', function () {
     var nock = require('nock');
 
     var cfg = {
-        client: 1,
-        clientSecret: 1,
+        client: "foo",
+        clientSecret: "bar",
         project: 'elasticio'
     };
 
@@ -37,7 +37,7 @@ describe('Sphereio update customers external id', function () {
             scope.post('/elasticio/customers/42').reply(200, {"version":12, id: 42});
 
             runs(function() {
-                updateCustomer.process.call(self, msg, cfg, callback);
+                updateCustomer.process.call(self, msg, cfg);
             });
 
             waitsFor(function() {
@@ -46,8 +46,10 @@ describe('Sphereio update customers external id', function () {
         });
 
         it('should call callback with right params', function() {
-            var data = self.emit.calls[0].args[1].body;
-            expect(data).toEqual({ version: 12, id: 42 });
+            var calls = self.emit.calls[0];
+
+            expect(calls.args[0]).toEqual('data');
+            expect(calls.args[1].body).toEqual({ version: 12, id: 42 });
         });
 
         it('should call end event', function() {
@@ -60,7 +62,6 @@ describe('Sphereio update customers external id', function () {
     });
 
     describe('concurrency error', function() {
-        var callback = jasmine.createSpy('callback');
         var self;
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
@@ -76,7 +77,7 @@ describe('Sphereio update customers external id', function () {
             scope.post('/elasticio/customers/42').reply(409, {statusCode: 409});
 
             runs(function() {
-                updateCustomer.process.call(self, msg, cfg, callback);
+                updateCustomer.process.call(self, msg, cfg);
             });
 
             waitsFor(function() {
@@ -98,7 +99,6 @@ describe('Sphereio update customers external id', function () {
     });
 
     describe('not found error', function() {
-        var callback = jasmine.createSpy('callback');
         var self;
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
@@ -113,7 +113,7 @@ describe('Sphereio update customers external id', function () {
             scope.get('/elasticio/customers/54').reply(404, {statusCode: 404});
 
             runs(function() {
-                updateCustomer.process.call(self, msg, cfg, callback);
+                updateCustomer.process.call(self, msg, cfg);
             });
 
             waitsFor(function() {
@@ -136,7 +136,9 @@ describe('Sphereio update customers external id', function () {
         });
 
         it('should emmit end', function() {
-            expect(self.emit).toHaveBeenCalledWith('end');
+            var errorCallArgs = self.emit.calls[1].args;
+
+            expect(errorCallArgs[0]).toEqual('end');
         });
 
         it('should not emit more then two events', function() {
@@ -146,7 +148,6 @@ describe('Sphereio update customers external id', function () {
 
     describe('when updated customer has addresses', function() {
         var self;
-        var callback = jasmine.createSpy('callback');
 
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
@@ -162,7 +163,7 @@ describe('Sphereio update customers external id', function () {
             scope.post('/elasticio/customers/3927ef3d-b5a1-476c-a61c-d719752ae2dd').reply(200, oneCustomer);
 
             runs(function() {
-                updateCustomer.process.call(self, msg, cfg, callback);
+                updateCustomer.process.call(self, msg, cfg);
             });
 
             waitsFor(function() {

@@ -1,6 +1,6 @@
 {
-  "name": "sphereio-spec",
-  "description": "Tests for sphrereio extensions",
+  "name": "sphereio-api",
+  "description": "sphere.io API connector for elastic.io",
   "engines": {
     "node": "0.10.21",
     "npm": "1.3.11"

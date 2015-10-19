@@ -5,8 +5,8 @@ function testSuite(service, fileName, responseData, expectedData) {
     var nock = require('nock');
 
     var cfg = {
-        client: 1,
-        clientSecret: 1,
+        client: "foo",
+        clientSecret: "bar",
         project: 'elasticio'
     };
 
@@ -40,7 +40,7 @@ function testSuite(service, fileName, responseData, expectedData) {
             scope.get(path).reply(200, replyWithData);
 
             runs(function() {
-                action.process.call(self, msg, cfg, callback);
+                action.process.call(self, msg, cfg);
             });
 
             waitsFor(function() {
@@ -49,6 +49,8 @@ function testSuite(service, fileName, responseData, expectedData) {
         });
 
         it('should call callback with right params', function() {
+
+            expect(self.emit.calls[0].args[0]).toEqual('data');
             var data = self.emit.calls[0].args[1].body;
 
             var expected = expectedData ? expectedData : replyWithData;
@@ -83,7 +85,7 @@ function testSuite(service, fileName, responseData, expectedData) {
             scope.get(path).reply(404, {statusCode: 404});
 
             runs(function() {
-                action.process.call(self, msg, cfg, callback);
+                action.process.call(self, msg, cfg);
             });
 
             waitsFor(function() {
@@ -106,7 +108,9 @@ function testSuite(service, fileName, responseData, expectedData) {
         });
 
         it('should emmit end', function() {
-            expect(self.emit).toHaveBeenCalledWith('end');
+            var errorCallArgs = self.emit.calls[1].args;
+
+            expect(errorCallArgs[0]).toEqual('end');
         });
 
         it('should not emit more then two events', function() {
