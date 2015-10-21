@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "sku": {
+            "type": "string",
+            "title": "SKU",
+            "required": true
+        },
+        "quantity": {
+            "type": "number",
+            "title": "Quantity",
+            "required": true
+        }
+    }
+}

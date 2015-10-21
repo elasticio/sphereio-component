@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "string",
+            "title": "Inventory ID",
+            "required": true
+        },
+        "sku": {
+            "type": "string",
+            "title": "SKU",
+            "required": true
+        },
+        "quantityOnStock": {
+            "type": "number",
+            "title": "Quantity On Stock",
+            "required": true
+        }
+    }
+}
