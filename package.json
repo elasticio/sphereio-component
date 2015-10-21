@@ -13,7 +13,8 @@
     "node-uuid": "^1.4.1",
     "sphere-node-sdk": "^1.6.0",
     "moment": "2.0.0",
-    "underscore": "^1.8.0"
+    "underscore": "^1.8.0",
+    "q": "1.4.1"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
