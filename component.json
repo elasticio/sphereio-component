@@ -341,6 +341,14 @@
                     }
                 }
             }
+        },
+        "importInventory": {
+            "main": "./lib/actions/importInventory.js",
+            "title": "Import Inventory",
+            "metadata": {
+                "in": "./lib/schemas/importInventory.in.json",
+                "out": "./lib/schemas/importInventory.out.json"
+            }
         }
     }
 }
