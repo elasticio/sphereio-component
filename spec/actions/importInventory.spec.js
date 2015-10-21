@@ -2,14 +2,8 @@ describe('Sphereio import inventory', function () {
     var importInventory = require('../../lib/actions/importInventory.js');
     var getInventoryJson = require('../data/getInventory.json.js');
     var inventoryJson = require('../data/inventory.json.js');
-    var oneModifiedCustomer = require('../data/one_modified_customer.json.js');
     var nock = require('nock');
 
-    var cfg2 = {
-        client: "y3VzG1Azl6jn8Ti8Y-0Se2Vt",
-        clientSecret: "as9pGwgFUsklBxrgKFFbZoxUVHQX3o2O",
-        project: 'all-for-one-igor-64'
-    };
     var cfg = {
         client: "foo",
         clientSecret: "bar",
