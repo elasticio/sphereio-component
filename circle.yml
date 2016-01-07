@@ -1,0 +1,13 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker pull elasticio/appbuilder
+
+test:
+  override:
+    - chmod 700 .circleci/build_slug.sh
+    - .circleci/build_slug.sh
+
