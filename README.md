@@ -23,7 +23,7 @@ After registration and uploading of your SSH Key you can proceed to deploy it in
 * [Create a repository](http://docs.elastic.io/docs/component-repositories) wher your new component is going to *reside* inside the team that you have just created. For a simplicity you can name your repository **sphereio-component** or **sphereio**.
 
 ```bash
-$ git clone https://github.com/elasticio/sphereio-api.git sphereio-component
+$ git clone https://github.com/elasticio/sphereio-component.git sphereio-component
 
 $ cd sphereio-component
 ```
