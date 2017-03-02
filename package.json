@@ -10,7 +10,7 @@
     "url": "https://github.com/elasticio/sphereio-api.git"
   },
   "dependencies": {
-    "elasticio-sailor-nodejs": "1.1.0",
+    "elasticio-sailor-nodejs": "2.0.1",
     "node-uuid": "^1.4.1",
     "sphere-node-sdk": "^1.6.0",
     "moment": "2.0.0",
