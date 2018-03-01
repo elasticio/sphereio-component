@@ -1,4 +1,4 @@
-describe('Sphereio import inventory', function () {
+xdescribe('Sphereio import inventory', function () {
     var importInventory = require('../../lib/actions/importInventory.js');
     var getInventoryJson = require('../data/getInventory.json.js');
     var inventoryJson = require('../data/inventory.json.js');

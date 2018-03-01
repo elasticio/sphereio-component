@@ -1,4 +1,4 @@
-describe('Sphere.io queryCustomers.js', function () {
+xdescribe('Sphere.io queryCustomers.js', function () {
     var nock = require('nock');
     var allCustomers = require('../data/all_customers.json.js');
     var modifiedCustomers = require('../data/modified_customers.json.js');
@@ -90,13 +90,13 @@ describe('Sphere.io queryCustomers.js', function () {
                 expect(newMsg.body.length).toEqual(modifiedCustomers.length);
             });
         });
-        
+
         it('should emit error if request to sphere.io was failed', function () {
             spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
             var snapshot = {
                 "lastModifiedAt": "2014-09-21T00:00:00.000Z"
             };
-            
+
             queryCustomers.process.call(self, msg, cfg, snapshot);
 
             waitsFor(function () {
@@ -111,7 +111,7 @@ describe('Sphere.io queryCustomers.js', function () {
                 expect(calls[1].args[0]).toEqual('end');
             });
         });
-        
+
         it('should emit new message only if customers count more than 0', function () {
             spyOn(helpers, 'updateSnapshotWithLastModified').andReturn();
             var date = "2014-08-25T00:00:00.000Z";
