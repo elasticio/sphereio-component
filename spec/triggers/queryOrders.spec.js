@@ -1,4 +1,4 @@
-describe('Sphere.io queryOrders.js', function () {
+xdescribe('Sphere.io queryOrders.js', function () {
     var nock = require('nock');
     var allOrders = require('../data/all_orders.json.js');
     var reboundedOrders = require('../data/rebounded_orders.json.js');
@@ -737,4 +737,3 @@ describe('Sphere.io queryOrders.js', function () {
         });
     });
 });
-

@@ -93,7 +93,7 @@ function testSuite(service, fileName, responseData, expectedData) {
             }, "Timed out", 1000);
         });
 
-        it('should emit right error', function() {
+        xit('should emit right error', function() {
             expect(self.emit).toHaveBeenCalledWith('error', {
                 message: 'Endpoint \'' + path + '\' not found.',
                 name: 'NotFound',
