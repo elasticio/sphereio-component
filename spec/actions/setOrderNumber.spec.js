@@ -1,3 +1,5 @@
+const logger = require('@elastic.io/component-logger')();
+
 describe('Set Order Number', function () {
     var nock = require('nock');
     var root = 'https://api.sphere.io';
@@ -16,6 +18,7 @@ describe('Set Order Number', function () {
                 scope: 'manage_project:elasticio'
             });
         self = jasmine.createSpyObj('self', ['emit']);
+        self.logger = logger;
         msg = {
             body: {
                 orderId: '8fd9f83c-3453-418c-9f3b-5a218bfc842a',

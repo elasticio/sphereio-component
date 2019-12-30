@@ -1,3 +1,5 @@
+const logger = require('@elastic.io/component-logger')();
+
 describe('Add Variant', function() {
 
     var addVariant = require('../../lib/actions/addVariant');
@@ -60,6 +62,7 @@ describe('Add Variant', function() {
             };
 
             var executor = jasmine.createSpyObj('executor', ['emit']);
+            executor.logger = logger;
             runs(function() {
                 addVariant.process.call(executor, msg, cfg);
             });
@@ -84,6 +87,7 @@ describe('Add Variant', function() {
             };
 
             var executor = jasmine.createSpyObj('executor', ['emit']);
+            executor.logger = logger;
             runs(function() {
                 addVariant.process.call(executor, msg, cfg);
             });
@@ -128,6 +132,7 @@ describe('Add Variant', function() {
             };
 
             var executor = jasmine.createSpyObj('executor', ['emit']);
+            executor.logger = logger;
             runs(function() {
                 addVariant.process.call(executor, msg, cfg);
             });
@@ -168,7 +173,8 @@ describe('Add Variant', function() {
                 }
             };
 
-            var executor = jasmine.createSpyObj('executor', ['emit']);
+            var executor = jasmine.createSpyObj('executor', ['emit'])
+            executor.logger = logger;
             runs(function() {
                 addVariant.process.call(executor, msg, cfg);
             });
@@ -211,6 +217,7 @@ describe('Add Variant', function() {
             };
 
             var executor = jasmine.createSpyObj('executor', ['emit']);
+            executor.logger = logger;
             runs(function() {
                 addVariant.process.call(executor, msg, cfg);
             });
@@ -258,6 +265,7 @@ describe('Add Variant', function() {
             };
 
             var executor = jasmine.createSpyObj('executor', ['emit']);
+            executor.logger = logger;
             runs(function() {
                 addVariant.process.call(executor, msg, cfg);
             });

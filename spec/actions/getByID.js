@@ -1,3 +1,5 @@
+const logger = require('@elastic.io/component-logger')();
+
 exports.testSuite = testSuite;
 
 function testSuite(service, fileName, responseData, expectedData) {
@@ -27,6 +29,7 @@ function testSuite(service, fileName, responseData, expectedData) {
 
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             var msg = {
                 body: {
                     id: 42
@@ -75,6 +78,7 @@ function testSuite(service, fileName, responseData, expectedData) {
 
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             var msg = {
                 body: {
                     id: 54,

@@ -1,3 +1,5 @@
+const logger = require('@elastic.io/component-logger')();
+
 xdescribe('Query Product Variant', function () {
     var nock = require('nock');
     var masterProduct = require('../data/product_master_variant.json.js');
@@ -35,6 +37,7 @@ xdescribe('Query Product Variant', function () {
             };
 
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             nock('https://api.sphere.io')
                 .get('/test_project/products?where=masterData(current(variants(sku%20%3D%20%22timex-wr30m%22)%20or%20masterVariant(sku%20%3D%20%22timex-wr30m%22)))')
@@ -85,6 +88,7 @@ xdescribe('Query Product Variant', function () {
             };
 
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             nock('https://api.sphere.io')
                 .get('/test_project/products?where=masterData(current(variants(sku%20%3D%20%22timex-wr30m-metal%22)%20or%20masterVariant(sku%20%3D%20%22timex-wr30m-metal%22)))')
@@ -135,6 +139,7 @@ xdescribe('Query Product Variant', function () {
             };
 
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             nock('https://api.sphere.io')
                 .get('/test_project/products?where=masterData(current(variants(sku%20%3D%20%22timex-wr30m-gold%22)%20or%20masterVariant(sku%20%3D%20%22timex-wr30m-gold%22)))')
@@ -179,6 +184,7 @@ xdescribe('Query Product Variant', function () {
             };
 
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             nock('https://api.sphere.io')
                 .get('/test_project/products?where=masterData(current(variants(sku%20%3D%20%22timex-wr30m-error%22)%20or%20masterVariant(sku%20%3D%20%22timex-wr30m-error%22)))')

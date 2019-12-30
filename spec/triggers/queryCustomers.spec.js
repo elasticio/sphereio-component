@@ -1,3 +1,5 @@
+const logger = require('@elastic.io/component-logger')();
+
 xdescribe('Sphere.io queryCustomers.js', function () {
     var nock = require('nock');
     var allCustomers = require('../data/all_customers.json.js');
@@ -37,6 +39,7 @@ xdescribe('Sphere.io queryCustomers.js', function () {
         beforeEach(function () {
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             cfg = {
                 client: 'test_client',
                 clientSecret: 'so_secret',
@@ -159,6 +162,7 @@ xdescribe('Sphere.io queryCustomers.js', function () {
 
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             cfg = {
                 client: 'test_client',
                 clientSecret: 'so_secret',
@@ -217,6 +221,7 @@ xdescribe('Sphere.io queryCustomers.js', function () {
 
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             cfg = {
                 client: 'test_client',
                 clientSecret: 'so_secret',
