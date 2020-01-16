@@ -1,3 +1,5 @@
+const logger = require('@elastic.io/component-logger')();
+
 xdescribe('Sphere.io queryOrders.js', function () {
     var nock = require('nock');
     var allOrders = require('../data/all_orders.json.js');
@@ -33,6 +35,7 @@ xdescribe('Sphere.io queryOrders.js', function () {
 
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             cfg = {
                 client: 'test_client',
                 clientSecret: 'so_secret',
@@ -250,6 +253,7 @@ xdescribe('Sphere.io queryOrders.js', function () {
 
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             cfg = {
                 client: 'test_client',
                 clientSecret: 'so_secret',
@@ -320,6 +324,7 @@ xdescribe('Sphere.io queryOrders.js', function () {
                 .reply(200, orderPayments);
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             cfg = {
                 client: 'test_client',
                 clientSecret: 'so_secret',
@@ -396,6 +401,7 @@ xdescribe('Sphere.io queryOrders.js', function () {
                 .reply(200, orderPayments);
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             cfg = {
                 client: 'test_client',
                 clientSecret: 'so_secret',
@@ -463,6 +469,7 @@ xdescribe('Sphere.io queryOrders.js', function () {
 
             msg = {};
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
         });
 
         it('should add order to snapshot.unsyncedOrders if customer has no externalId', function() {

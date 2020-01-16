@@ -1,3 +1,5 @@
+const logger = require('@elastic.io/component-logger')();
+
 describe('Sphereio create product', function () {
     var createProduct = require('../../lib/actions/createProduct.js');
     var attributeManager = require('../../lib/attributeManager.js');
@@ -135,6 +137,7 @@ describe('Sphereio create product', function () {
 
         beforeEach(function() {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             spyOn(attributeManager, 'readProduct').andCallThrough();
 
@@ -176,6 +179,7 @@ describe('Sphereio create product', function () {
 
         beforeEach(function() {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             nock('https://api.sphere.io').post('/elasticio/products')
                 .reply(400, {message: 'Request body does not contain valid JSON.'});
 
@@ -218,6 +222,7 @@ describe('Sphereio create product', function () {
 
         beforeEach(function() {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             runs(function() {
                 createProduct.process.call(self, msg, cfg);
             });

@@ -1,5 +1,6 @@
 {
   "name": "sphereio-api",
+  "version": "1.0.1",
   "description": "sphere.io API connector for elastic.io",
   "engines": {
     "node": "^8.4.0",
@@ -9,8 +10,11 @@
     "type": "git",
     "url": "https://github.com/elasticio/sphereio-api.git"
   },
+  "scripts": {
+    "test": "./node_modules/.bin/grunt test"
+  },
   "dependencies": {
-    "elasticio-sailor-nodejs": "2.2.0",
+    "elasticio-sailor-nodejs": "2.5.4",
     "elasticio-node": "0.0.8",
     "node-uuid": "^1.4.1",
     "sphere-node-sdk": "1.24.0",
@@ -19,6 +23,7 @@
     "q": "1.4.1"
   },
   "devDependencies": {
+    "@elastic.io/component-logger": "0.0.1",
     "grunt": "~0.4.5",
     "grunt-cli": "0.1.7",
     "grunt-contrib-clean": "~0.4.0",
@@ -30,8 +35,5 @@
     "grunt-jasmine-node": "0.2.1",
     "grunt-jscs": "^0.7.0",
     "nock": "0.27.2"
-  },
-  "scripts": {
-    "test": "./node_modules/.bin/grunt test"
   }
 }

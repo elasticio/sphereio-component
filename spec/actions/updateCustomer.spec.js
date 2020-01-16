@@ -1,3 +1,5 @@
+const logger = require('@elastic.io/component-logger')();
+
 describe('Sphereio update customers external id', function () {
     var updateCustomer = require('../../lib/actions/updateCustomer.js');
     var oneCustomer = require('../data/one_customer.json.js');
@@ -25,6 +27,7 @@ describe('Sphereio update customers external id', function () {
 
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             var msg = {
                 body: {
                     id: 42,
@@ -65,6 +68,7 @@ describe('Sphereio update customers external id', function () {
         var self;
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             var msg = {
                 body: {
                     id: 42,
@@ -102,6 +106,7 @@ describe('Sphereio update customers external id', function () {
         var self;
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             var msg = {
                 body: {
                     id: 54,
@@ -151,6 +156,7 @@ describe('Sphereio update customers external id', function () {
 
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
             var msg = {
                 body: {
                     id: '3927ef3d-b5a1-476c-a61c-d719752ae2dd',

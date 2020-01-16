@@ -1,3 +1,5 @@
+const logger = require('@elastic.io/component-logger')();
+
 xdescribe('Sphereio import inventory', function () {
     var importInventory = require('../../lib/actions/importInventory.js');
     var getInventoryJson = require('../data/getInventory.json.js');
@@ -26,6 +28,7 @@ xdescribe('Sphereio import inventory', function () {
 
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             var msg = {
                 body: {}
@@ -58,6 +61,7 @@ xdescribe('Sphereio import inventory', function () {
 
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             var msg = {
                 body: {
@@ -92,6 +96,7 @@ xdescribe('Sphereio import inventory', function () {
 
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             var msg = {
                 body: {
@@ -139,6 +144,7 @@ xdescribe('Sphereio import inventory', function () {
 
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             var msg = {
                 body: {
@@ -189,6 +195,7 @@ xdescribe('Sphereio import inventory', function () {
 
         beforeEach(function () {
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             var msg = {
                 body: {

@@ -1,3 +1,5 @@
+const logger = require('@elastic.io/component-logger')();
+
 describe('Add Price', function () {
     var nock = require('nock');
     var masterProduct = require('../data/product_master_variant.json.js');
@@ -35,6 +37,7 @@ describe('Add Price', function () {
             };
 
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             nock('https://api.sphere.io')
                 .get('/test_project/products/f499d66d-5bb7-48b0-b2ee-891317abfd69')
@@ -85,6 +88,7 @@ describe('Add Price', function () {
             };
 
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             nock('https://api.sphere.io')
                 .get('/test_project/products/f499d66d-5bb7-48b0-b2ee-891317abfd69')
@@ -133,6 +137,7 @@ describe('Add Price', function () {
             };
 
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             nock('https://api.sphere.io')
                 .get('/test_project/products/f499d66d-5bb7-48b0-b2ee-891317abfd69')
@@ -196,6 +201,7 @@ describe('Add Price', function () {
             };
 
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             nock('https://api.sphere.io')
                 .get('/test_project/products/f499d66d-5bb7-48b0-b2ee-891317abfd69')
@@ -259,6 +265,7 @@ describe('Add Price', function () {
             };
 
             self = jasmine.createSpyObj('self', ['emit']);
+            self.logger = logger;
 
             nock('https://api.sphere.io')
                 .get('/test_project/products/f499d66d-5bb7-48b0-b2ee-891317abfd69')
