@@ -1,6 +1,5 @@
 {
   "name": "sphereio-api",
-  "version": "1.0.1",
   "description": "sphere.io API connector for elastic.io",
   "engines": {
     "node": "^8.4.0",
@@ -14,7 +13,7 @@
     "test": "./node_modules/.bin/grunt test"
   },
   "dependencies": {
-    "elasticio-sailor-nodejs": "2.5.4",
+    "elasticio-sailor-nodejs": "2.6.26",
     "elasticio-node": "0.0.8",
     "node-uuid": "^1.4.1",
     "sphere-node-sdk": "1.24.0",
