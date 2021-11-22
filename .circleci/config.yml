@@ -2,11 +2,14 @@ version: 2
 jobs:
   test:
     docker:
-      - image: circleci/node:14-stretch
+      - image: cimg/node:14.17.5
     steps:
       - checkout
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Audit Dependencies
+          command: npm audit --audit-level=critical
       - run:
           name: Installing Dependencies
           command: npm install
@@ -15,8 +18,8 @@ jobs:
           paths:
             - node_modules
       - run:
-          name: Running Mocha Unit&Integration Tests
-          command: npm test && npm run integration-test
+          name: Running Mocha Tests
+          command: npm test
 workflows:
   version: 2
   build_and_test:
