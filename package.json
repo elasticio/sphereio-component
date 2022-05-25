@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@elastic.io/component-logger": "0.0.1",
-    "grunt": "~0.4.5",
+    "grunt": "~1.5.3",
     "grunt-cli": "0.1.7",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-copy": "~0.5.0",
