@@ -1,3 +1,6 @@
+# 1.0.2 (April 07, 2023)
+* Fixed version mismatch
+
 ## 1.0.1 (December 30, 2019)
 
 Update component to new sailor version 2.5.4
