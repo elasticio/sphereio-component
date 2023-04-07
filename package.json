@@ -1,6 +1,5 @@
 {
   "name": "sphereio-api",
-  "version": "1.0.1",
   "description": "sphere.io API connector for elastic.io",
   "engines": {
     "node": "^8.4.0",
